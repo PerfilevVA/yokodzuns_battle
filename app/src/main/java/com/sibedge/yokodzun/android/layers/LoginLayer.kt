@@ -14,7 +14,6 @@ import ru.hnau.androidutils.ui.view.utils.*
 import ru.hnau.androidutils.ui.view.utils.apply.*
 import ru.hnau.jutils.TimeValue
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.AuthManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.layers.main.MainLayer
 import com.sibedge.yokodzun.android.layers.registration.RegistrationLayer
@@ -24,7 +23,6 @@ import com.sibedge.yokodzun.android.ui.hierarchy_utils.addLargePrimaryBackground
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addSmallFgUnderlineTextButtonView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
-import com.sibedge.yokodzun.android.ui.input.simple.addSimpleInput
 import com.sibedge.yokodzun.android.utils.managers.DialogManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.android.utils.extensions.title

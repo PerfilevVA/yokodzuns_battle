@@ -1,11 +1,11 @@
 package com.sibedge.yokodzun.android.api.response_handler
 
 import com.google.gson.reflect.TypeToken
+import com.sibedge.yokodzun.common.api.ApiResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import ru.hnau.jutils.possible.Possible
-import ru.hnau.remote_teaching_common.api.ApiResponse
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 

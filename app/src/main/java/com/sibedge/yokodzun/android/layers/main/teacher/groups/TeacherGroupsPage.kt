@@ -13,7 +13,6 @@ import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.extensions.not
 import ru.hnau.jutils.producer.locked_producer.SuspendLockedProducer
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.StudentsGroupsListManager
 import com.sibedge.yokodzun.android.layers.students_group_tests.StudentsGroupTestsLayer
 import com.sibedge.yokodzun.android.ui.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addMainActonButtonView

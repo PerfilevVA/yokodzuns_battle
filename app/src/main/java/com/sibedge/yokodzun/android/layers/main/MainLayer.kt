@@ -11,7 +11,6 @@ import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.helpers.VariableConnector
 import ru.hnau.jutils.producer.Producer
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.MeInfoManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.layers.main.admin.AdminContentView
 import com.sibedge.yokodzun.android.layers.main.student.StudentContentView

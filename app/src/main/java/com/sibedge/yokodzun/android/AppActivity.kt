@@ -4,20 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.ScrollView
 import ru.hnau.androidutils.ui.TransparentStatusBarActivity
-import ru.hnau.androidutils.ui.view.layer.manager.LayerManager
 import ru.hnau.androidutils.ui.view.layer.manager.LayerManagerConnector
-import ru.hnau.androidutils.ui.view.utils.apply.addChild
-import ru.hnau.androidutils.ui.view.utils.setFitKeyboard
 import ru.hnau.androidutils.utils.put
 import ru.hnau.jutils.takeIfNotEmpty
-import com.sibedge.yokodzun.android.data.AuthManager
-import com.sibedge.yokodzun.android.layers.LoginLayer
-import com.sibedge.yokodzun.android.layers.main.MainLayer
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
-import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector.layerManager
 
 class AppActivity : TransparentStatusBarActivity() {
 

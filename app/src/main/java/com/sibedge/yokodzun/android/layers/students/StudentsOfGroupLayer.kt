@@ -5,16 +5,8 @@ import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
 import ru.hnau.androidutils.ui.view.utils.apply.addChild
 import ru.hnau.androidutils.utils.shortToast
-import ru.hnau.jutils.getter.base.GetterAsync
-import ru.hnau.jutils.producer.Producer
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.StudentsGroupsListManager
-import com.sibedge.yokodzun.android.data.StudentsOfGroupManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
-import com.sibedge.yokodzun.android.ui.empty_info.EmptyInfoView
-import com.sibedge.yokodzun.android.ui.list.UserListContainer
-import com.sibedge.yokodzun.android.utils.extensions.fioOrLogin
-import com.sibedge.yokodzun.android.utils.extensions.showInfoDialog
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import ru.hnau.remote_teaching_common.data.ActionCodeType
 import ru.hnau.remote_teaching_common.data.StudentsGroup

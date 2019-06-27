@@ -3,7 +3,6 @@ package com.sibedge.yokodzun.android.layers.edit_content_md
 import android.content.Context
 import android.widget.LinearLayout
 import ru.hnau.androidutils.context_getters.StringGetter
-import ru.hnau.androidutils.context_getters.toGetter
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
 import ru.hnau.androidutils.ui.view.utils.MATCH_PARENT
 import ru.hnau.androidutils.ui.view.utils.apply.addChild
@@ -15,7 +14,6 @@ import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.ifTrue
 import ru.hnau.jutils.producer.Producer
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.SectionsInfoManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.addSuspendPresenter
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addBottomButtonView

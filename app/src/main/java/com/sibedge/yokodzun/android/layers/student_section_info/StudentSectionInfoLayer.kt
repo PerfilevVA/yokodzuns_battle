@@ -3,20 +3,13 @@ package com.sibedge.yokodzun.android.layers.student_section_info
 import android.content.Context
 import android.view.View
 import ru.hnau.androidutils.context_getters.StringGetter
-import ru.hnau.androidutils.ui.view.auto_swipe_refresh_view.addAutoSwipeRefreshView
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
-import ru.hnau.androidutils.ui.view.utils.apply.addChild
-import ru.hnau.jutils.getter.base.GetterAsync
-import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.StateProducerSimple
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.SectionsInfoManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.layers.student_section_info.list.StudentSectionInfoLayerList
-import com.sibedge.yokodzun.android.ui.addSuspendPresenter
 import com.sibedge.yokodzun.android.ui.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
-import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import ru.hnau.remote_teaching_common.data.section.SectionInfo
 import ru.hnau.remote_teaching_common.data.section.SectionSkeleton
 

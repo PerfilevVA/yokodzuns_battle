@@ -4,11 +4,9 @@ import android.content.Context
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.jutils.getter.base.map
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.SectionsInfoManager
 import com.sibedge.yokodzun.android.layers.student_section_info.StudentSectionInfoLayer
 import com.sibedge.yokodzun.android.ui.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.list.base.ItemCellListContaner
-import com.sibedge.yokodzun.android.utils.extensions.getLineCellData
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import ru.hnau.remote_teaching_common.data.section.SectionSkeleton
 

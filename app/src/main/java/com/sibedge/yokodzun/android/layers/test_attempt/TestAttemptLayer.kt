@@ -9,13 +9,10 @@ import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 import ru.hnau.jutils.handle
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.api.API
-import com.sibedge.yokodzun.android.data.TestAttemptTasksCompilationManager
-import com.sibedge.yokodzun.android.data.TestsAttemptsForStudentManager
 import com.sibedge.yokodzun.android.data.entity.LocalTestAttempt
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.layers.main.MainLayer
 import com.sibedge.yokodzun.android.utils.TestAttemptResultUtils
-import com.sibedge.yokodzun.android.utils.extensions.maxScore
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.android.utils.managers.closeButton
 import ru.hnau.remote_teaching_common.data.test.attempt.tasks_compilation.TestAttemptTasksCompilation

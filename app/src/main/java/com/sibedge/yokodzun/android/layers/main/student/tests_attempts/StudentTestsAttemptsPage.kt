@@ -10,7 +10,6 @@ import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.locked_producer.SuspendLockedProducer
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.TestsAttemptsForStudentManager
 import com.sibedge.yokodzun.android.data.entity.LocalTestAttempt
 import com.sibedge.yokodzun.android.layers.test_attempt_info.TestAttemptInfoLayer
 import com.sibedge.yokodzun.android.ui.empty_info.EmptyInfoView

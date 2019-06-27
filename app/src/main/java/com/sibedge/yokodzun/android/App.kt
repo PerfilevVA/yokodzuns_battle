@@ -11,11 +11,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        //TODO remove after fix
-        logD(LayoutType.Stretched.toString())
-        logD(LayoutType.DEFAULT.toString())
-
         ContextConnector.init(this)
         FCMManager.sendPushTokenIfNeed()
     }

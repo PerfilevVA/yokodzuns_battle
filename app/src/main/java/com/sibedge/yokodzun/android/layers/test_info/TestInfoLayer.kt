@@ -8,7 +8,6 @@ import ru.hnau.androidutils.ui.view.layer.layer.LayerState
 import ru.hnau.androidutils.ui.view.utils.apply.addChild
 import ru.hnau.androidutils.ui.view.utils.apply.addFrameLayout
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
-import ru.hnau.androidutils.utils.showToast
 import ru.hnau.jutils.getter.SuspendGetter
 import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.handle
@@ -17,8 +16,6 @@ import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.extensions.not
 import ru.hnau.jutils.tryOrElse
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.api.API
-import com.sibedge.yokodzun.android.data.TestsTasksManager
 import com.sibedge.yokodzun.android.data.entity.TestTaskWithId
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.layers.test_task_info.TestTaskInfoLayer
@@ -26,7 +23,6 @@ import com.sibedge.yokodzun.android.layers.test_task_info.TestTaskInfoLayerCallb
 import com.sibedge.yokodzun.android.ui.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addMainActonButtonView
 import com.sibedge.yokodzun.android.ui.plus_minus.PlusMinusColumnInfo
-import com.sibedge.yokodzun.android.utils.extensions.*
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
 import com.sibedge.yokodzun.android.utils.minusAt

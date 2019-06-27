@@ -2,26 +2,21 @@ package com.sibedge.yokodzun.android.layers
 
 import android.content.Context
 import ru.hnau.androidutils.context_getters.StringGetter
-import ru.hnau.androidutils.context_getters.toGetter
 import ru.hnau.androidutils.ui.view.addLinearSeparator
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
 import ru.hnau.androidutils.ui.view.utils.apply.addChild
-import ru.hnau.androidutils.ui.view.utils.apply.addView
 import ru.hnau.androidutils.ui.view.utils.apply.applyCenterGravity
 import ru.hnau.androidutils.ui.view.utils.apply.applyPadding
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
-import ru.hnau.androidutils.ui.view.utils.setPadding
 import ru.hnau.androidutils.utils.shortToast
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.api.API
-import com.sibedge.yokodzun.android.data.MeInfoManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addBottomButtonView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addFgSmallInputLabelView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addSmallPrimaryTextAndBorderButtonView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
-import com.sibedge.yokodzun.android.ui.input.simple.addSimpleInput
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import ru.hnau.remote_teaching_common.data.User
 import ru.hnau.remote_teaching_common.utils.Validators

@@ -7,7 +7,7 @@ import ru.hnau.jutils.getter.toSuspendGetter
 import ru.hnau.jutils.producer.CachingProducer
 
 
-abstract class RTDataManager<T : Any>(
+abstract class YDataManager<T : Any>(
     valueLifetime: TimeValue? = DataUtils.DEFAULT_VALUE_LIFETIME,
     invalidateAfterUserLogin: Boolean = false
 ) : CachingProducer<SuspendGetter<Unit, T>>(

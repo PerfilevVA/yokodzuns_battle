@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "575916283373",
+    "firebase_url": "https://yokodzunbattle.firebaseio.com",
+    "project_id": "yokodzunbattle",
+    "storage_bucket": "yokodzunbattle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575916283373:android:beac983cd26b4de4",
+        "android_client_info": {
+          "package_name": "com.sibedge.yokodzun.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575916283373-pr4o2boc6p4tvjo28sr5ukmst7oik1ik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8rB72IDl2BIH9cK8T0P6c-DYumbc3RIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575916283373-pr4o2boc6p4tvjo28sr5ukmst7oik1ik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

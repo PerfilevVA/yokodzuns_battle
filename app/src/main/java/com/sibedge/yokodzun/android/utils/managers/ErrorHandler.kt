@@ -1,11 +1,9 @@
 package com.sibedge.yokodzun.android.utils.managers
 
 import ru.hnau.androidutils.context_getters.StringGetter
-import ru.hnau.androidutils.context_getters.toGetter
 import ru.hnau.androidutils.utils.ContextConnector
 import ru.hnau.androidutils.utils.shortToast
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.AuthManager
 import com.sibedge.yokodzun.android.layers.ChangePasswordLayer
 import com.sibedge.yokodzun.android.layers.LoginLayer
 import com.sibedge.yokodzun.android.layers.SettingsLayer

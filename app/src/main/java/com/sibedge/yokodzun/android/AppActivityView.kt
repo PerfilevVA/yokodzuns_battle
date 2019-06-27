@@ -6,15 +6,10 @@ import ru.hnau.androidutils.coroutines.createUIJob
 import ru.hnau.androidutils.go_back_handler.GoBackHandler
 import ru.hnau.androidutils.ui.view.layer.manager.LayerManager
 import ru.hnau.androidutils.ui.view.layer.manager.LayerManagerConnector
-import ru.hnau.androidutils.ui.view.utils.apply.addView
 import ru.hnau.androidutils.ui.view.utils.createIsVisibleToUserProducer
 import ru.hnau.androidutils.ui.view.utils.setFitKeyboard
 import ru.hnau.jutils.coroutines.TasksFinalizer
-import ru.hnau.jutils.getter.base.get
 import ru.hnau.jutils.producer.locked_producer.SuspendLockedProducer
-import com.sibedge.yokodzun.android.data.AuthManager
-import com.sibedge.yokodzun.android.data.MeInfoManager
-import com.sibedge.yokodzun.android.data.TestsAttemptsForStudentManager
 import com.sibedge.yokodzun.android.layers.LoginLayer
 import com.sibedge.yokodzun.android.layers.main.MainLayer
 import com.sibedge.yokodzun.android.layers.test_attempt_info.TestAttemptInfoLayer

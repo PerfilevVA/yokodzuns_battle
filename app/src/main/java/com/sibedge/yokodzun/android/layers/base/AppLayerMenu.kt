@@ -3,16 +3,11 @@ package com.sibedge.yokodzun.android.layers.base
 import android.view.View
 import kotlinx.coroutines.CoroutineScope
 import ru.hnau.androidutils.context_getters.StringGetter
-import ru.hnau.jutils.getter.base.get
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.AuthManager
-import com.sibedge.yokodzun.android.data.MeInfoManager
 import com.sibedge.yokodzun.android.layers.ProfileLayer
 import com.sibedge.yokodzun.android.layers.SettingsLayer
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
-import com.sibedge.yokodzun.android.utils.managers.CrashliticsManager
 import com.sibedge.yokodzun.android.utils.managers.OptionsMenuManager
-import java.lang.IllegalStateException
 
 
 object AppLayerMenu {

@@ -3,8 +3,6 @@ package com.sibedge.yokodzun.android.layers.students_group_tests.tree
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import ru.hnau.jutils.getter.base.get
-import com.sibedge.yokodzun.android.data.SectionsInfoManager
 import com.sibedge.yokodzun.android.layers.students_group_tests.tree.item.TestTreeListSectionCell
 import com.sibedge.yokodzun.android.layers.students_group_tests.tree.item.TestTreeListTestCell
 import ru.hnau.remote_teaching_common.data.section.SectionSkeleton

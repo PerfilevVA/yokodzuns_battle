@@ -4,11 +4,8 @@ import kotlinx.coroutines.CoroutineScope
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.utils.showToast
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.StudentsGroupsListManager
 import com.sibedge.yokodzun.android.layers.students.StudentsOfGroupLayer
-import com.sibedge.yokodzun.android.layers.students_group_tests.StudentsGroupTestsLayer
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
-import com.sibedge.yokodzun.android.utils.extensions.showInfoDialog
 import ru.hnau.remote_teaching_common.data.ActionCodeType
 import ru.hnau.remote_teaching_common.data.StudentsGroup
 

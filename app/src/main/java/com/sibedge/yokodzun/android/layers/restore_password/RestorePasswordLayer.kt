@@ -13,7 +13,6 @@ import ru.hnau.androidutils.ui.view.utils.apply.addVerticalLayout
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 import ru.hnau.androidutils.ui.view.utils.setPadding
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.AuthManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.layers.main.MainLayer
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addBottomButtonView
@@ -21,7 +20,6 @@ import com.sibedge.yokodzun.android.ui.hierarchy_utils.addFgSmallInputLabelView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addFgSmallLabelView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
-import com.sibedge.yokodzun.android.ui.input.simple.addSimpleInput
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import ru.hnau.remote_teaching_common.utils.Validators
 import ru.hnau.remote_teaching_common.data.UserRole

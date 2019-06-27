@@ -6,8 +6,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import com.sibedge.yokodzun.android.api.response_handler.DeferredCallAdapterFactory
 import com.sibedge.yokodzun.android.data.AuthManager
 import com.sibedge.yokodzun.android.utils.managers.SettingsManager
-import ru.hnau.remote_teaching_common.api.ApiUtils
-import ru.hnau.remote_teaching_common.exception.ApiException
+import com.sibedge.yokodzun.common.api.ApiUtils
+import com.sibedge.yokodzun.common.exception.ApiException
+import ru.hnau.jutils.takeIfNotEmpty
 
 
 var cached: RTService? = null
@@ -38,10 +39,15 @@ private fun getApi(): RTService {
             chain.request().let { request ->
                 chain.proceed(
                     request.newBuilder().apply {
-                        header(ApiUtils.HEADER_CLIENT_TYPE, ApiConstants.CLIENT_TYPE_NAME)
-                        header(ApiUtils.HEADER_CLIENT_VERSION, ApiConstants.CLIENT_VERSION.toString())
-                        header(ApiUtils.HEADER_AUTH_TOKEN, AuthManager.token ?: "")
+
+                        AuthManager.adminAuthToken.takeIfNotEmpty()
+                            ?.let { header(ApiUtils.HEADER_ADMIN_AUTH_TOKEN, it) }
+
+                        AuthManager.raterCode.takeIfNotEmpty()
+                            ?.let { header(ApiUtils.HEADER_RATER_CODE, it) }
+
                         method(request.method(), request.body())
+
                     }.build()
                 )
             }

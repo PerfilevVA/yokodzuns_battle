@@ -6,7 +6,6 @@ import android.widget.FrameLayout
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.context_getters.toGetter
-import ru.hnau.androidutils.ui.view.auto_swipe_refresh_view.AutoSwipeRefreshView
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
 import ru.hnau.androidutils.ui.view.utils.MATCH_PARENT
 import ru.hnau.androidutils.ui.view.utils.apply.addChild
@@ -17,13 +16,10 @@ import ru.hnau.androidutils.utils.shortToast
 import ru.hnau.androidutils.utils.showToast
 import ru.hnau.jutils.TimeValue
 import ru.hnau.jutils.getter.base.GetterAsync
-import ru.hnau.jutils.getter.base.get
 import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.StateProducerSimple
 import ru.hnau.jutils.producer.extensions.not
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.SectionsInfoManager
-import com.sibedge.yokodzun.android.data.TestsTasksManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.layers.edit_content_md.EditContentMDLayer
 import com.sibedge.yokodzun.android.layers.section_info.list.SectionInfoLayerList
@@ -34,10 +30,7 @@ import com.sibedge.yokodzun.android.ui.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addMainActonButtonView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.ui.plus_minus.PlusMinusColumnInfo
-import com.sibedge.yokodzun.android.utils.extensions.passScorePercentageToUiString
-import com.sibedge.yokodzun.android.utils.extensions.timeLimitToUiString
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
-import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.DialogManager
 import com.sibedge.yokodzun.android.utils.tryOrHandleError
 import ru.hnau.remote_teaching_common.data.section.SectionInfo

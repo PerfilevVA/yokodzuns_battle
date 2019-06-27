@@ -7,7 +7,6 @@ import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.producer.Producer
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.TestAttemptTasksCompilationManager
 import com.sibedge.yokodzun.android.data.entity.LocalTestAttempt
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.addSuspendPresenter

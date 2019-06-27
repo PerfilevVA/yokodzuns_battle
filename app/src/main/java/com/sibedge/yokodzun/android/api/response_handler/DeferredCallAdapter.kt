@@ -1,5 +1,7 @@
 package com.sibedge.yokodzun.android.api.response_handler
 
+import com.sibedge.yokodzun.common.api.ApiResponse
+import com.sibedge.yokodzun.common.exception.ApiException
 import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.CallAdapter
@@ -10,8 +12,6 @@ import ru.hnau.androidutils.ui.utils.logE
 import ru.hnau.androidutils.ui.utils.logW
 import ru.hnau.jutils.TimeValue
 import ru.hnau.jutils.coroutines.deferred.deferred
-import ru.hnau.remote_teaching_common.api.ApiResponse
-import ru.hnau.remote_teaching_common.exception.ApiException
 import java.lang.reflect.Type
 import java.util.concurrent.atomic.AtomicLong
 

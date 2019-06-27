@@ -3,10 +3,7 @@ package com.sibedge.yokodzun.android.utils.managers.fcm
 import com.google.firebase.messaging.RemoteMessage
 import ru.hnau.jutils.takeIfNotEmpty
 import ru.hnau.jutils.tryCatch
-import ru.hnau.jutils.tryOrNull
-import com.sibedge.yokodzun.android.data.AuthManager
 import com.sibedge.yokodzun.android.utils.managers.CrashliticsManager
-import com.sibedge.yokodzun.android.utils.tryOrLogToCrashlitics
 import ru.hnau.remote_teaching_common.data.notification.RTNotification
 import ru.hnau.remote_teaching_common.data.notification.RTToUserNotification
 import java.lang.IllegalArgumentException
