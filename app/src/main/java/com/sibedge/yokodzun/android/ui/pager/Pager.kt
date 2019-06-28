@@ -2,29 +2,28 @@ package com.sibedge.yokodzun.android.ui.pager
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.design.widget.TabLayout
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import ru.hnau.androidutils.ui.view.utils.*
 import ru.hnau.androidutils.ui.view.utils.apply.addChild
 import ru.hnau.jutils.helpers.VariableConnector
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
+import ru.hnau.androidutils.utils.ContextConnector.context
 
 
 @SuppressLint("ViewConstructor")
 open class Pager(
-    context: Context,
+    private val context: Context,
     private val pages: List<PagerPage>,
     private val selectedPage: VariableConnector<Int>
-) : LinearLayout(
-    context
 ) {
 
     private val adapter = object : PagerAdapter() {
@@ -46,7 +45,7 @@ open class Pager(
 
     }
 
-    private val pager = ViewPager(context).apply {
+    val pager = ViewPager(context).apply {
         setLinearParams(MATCH_PARENT, 0, 1f)
         adapter = this@Pager.adapter
         setCurrentItem(selectedPage.value)
@@ -60,33 +59,28 @@ open class Pager(
         })
     }
 
-    private val tabLayout = TabLayout(context).apply {
+    val tabLayout = TabLayout(context).apply {
         setLinearParams(MATCH_PARENT, WRAP_CONTENT)
         setupWithViewPager(pager)
-        setBackgroundColor(ColorManager.PRIMARY)
         setTabTextColors(
-            ColorManager.BG.mapWithAlpha(0.5f).get(context),
-            ColorManager.BG.get(context)
+            ColorManager.FG.mapWithAlpha(0.75f).get(context),
+            ColorManager.FG.get(context)
         )
-        setSelectedTabIndicatorColor(ColorManager.BG.get(context))
-        setSelectedTabIndicatorHeight(dpToPxInt(4))
+        setSelectedTabIndicatorColor(ColorManager.FG.get(context))
+        setSelectedTabIndicatorHeight(dpToPxInt(3))
         setTabRippleColorResource(android.R.color.white)
-    }
-
-    init {
-        orientation = VERTICAL
-        addChild(tabLayout)
-        addChild(pager)
-
-        updateFont(tabLayout)
+        updateFont(this)
     }
 
     private fun updateFont(view: ViewGroup) {
         view.forEachChildren { child ->
             when (child) {
                 is TextView -> {
-                    child.typeface = FontManager.UBUNTU_BOLD.get(context).typeface
-                    child.setTextSize(TypedValue.COMPLEX_UNIT_PX, SizeManager.TEXT_12.getPx(context))
+                    child.typeface = FontManager.UBUNTU.get(context).typeface
+                    child.setTextSize(
+                        TypedValue.COMPLEX_UNIT_PX,
+                        SizeManager.TEXT_12.getPx(context)
+                    )
                 }
 
                 is ViewGroup ->

@@ -15,16 +15,22 @@ import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.utils.extensions.text
 import com.sibedge.yokodzun.android.utils.managers.CrashliticsManager
 import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
-import ru.hnau.remote_teaching_common.exception.ApiException
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
 
 object Utils {
 
-    fun copyTextToClipboard(label: String, text: String) {
+    fun genUUID() = UUID.randomUUID()
+        .toString()
+        .replace("-", "")
+        .toUpperCase()
+
+   /* fun copyTextToClipboard(label: String, text: String) {
         (ContextConnector.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
             .primaryClip = ClipData.newPlainText(label, text)
-    }
+    }*/
 
 }
 
@@ -34,11 +40,12 @@ inline fun <T : Any> tryOrHandleError(action: () -> T) =
         onThrow = ErrorHandler::handle
     )
 
-fun <T : Any> tryOrLogToCrashlitics(action: () -> T) =
-    tryCatch(
-        throwsAction = { action.invoke() },
-        onThrow = { CrashliticsManager.handle(it) }
-    )
+inline fun <T : Any> tryOrLogToCrashlitics(
+    action: () -> T
+) = tryCatch(
+    throwsAction = { action.invoke() },
+    onThrow = { CrashliticsManager.handle(it) }
+)
 
 @Deprecated("Use from JUtils")
 fun <T> Iterable<T>.minusAt(position: Int) =

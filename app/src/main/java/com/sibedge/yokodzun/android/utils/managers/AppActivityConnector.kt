@@ -9,6 +9,7 @@ import ru.hnau.androidutils.ui.view.layer.preset.dialog.view.material.MaterialDi
 import com.sibedge.yokodzun.android.AppActivity
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.layers.base.AppLayer
+import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.ui.plus_minus.PlusMinusColumnInfo
 
@@ -64,18 +65,20 @@ object AppActivityConnector {
         inputHint: StringGetter = StringGetter.EMPTY,
         inputInfo: SimpleInputViewInfo = SimpleInputViewInfo.DEFAULT,
         confirmButtonText: StringGetter = StringGetter(R.string.dialog_yes),
+        inputConfigurator: SimpleInputView.() -> Unit = {},
         onConfirm: (enteredText: String) -> Boolean
     ) {
         layerManager?.let {
             DialogManager.showInputDialog(
-                it,
-                title,
-                text,
-                inputInitialText,
-                inputHint,
-                inputInfo,
-                confirmButtonText,
-                onConfirm
+                layerManager = it,
+                title = title,
+                text = text,
+                inputInitialText = inputInitialText,
+                inputHint = inputHint,
+                inputInfo = inputInfo,
+                confirmButtonText = confirmButtonText,
+                inputConfigurator = inputConfigurator,
+                onConfirm = onConfirm
             )
         }
     }

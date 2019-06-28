@@ -8,8 +8,7 @@ import ru.hnau.jutils.producer.CachingProducer
 
 
 abstract class YDataManager<T : Any>(
-    valueLifetime: TimeValue? = DataUtils.DEFAULT_VALUE_LIFETIME,
-    invalidateAfterUserLogin: Boolean = false
+    valueLifetime: TimeValue? = DataUtils.DEFAULT_VALUE_LIFETIME
 ) : CachingProducer<SuspendGetter<Unit, T>>(
     valueLifetime = valueLifetime
 ) {
@@ -18,9 +17,7 @@ abstract class YDataManager<T : Any>(
         get() = existence?.existence
 
     init {
-        if (invalidateAfterUserLogin) {
-            AuthManager.onUserLoggedProducer.attach { invalidate() }
-        }
+        AuthManager.onUserLoggedProducer.attach { invalidate() }
     }
 
     protected suspend abstract fun getValue(): T

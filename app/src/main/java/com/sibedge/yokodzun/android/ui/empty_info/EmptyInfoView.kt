@@ -7,7 +7,7 @@ import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.label.addLabel
 import ru.hnau.androidutils.ui.view.utils.*
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.ui.button.addRTButton
+import com.sibedge.yokodzun.android.ui.button.addYButton
 
 
 @SuppressLint("ViewConstructor")
@@ -45,7 +45,7 @@ class EmptyInfoView(
 
         button?.let { (title, onClick) ->
 
-            addRTButton(
+            addYButton(
                 text = title,
                 info = info.buttonInfo,
                 onClick = onClick

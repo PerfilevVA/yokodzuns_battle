@@ -1,9 +1,12 @@
 package com.sibedge.yokodzun.android.layers
 
 import android.content.Context
+import android.text.InputFilter
 import android.text.InputType
 import android.text.method.PasswordTransformationMethod
+import android.text.method.TransformationMethod
 import android.widget.LinearLayout
+import androidx.appcompat.text.AllCapsTransformationMethod
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CompletableDeferred
 import ru.hnau.androidutils.context_getters.StringGetter
@@ -14,23 +17,30 @@ import ru.hnau.androidutils.ui.view.utils.*
 import ru.hnau.androidutils.ui.view.utils.apply.*
 import ru.hnau.jutils.TimeValue
 import com.sibedge.yokodzun.android.R
+import com.sibedge.yokodzun.android.data.AuthManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
-import com.sibedge.yokodzun.android.layers.main.MainLayer
-import com.sibedge.yokodzun.android.layers.registration.RegistrationLayer
-import com.sibedge.yokodzun.android.layers.restore_password.RestorePasswordLayer
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addFgSmallInputLabelView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addLargePrimaryBackgroundShadowButtonView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addSmallFgUnderlineTextButtonView
+import com.sibedge.yokodzun.android.ui.hierarchy_utils.addSmallPrimaryTextAndBorderButtonView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
-import com.sibedge.yokodzun.android.utils.managers.DialogManager
-import com.sibedge.yokodzun.android.utils.managers.SizeManager
-import com.sibedge.yokodzun.android.utils.extensions.title
-import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
-import com.sibedge.yokodzun.android.utils.managers.SettingsManager
-import ru.hnau.remote_teaching_common.utils.Validators
-import ru.hnau.remote_teaching_common.data.UserRole
-import ru.hnau.remote_teaching_common.exception.ApiException
+import com.sibedge.yokodzun.android.ui.input.simple.addSimpleInput
+import com.sibedge.yokodzun.android.utils.managers.*
+import com.sibedge.yokodzun.common.exception.ApiException
+import com.sibedge.yokodzun.common.utils.RaterCodeUtils
+import com.sibedge.yokodzun.common.utils.Validators
+import ru.hnau.androidutils.context_getters.DrawableGetter
+import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter.Companion.dp
+import ru.hnau.androidutils.context_getters.dp_px.dp16
+import ru.hnau.androidutils.context_getters.dp_px.dp24
+import ru.hnau.androidutils.context_getters.dp_px.dp32
+import ru.hnau.androidutils.ui.drawables.layout_drawable.LayoutType
+import ru.hnau.androidutils.ui.drawables.layout_drawable.view.addLayoutDrawableView
+import ru.hnau.androidutils.ui.utils.h_gravity.HGravity
+import ru.hnau.androidutils.ui.view.label.addLabel
+import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
+import javax.xml.validation.TypeInfoProvider
 
 
 class LoginLayer(
@@ -49,54 +59,55 @@ class LoginLayer(
             applyCenterGravity()
             applyPadding(dp40, SizeManager.DEFAULT_SEPARATION)
 
-            addLinearSeparator()
+            addLinearSeparator(4f)
 
-            addFgSmallInputLabelView(StringGetter(R.string.login_layer_login))
+            addHorizontalLayout {
 
-            val loginInput = SimpleInputView(
-                context = context,
-                info = SimpleInputViewInfo(
-                    maxLength = Validators.MAX_LOGIN_LENGTH
-                ),
-                text = (AuthManager.login ?: "").toGetter()
-            )
-            addChild(loginInput)
+                applyCenterGravity()
 
-            addFgSmallInputLabelView(StringGetter(R.string.login_layer_password)) {
-                applyTopPadding(SizeManager.EXTRA_SMALL_SEPARATION)
+                addLayoutDrawableView(
+                    content = DrawableGetter(R.drawable.ic_launcher),
+                    layoutType = LayoutType.Inside
+                ) {
+                    applyLinearParams {
+                        setSize(dp(96))
+                    }
+                }
+
+                addLabel(
+                    text = StringGetter(R.string.login_layer_logo_title),
+                    gravity = HGravity.START_CENTER_VERTICAL,
+                    textSize = dp24,
+                    fontType = FontManager.UBUNTU_BOLD,
+                    textColor = ColorManager.FG
+                ) {
+                    applyLinearParams {
+                        setEndMargin(dp32)
+                    }
+                }
             }
 
-            val passwordInput = SimpleInputView(
-                context = context,
-                info = SimpleInputViewInfo(
-                    maxLength = Validators.MAX_PASSWORD_LENGTH,
-                    transformationMethod = PasswordTransformationMethod.getInstance(),
-                    inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-                )
-            )
-            addChild(passwordInput)
-
-            addLinearSeparator(
-                weight = 0f,
-                height = SizeManager.SMALL_SEPARATION
-            )
-
-            addLargePrimaryBackgroundShadowButtonView(
-                text = StringGetter(R.string.login_layer_do_login),
-                onClick = { login(loginInput.text.toString(), passwordInput.text.toString()) }
-            )
-
             addLinearSeparator()
 
-            addSmallFgUnderlineTextButtonView(
-                text = StringGetter(R.string.login_layer_do_register),
-                onClick = this@LoginLayer::register
-            )
+            val raterCodeInput = SimpleInputView(
+                context = context,
+                hint = StringGetter(R.string.login_layer_code_input_title),
+                info = SimpleInputViewInfo.DEFAULT.copy(
+                    textSize = SizeManager.TEXT_20,
+                    gravity = HGravity.CENTER,
+                    maxLength = RaterCodeUtils.LENGTH,
+                    inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                )
+            ).apply {
+                filters += InputFilter.AllCaps()
+            }
 
-            addSmallFgUnderlineTextButtonView(
-                text = StringGetter(R.string.login_layer_do_restore_password),
-                onClick = this@LoginLayer::restore
-            ).applyBottomPadding(SizeManager.DEFAULT_SEPARATION)
+            addView(raterCodeInput)
+
+            addLinearSeparator(5f)
+
+            KeyboardManager.showAndRequestFocus(raterCodeInput)
+
         }
 
     override fun afterCreate() {
@@ -114,49 +125,6 @@ class LoginLayer(
 
         }
 
-    }
-
-    private fun login(login: String, password: String) {
-        uiJobLocked {
-            Validators.validateUserLoginOrThrow(login)
-            Validators.validateUserPasswordOrThrow(password)
-            AuthManager.login(login, password)
-            showLayer(MainLayer(context), true)
-        }
-    }
-
-    private fun register() {
-        uiJobLocked {
-            val role = chooseStudentOrTeacher(
-                title = StringGetter(R.string.login_layer_registration_title)
-            )
-            showLayer(RegistrationLayer.newInstance(context, role))
-        }
-    }
-
-    private fun restore() {
-        uiJobLocked {
-            val role = chooseStudentOrTeacher(
-                title = StringGetter(R.string.login_layer_restore_password_title)
-            )
-            showLayer(RestorePasswordLayer.newInstance(context, role))
-        }
-    }
-
-    private suspend fun chooseStudentOrTeacher(
-        title: StringGetter
-    ): UserRole {
-        val deferred = CompletableDeferred<UserRole>()
-
-        DialogManager.showBottomSheet(managerConnector) {
-            title(title)
-            addOnClosedListener { deferred.completeExceptionally(CancellationException()) }
-            listOf(UserRole.TEACHER, UserRole.STUDENT).forEach { role ->
-                closeItem(role.title) { deferred.complete(role) }
-            }
-        }
-
-        return deferred.await()
     }
 
 }

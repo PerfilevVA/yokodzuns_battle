@@ -17,7 +17,7 @@ data class MultilineInputViewInfo(
     val paddingVertical: DpPxGetter = SizeManager.DEFAULT_SEPARATION,
     val font: FontTypeGetter = FontManager.DEFAULT,
     val hintTextColor: ColorGetter = textColor.mapWithAlpha(0.5f),
-    val inputType: Int = InputType.TYPE_CLASS_TEXT,
+    val inputType: Int = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES,
     val transformationMethod: TransformationMethod? = null
 ) {
 

@@ -55,9 +55,10 @@ class SimpleInputView(
         setTextColor(info.textColor.get(context))
         setTextSize(TypedValue.COMPLEX_UNIT_PX, info.textSize.getPx(context))
         setText(text.get(context))
+        gravity = info.gravity.resolveAndroidGravity()
 
         info.maxLength?.let { filters += InputFilter.LengthFilter(it) }
-        setRawInputType(info.inputType)
+        setInputType(info.inputType)
         setSingleLine()
         transformationMethod = info.transformationMethod
 

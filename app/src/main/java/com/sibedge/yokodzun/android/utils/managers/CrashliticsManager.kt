@@ -1,7 +1,7 @@
 package com.sibedge.yokodzun.android.utils.managers
 
 import com.crashlytics.android.Crashlytics
-import ru.hnau.remote_teaching_common.exception.ApiException
+import com.sibedge.yokodzun.common.exception.ApiException
 
 
 object CrashliticsManager {

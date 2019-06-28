@@ -8,17 +8,17 @@ import ru.hnau.androidutils.ui.view.utils.apply.applyTopPadding
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLayoutParams
 import ru.hnau.androidutils.ui.view.utils.setLayoutParams
 import ru.hnau.androidutils.ui.view.utils.setTopPadding
-import com.sibedge.yokodzun.android.ui.button.RTButton
-import com.sibedge.yokodzun.android.ui.button.RTButtonInfo
-import com.sibedge.yokodzun.android.ui.button.addRTButton
+import com.sibedge.yokodzun.android.ui.button.YButton
+import com.sibedge.yokodzun.android.ui.button.YButtonInfo
+import com.sibedge.yokodzun.android.ui.button.addYButton
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 
 fun ViewGroup.addButtonView(
     text: StringGetter,
     onClick: () -> Unit,
-    info: RTButtonInfo,
-    viewConfigurator: (RTButton.() -> Unit)? = null
-) = addRTButton(text, onClick, info) {
+    info: YButtonInfo,
+    viewConfigurator: (YButton.() -> Unit)? = null
+) = addYButton(text, onClick, info) {
     applyTopPadding(SizeManager.DEFAULT_SEPARATION)
     applyLayoutParams()
     viewConfigurator?.invoke(this)
@@ -27,20 +27,20 @@ fun ViewGroup.addButtonView(
 fun ViewGroup.addLargePrimaryBackgroundShadowButtonView(
     text: StringGetter,
     onClick: () -> Unit,
-    viewConfigurator: (RTButton.() -> Unit)? = null
-) = addButtonView(text, onClick, RTButtonInfo.LARGE_PRIMARY_BACKGROUND_SHADOW, viewConfigurator)
+    viewConfigurator: (YButton.() -> Unit)? = null
+) = addButtonView(text, onClick, YButtonInfo.LARGE_PRIMARY_BACKGROUND_SHADOW, viewConfigurator)
 
 fun ViewGroup.addSmallPrimaryTextAndBorderButtonView(
     text: StringGetter,
     onClick: () -> Unit,
-    viewConfigurator: (RTButton.() -> Unit)? = null
-) = addButtonView(text, onClick, RTButtonInfo.SMALL_PRIMARY_TEXT_AND_BORDER, viewConfigurator)
+    viewConfigurator: (YButton.() -> Unit)? = null
+) = addButtonView(text, onClick, YButtonInfo.SMALL_PRIMARY_TEXT_AND_BORDER, viewConfigurator)
 
 fun ViewGroup.addBottomButtonView(
     text: StringGetter,
     onClick: () -> Unit,
-    viewConfigurator: (RTButton.() -> Unit)? = null
-) = addButtonView(text, onClick, RTButtonInfo.LARGE_PRIMARY_BACKGROUND_SHADOW) {
+    viewConfigurator: (YButton.() -> Unit)? = null
+) = addButtonView(text, onClick, YButtonInfo.LARGE_PRIMARY_BACKGROUND_SHADOW) {
     applyLayoutParams { setMatchParentWidth() }
     viewConfigurator?.invoke(this)
 }
@@ -48,5 +48,5 @@ fun ViewGroup.addBottomButtonView(
 fun ViewGroup.addSmallFgUnderlineTextButtonView(
     text: StringGetter,
     onClick: () -> Unit,
-    viewConfigurator: (RTButton.() -> Unit)? = null
-) = addButtonView(text, onClick, RTButtonInfo.SMALL_FG_TEXT_UNDERLINE, viewConfigurator)
+    viewConfigurator: (YButton.() -> Unit)? = null
+) = addButtonView(text, onClick, YButtonInfo.SMALL_FG_TEXT_UNDERLINE, viewConfigurator)

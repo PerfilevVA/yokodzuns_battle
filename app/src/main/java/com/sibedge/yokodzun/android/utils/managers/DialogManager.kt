@@ -23,6 +23,8 @@ import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.ui.plus_minus.PlusMinusColumnInfo
 import com.sibedge.yokodzun.android.ui.plus_minus.PlusMinusView
+import ru.hnau.androidutils.ui.view.layer.preset.dialog.view.bottom_sheet.decoration.BottomSheetViewDecorationInfo
+import ru.hnau.androidutils.ui.view.layer.preset.dialog.view.material.decoration.MaterialDialogViewDecorationInfo
 
 
 object DialogManager {
@@ -67,6 +69,7 @@ object DialogManager {
         inputHint: StringGetter = StringGetter.EMPTY,
         inputInfo: SimpleInputViewInfo = SimpleInputViewInfo.DEFAULT,
         confirmButtonText: StringGetter = StringGetter(R.string.dialog_yes),
+        inputConfigurator: SimpleInputView.() -> Unit = {},
         onConfirm: (enteredText: String) -> Boolean
     ) = showDialog(layerManager) {
 
@@ -79,6 +82,7 @@ object DialogManager {
             setLinearParams(MATCH_PARENT, WRAP_CONTENT) {
                 setTopMargin(SizeManager.DEFAULT_SEPARATION.getPxInt(context))
             }
+            inputConfigurator()
         }
 
         title?.let(this::title)
@@ -176,14 +180,19 @@ object DialogManager {
             labelInfo = MaterialDialogTitleInfo.DEFAULT.labelInfo.copy(
                 textColor = ColorManager.PRIMARY,
                 fontType = FontManager.UBUNTU_BOLD,
-                textSize = SizeManager.TEXT_16
+                textSize = SizeManager.TEXT_20
             )
         ),
         text = MaterialDialogTextInfo.DEFAULT.copy(
             labelInfo = MaterialDialogTextInfo.DEFAULT.labelInfo.copy(
+                textColor = ColorManager.FG,
                 fontType = FontManager.UBUNTU,
-                textSize = SizeManager.TEXT_12
+                textSize = SizeManager.TEXT_16
             )
+        ),
+        decoration = MaterialDialogViewDecorationInfo(
+            background = ColorManager.BG_LIGHT,
+            shadow = ColorManager.DEFAULT_SHADOW_INFO
         )
     )
 
@@ -197,17 +206,21 @@ object DialogManager {
         ),
         text = BottomSheetTextInfo.DEFAULT.copy(
             labelInfo = BottomSheetTextInfo.DEFAULT.labelInfo.copy(
+                textColor = ColorManager.FG,
                 fontType = FontManager.UBUNTU,
                 textSize = SizeManager.TEXT_12
             )
         ),
         item = BottomSheetItemInfo.DEFAULT.copy(
             labelInfo = BottomSheetItemInfo.DEFAULT.labelInfo.copy(
-                textColor = ColorManager.PRIMARY,
+                textColor = ColorManager.FG,
                 fontType = FontManager.UBUNTU,
                 textSize = SizeManager.TEXT_16
             ),
-            rippleDrawInfo = ColorManager.PRIMARY_ON_TRANSPARENT_RIPPLE_INFO
+            rippleDrawInfo = ColorManager.FG_ON_TRANSPARENT_RIPPLE_INFO
+        ),
+        decoration = BottomSheetViewDecorationInfo(
+            backgroundColor = ColorManager.BG_LIGHT
         )
     )
 

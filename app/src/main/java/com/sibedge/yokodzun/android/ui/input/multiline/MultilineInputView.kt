@@ -10,8 +10,6 @@ import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.utils.apply.addChild
 import ru.hnau.androidutils.ui.view.utils.apply.addView
 import ru.hnau.androidutils.ui.view.utils.setPadding
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
 
 
 class MultilineInputView(

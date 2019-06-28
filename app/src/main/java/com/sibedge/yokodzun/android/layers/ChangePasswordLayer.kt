@@ -17,8 +17,8 @@ import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.ui.input.simple.addSimpleInput
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
-import ru.hnau.remote_teaching_common.utils.Validators
-import ru.hnau.remote_teaching_common.exception.ApiException
+import com.sibedge.yokodzun.common.exception.ApiException
+import com.sibedge.yokodzun.common.utils.Validators
 
 
 class ChangePasswordLayer(
@@ -35,6 +35,18 @@ class ChangePasswordLayer(
         content {
 
             setPadding(SizeManager.LARGE_SEPARATION, SizeManager.DEFAULT_SEPARATION)
+
+            addFgSmallInputLabelView(StringGetter(R.string.change_password_layer_old_password))
+
+            val oldPasswordInput = SimpleInputView(
+                context = context,
+                info = SimpleInputViewInfo(
+                    maxLength = Validators.MAX_PASSWORD_LENGTH,
+                    transformationMethod = PasswordTransformationMethod.getInstance(),
+                    inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                )
+            )
+            addChild(oldPasswordInput)
 
             addFgSmallInputLabelView(StringGetter(R.string.change_password_layer_new_password))
 
@@ -67,8 +79,9 @@ class ChangePasswordLayer(
                 text = StringGetter(R.string.change_password_layer_change_password),
                 onClick = {
                     changePassword(
-                        passwordInput.text.toString(),
-                        passwordRepeatInput.text.toString()
+                        oldPassword = oldPasswordInput.text.toString(),
+                        newPassword = passwordInput.text.toString(),
+                        newPasswordRepeat = passwordRepeatInput.text.toString()
                     )
                 }
             )
@@ -77,18 +90,28 @@ class ChangePasswordLayer(
 
     }
 
-    private fun changePassword(newPassword: String, newPasswordRepeat: String) {
+    private fun changePassword(
+        oldPassword: String,
+        newPassword: String,
+        newPasswordRepeat: String
+    ) {
         uiJobLocked {
 
-                Validators.validateUserPasswordOrThrow(newPassword)
-                if (newPassword != newPasswordRepeat) {
-                    throw ApiException.raw(context.getString(R.string.change_password_layer_passwords_are_different))
-                }
+            Validators.validatePasswordOrThrow(oldPassword)
+            Validators.validatePasswordOrThrow(newPassword)
 
-                API.changePassword(newPassword).await()
-                shortToast(StringGetter(R.string.change_password_layer_success))
-                managerConnector.goBack()
+            if (newPassword != newPasswordRepeat) {
+                throw ApiException.raw(context.getString(R.string.change_password_layer_passwords_are_different))
             }
+
+            API.adminChangePassword(
+                oldPassword = oldPassword,
+                newPassword = newPassword
+            )
+
+            shortToast(StringGetter(R.string.change_password_layer_success))
+            managerConnector.goBack()
+        }
     }
 
 }

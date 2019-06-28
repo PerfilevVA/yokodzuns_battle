@@ -1,11 +1,10 @@
 package com.sibedge.yokodzun.android.utils.managers.fcm
 
 import com.google.firebase.messaging.RemoteMessage
+import com.sibedge.yokodzun.android.data.AuthManager
 import ru.hnau.jutils.takeIfNotEmpty
 import ru.hnau.jutils.tryCatch
 import com.sibedge.yokodzun.android.utils.managers.CrashliticsManager
-import ru.hnau.remote_teaching_common.data.notification.RTNotification
-import ru.hnau.remote_teaching_common.data.notification.RTToUserNotification
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 
@@ -14,7 +13,8 @@ object FCMMessagesReceiver {
 
     fun onNewFcmMessage(fcmMessage: RemoteMessage?) {
 
-        val notification = tryCatch(
+        //TODO
+        /*val notification = tryCatch(
                 throwsAction = { deserializeMessage(fcmMessage) },
                 onThrow = { th ->
                     CrashliticsManager.handle(
@@ -26,16 +26,16 @@ object FCMMessagesReceiver {
                 }
         ) ?: return
 
-        RTNotificationsHandler.onNewRTNotification(notification)
+        RTNotificationsHandler.onNewRTNotification(notification)*/
 
     }
 
-    @Throws
+    /*@Throws
     private fun deserializeMessage(message: RemoteMessage?): RTNotification {
 
         val loggedUserLogin = AuthManager.login
-                ?.takeIf { AuthManager.logged }
-                ?: throw IllegalStateException("user not logged")
+                ?.takeIf { AuthManager.isLogged }
+                ?: throw IllegalStateException("user not isLogged")
 
         val data = message?.data
                 ?: throw IllegalArgumentException("data is null")
@@ -45,7 +45,7 @@ object FCMMessagesReceiver {
                 ?: throw IllegalArgumentException("toUser is empty")
 
         if (loggedUserLogin != toUser) {
-            throw IllegalArgumentException("toUser is not equals logged user")
+            throw IllegalArgumentException("toUser is not equals isLogged user")
         }
 
         val clazz = data[RTToUserNotification.SERIALIZATION_KEY_CLASS]
@@ -57,6 +57,6 @@ object FCMMessagesReceiver {
                 ?: throw IllegalArgumentException("content json is empty")
 
         return RTNotification.deserialize(clazz, content)
-    }
+    }*/
 
 }

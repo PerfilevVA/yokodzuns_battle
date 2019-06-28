@@ -1,3 +1,97 @@
 <resources>
-    <string name="app_name">Yokodzuns battle</string>
+    <string name="app_name">Битва ёкодзун</string>
+
+    <string name="dialog_next">Далее</string>
+    <string name="dialog_close">Закрыть</string>
+    <string name="dialog_cancel">Отмена</string>
+    <string name="dialog_yes">Да</string>
+    <string name="dialog_add">Добавить</string>
+    <string name="dialog_no">Нет</string>
+    <string name="dialog_remove">Удалить</string>
+    <string name="dialog_save">Сохранить</string>
+
+    <string name="error_undefined">Ошибка</string>
+    <string name="error_authentication">Ошибка аутентификации</string>
+    <string name="error_load_title">Ошибка загрузки данных</string>
+    <string name="error_load_reload">Обновить</string>
+    <string name="default_admin_password_error_dialog_title">Пароль администратора не настроен</string>
+    <string name="default_admin_password_error_dialog_text">Для обеспечения безопасности необходимо настроить пароль администратора</string>
+    <string name="default_admin_password_error_dialog_button">Настроить</string>
+
+    <string name="entity_battle">Битва</string>
+
+    <string name="global_menu_item_title_settings">Настройки</string>
+    <string name="global_menu_item_title_admin_change_password">Сменить пароль</string>
+    <string name="global_menu_item_title_logout">Выйти</string>
+    <string name="global_menu_item_title_login_as_admin">Админ</string>
+
+    <string name="global_menu_login_as_admin_dialog_title">Войти как администратор</string>
+    <string name="global_menu_login_as_admin_dialog_text">Для входа введите пароль администратора</string>
+    <string name="global_menu_login_as_admin_dialog_hint">Пароль администратора</string>
+    <string name="global_menu_login_as_admin_dialog_login_button">Войти</string>
+
+    <string name="global_menu_logout_ask_title">Выход</string>
+    <string name="global_menu_logout_ask_text">Вы действительно хотите выйти из профиля?</string>
+    <string name="global_menu_logout_confirm">Выйти</string>
+
+    <string name="login_layer_title">Вход</string>
+    <string name="login_layer_logo_title">Битва\nёкодзун</string>
+    <string name="login_layer_code_input_title">Код зрителя</string>
+
+    <string name="settings_layer_title">Настройки</string>
+    <string name="settings_layer_host">Адрес сервера</string>
+    <string name="settings_layer_host_incorrect">Адрес сервера некорректен</string>
+    <string name="settings_layer_success">Настройки сохранены</string>
+
+    <string name="change_password_layer_title">Смена пароля</string>
+    <string name="change_password_layer_old_password">Старый пароль:</string>
+    <string name="change_password_layer_new_password">Новый пароль:</string>
+    <string name="change_password_layer_new_password_repeat">Повтор пароля:</string>
+    <string name="change_password_layer_change_password">Сменить пароль</string>
+    <string name="change_password_layer_passwords_are_different">Введенные пароли не совпадают</string>
+    <string name="change_password_layer_success">Пароль успешно обновлен</string>
+
+    <string name="admin_layer_title">Администратор</string>
+    <string name="admin_layer_page_title_battles">Битвы</string>
+    <string name="admin_layer_page_title_yokodzuns">Ёкодзуны</string>
+    <string name="admin_layer_page_title_parameters">Параметры</string>
+
+    <string name="admin_add_layer_battles_page_no_battles_title">Битвы отсутствуют</string>
+    <string name="admin_add_layer_battles_add_battle">Добавить битву</string>
+
+    <string name="description_view_no_title_placeholder">&#60;Заголовок отсутствует&#62;</string>
+    <string name="description_view_no_description_placeholder">&#60;Описание отсутствует&#62;</string>
+
+    <string name="battle_view_yokodzuns">Ёкодзуны</string>
+    <string name="battle_view_parameters">Параметры</string>
+    <string name="battle_view_sections">Разделы</string>
+    <string name="battle_view_title_status">Статус</string>
+    <string name="battle_view_status_before">Ожидание начала</string>
+    <string name="battle_view_status_in_progress">В процессе</string>
+    <string name="battle_view_status_after">Завершена</string>
+
+    <string name="battle_view_admin_action_remove">Удалить</string>
+    <string name="battle_view_admin_action_start">Начать</string>
+    <string name="battle_view_admin_action_stop">Завершить</string>
+    <string name="battle_view_admin_action_edit">Изменить описание</string>
+    <string name="battle_view_admin_action_update_raters">Управление зрителями</string>
+    <string name="battle_view_admin_action_update_yokodzuns">Управление ёкодзунами</string>
+    <string name="battle_view_admin_action_update_parameters">Управление параметрами</string>
+    <string name="battle_view_admin_action_update_sections">Управление разделами</string>
+    <string name="battle_view_admin_start_confirm_dialog_title">Запуск битвы</string>
+    <string name="battle_view_admin_start_confirm_dialog_text">Запустить битву?</string>
+    <string name="battle_view_admin_start_confirm_dialog_button">Запустить</string>
+    <string name="battle_view_admin_stop_confirm_dialog_title">Остановка битвы</string>
+    <string name="battle_view_admin_stop_confirm_dialog_text">Остановить битву?</string>
+    <string name="battle_view_admin_stop_confirm_dialog_button">Остановить</string>
+    <string name="battle_view_admin_remove_confirm_dialog_title">Удаление битвы</string>
+    <string name="battle_view_admin_remove_confirm_dialog_text">Удалить битву?</string>
+    <string name="battle_view_admin_edit_description_title">Описание битвы</string>
+    <string name="battle_view_admin_edit_description_title_hint">Название битвы</string>
+    <string name="battle_view_admin_edit_description_logo_url_hint">URL изображения битвы</string>
+    <string name="battle_view_admin_edit_description_description_hint">Описание битвы</string>
+
+    <string name="sections_layer_no_sections_title">Разделы отсутствуют</string>
+    <string name="sections_layer_no_sections_add_section">Добавить раздел</string>
+
 </resources>

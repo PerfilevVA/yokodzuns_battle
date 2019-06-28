@@ -4,15 +4,15 @@ import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.utils.ContextConnector
 import ru.hnau.androidutils.utils.shortToast
 import com.sibedge.yokodzun.android.R
+import com.sibedge.yokodzun.android.data.AuthManager
 import com.sibedge.yokodzun.android.layers.ChangePasswordLayer
-import com.sibedge.yokodzun.android.layers.LoginLayer
-import com.sibedge.yokodzun.android.layers.SettingsLayer
-import ru.hnau.remote_teaching_common.exception.ApiException
-import ru.hnau.remote_teaching_common.exception.ApiExceptionContent
+import com.sibedge.yokodzun.common.exception.ApiException
+import com.sibedge.yokodzun.common.exception.ApiExceptionContent
+import ru.hnau.androidutils.context_getters.toGetter
 import java.lang.IllegalStateException
 
 
-object ErrorHandler: (Throwable) -> Unit {
+object ErrorHandler : (Throwable) -> Unit {
 
     fun handle(message: StringGetter) {
         val text = message.get(ContextConnector.context)
@@ -21,7 +21,7 @@ object ErrorHandler: (Throwable) -> Unit {
     }
 
     override fun invoke(th: Throwable) =
-            handle(th)
+        handle(th)
 
     fun handle(th: Throwable) {
 
@@ -42,9 +42,10 @@ object ErrorHandler: (Throwable) -> Unit {
 
             is ApiExceptionContent.UserWithLoginAlreadyExists -> TODO()
 
+            is ApiExceptionContent.IncorrectActionCode -> TODO()
+
             */
 
-            is ApiExceptionContent.IncorrectActionCode -> onIncorrectActionCode()
             is ApiExceptionContent.Authentication -> onAuthError()
             is ApiExceptionContent.AdminPasswordNotConfigured -> onAdminPasswordNotConfigured()
             is ApiExceptionContent.HostNotConfigured -> onHostNotConfigured()
@@ -61,16 +62,11 @@ object ErrorHandler: (Throwable) -> Unit {
     private fun displayError(message: StringGetter) =
         shortToast(message)
 
-    private fun onIncorrectActionCode() =
-        displayError(StringGetter(R.string.error_incorrect_action_code))
-
     private fun onAuthError() {
-        if (!AuthManager.logged) {
-            displayError(StringGetter(R.string.error_incorrect_login_or_password))
-            return
-        }
         displayError(StringGetter(R.string.error_authentication))
-        AppActivityConnector.showLayer(::LoginLayer, true)
+
+        //TODO
+        //AppActivityConnector.showLayer(::LoginLayer, true)
     }
 
     private fun onAdminPasswordNotConfigured() {
@@ -84,13 +80,14 @@ object ErrorHandler: (Throwable) -> Unit {
     }
 
     private fun onHostNotConfigured() {
-        AppActivityConnector.showDialog {
+        //TODO
+        /*AppActivityConnector.showDialog {
             title(StringGetter(R.string.host_not_configured_error_dialog_title))
             text(StringGetter(R.string.host_not_configured_error_dialog_text))
             closeButton(StringGetter(R.string.host_not_configured_error_dialog_button)) {
                 AppActivityConnector.showLayer(::SettingsLayer)
             }
-        }
+        }*/
     }
 
 }

@@ -30,7 +30,7 @@ object OptionsMenuManager {
     }
 
     private fun createMenu(anchor: View): PopupMenu {
-        val contextWrapper = ContextThemeWrapper(anchor.context, R.style.Theme_AppCompat_Light)
+        val contextWrapper = ContextThemeWrapper(anchor.context, R.style.Theme_AppCompat_DayNight)
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             PopupMenu(contextWrapper, anchor, Gravity.TOP or Gravity.RIGHT or Gravity.END)
         } else {

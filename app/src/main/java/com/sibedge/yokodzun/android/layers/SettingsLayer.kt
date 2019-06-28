@@ -21,7 +21,7 @@ import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
 import com.sibedge.yokodzun.android.utils.managers.SettingsManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
-import ru.hnau.remote_teaching_common.utils.Validators
+import com.sibedge.yokodzun.common.utils.Validators
 import java.net.URL
 
 
@@ -45,9 +45,6 @@ class SettingsLayer(
 
             val hostInput = SimpleInputView(
                 context = context,
-                info = SimpleInputViewInfo(
-                    maxLength = Validators.MAX_SURNAME_LENGTH
-                ),
                 text = SettingsManager.host.toGetter()
             )
             addChild(hostInput)

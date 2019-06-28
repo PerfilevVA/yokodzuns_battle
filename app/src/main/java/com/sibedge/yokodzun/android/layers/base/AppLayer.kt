@@ -24,18 +24,18 @@ import ru.hnau.androidutils.ui.view.layer.layer.ManagerConnector
 import ru.hnau.androidutils.ui.view.layer.manager.LayerManagerConnector
 import ru.hnau.androidutils.ui.view.linear_layout.VerticalLinearLayout
 import ru.hnau.androidutils.ui.view.utils.*
-import ru.hnau.androidutils.ui.view.utils.apply.addChild
-import ru.hnau.androidutils.ui.view.utils.apply.applyBackground
-import ru.hnau.androidutils.ui.view.utils.apply.applyStartPadding
-import ru.hnau.androidutils.ui.view.utils.apply.applyVerticalOrientation
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 import ru.hnau.jutils.producer.locked_producer.SuspendLockedProducer
 import com.sibedge.yokodzun.android.R
+import com.sibedge.yokodzun.android.ui.gradient.YGradientDrawable
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addWaiter
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
+import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter.Companion.dp
+import ru.hnau.androidutils.ui.view.header.addHeader
+import ru.hnau.androidutils.ui.view.utils.apply.*
 
 
 @SuppressLint("ViewConstructor")
@@ -66,17 +66,20 @@ abstract class AppLayer(
 
     private val headerOptionsMenuButton = HeaderIconButton(
         context = context,
-        icon = LayoutDrawable.createIndependent(context, DrawableGetter(R.drawable.ic_options_white)).toGetter(),
-        rippleDrawInfo = ColorManager.BG_ON_PRIMARY_RIPPLE_INFO,
+        icon = LayoutDrawable.createIndependent(
+            context,
+            DrawableGetter(R.drawable.ic_options_white)
+        ).toGetter(),
+        rippleDrawInfo = ColorManager.FG_ON_TRANSPARENT_RIPPLE_INFO,
         onClick = this::showOptionsMenu
     )
 
     private val headerTitle: HeaderTitle by lazy {
         HeaderTitle(
             context = context,
-            textColor = ColorManager.BG,
+            textColor = ColorManager.FG,
             fontType = FontManager.DEFAULT,
-            textSize = SizeManager.TEXT_16,
+            textSize = SizeManager.TEXT_20,
             gravity = HGravity.CENTER
         ).apply {
             if (!showGoBackButton) {
@@ -85,26 +88,42 @@ abstract class AppLayer(
         }
     }
 
-    private val header: View by lazy {
-        Header(
-            context = context,
-            underStatusBar = true,
-            headerBackgroundColor = ColorManager.PRIMARY
-        ).apply {
+    private val topContentContainer: LinearLayout by lazy {
+        LinearLayout(context).applyVerticalOrientation()
+    }
 
-            if (showGoBackButton) {
-                addHeaderBackButton(
-                    rippleDrawInfo = ColorManager.BG_ON_PRIMARY_RIPPLE_INFO,
-                    color = ColorManager.BG,
-                    onClick = { (context as Activity).onBackPressed() }
-                )
+    private val header: View by lazy {
+
+        LinearLayout(context).apply {
+
+            applyVerticalOrientation()
+            applyBackground(YGradientDrawable(context))
+
+            addHeader(
+                underStatusBar = true,
+                headerBackgroundColor = ColorManager.TRANSPARENT,
+                headerHeight = dp(44)
+            ) {
+
+                if (showGoBackButton) {
+                    addHeaderBackButton(
+                        rippleDrawInfo = ColorManager.FG_ON_TRANSPARENT_RIPPLE_INFO,
+                        color = ColorManager.FG,
+                        onClick = { (context as Activity).onBackPressed() }
+                    )
+                }
+
+                addChild(headerTitle)
+                addChild(headerOptionsMenuButton)
+
+                updateTitle()
+
             }
 
-            addChild(headerTitle)
-            addChild(headerOptionsMenuButton)
+            addView(topContentContainer)
 
-            updateTitle()
         }
+
     }
 
     protected fun updateTitle() {
@@ -143,5 +162,8 @@ abstract class AppLayer(
 
     protected fun content(withContent: ViewGroup.() -> Unit) =
         withContent(contentContainer)
+
+    protected fun topContent(withTopContent: ViewGroup.() -> Unit) =
+        withTopContent(topContentContainer)
 
 }

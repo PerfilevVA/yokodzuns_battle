@@ -63,7 +63,7 @@ class FCMManager : FirebaseMessagingService() {
                         return@launch
                     }
                     try {
-                        API.updatePushToken(token, AppInstanceManager.uuid).await()
+                        //TODO API.updatePushToken(token, AppInstanceManager.uuid).await()
                         FCMManager.tokenKey = tokenKey
                     } catch (th: Throwable) {
                         CrashliticsManager.handle(th)

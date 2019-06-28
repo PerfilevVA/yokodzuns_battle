@@ -1,6 +1,9 @@
 package com.sibedge.yokodzun.android.ui.hierarchy_utils
 
 import android.view.ViewGroup
+import com.sibedge.yokodzun.android.ui.button.primary.PrimaryActionButton
+import com.sibedge.yokodzun.android.ui.button.primary.PrimaryActionButtonInfo
+import com.sibedge.yokodzun.android.ui.button.primary.addPrimaryActionButton
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.buttons.MainActionButton
@@ -14,26 +17,18 @@ import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 
-fun <G : ViewGroup> G.addMainActonButtonView(
+fun <G : ViewGroup> G.addPrimaryActonButtonView(
     icon: DrawableGetter,
     title: StringGetter,
     needShowTitle: Producer<Boolean>,
     onClick: () -> Unit,
-    viewConfigurator: (MainActionButton.() -> Unit)? = null
-) = addMainActionButton(
+    viewConfigurator: (PrimaryActionButton.() -> Unit)? = null
+) = addPrimaryActionButton(
     icon = icon,
     onClick = onClick,
     title = title,
     needShowTitle = needShowTitle,
-    info = MainActionButtonInfo(
-        rippleDrawInfo = ColorManager.BG_ON_PRIMARY_RIPPLE_INFO,
-        shadowInfo = ColorManager.DEFAULT_BUTTON_SHADOW_INFO,
-        titleLabelInfo = LabelInfo(
-            textColor = ColorManager.BG,
-            fontType = FontManager.DEFAULT,
-            textSize = SizeManager.TEXT_12
-        )
-    )
+    info = PrimaryActionButtonInfo()
 ) {
     setSoftwareRendering()
     applyFrameParams {

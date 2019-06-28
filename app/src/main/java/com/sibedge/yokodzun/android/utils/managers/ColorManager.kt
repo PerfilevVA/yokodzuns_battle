@@ -22,29 +22,42 @@ import com.sibedge.yokodzun.android.R
 object ColorManager {
 
     val TRANSPARENT = ColorGetter.TRANSPARENT
-    val WHITE = ColorGetter.byResId(R.color.white)
-    val BLACK = ColorGetter.byResId(R.color.black)
-    val PRIMARY_DEFAULT = ColorGetter.byResId(R.color.primary)
-    val BAD_DEFAULT = ColorGetter.byResId(R.color.bad)
-    val GOOD_DEFAULT = ColorGetter.byResId(R.color.good)
 
-    val BG = WHITE
-    val FG = BLACK
-    val PRIMARY = PRIMARY_DEFAULT
-    val BAD = BAD_DEFAULT
-    val GOOD = GOOD_DEFAULT
+    val BG = ColorGetter.byResId(R.color.background)
+    val BG_LIGHT = ColorGetter.byResId(R.color.background_light)
+    val FG = ColorGetter.byResId(R.color.foreground)
+    
+    val PRIMARY = ColorGetter.byResId(R.color.primary)
+    val PRIMARY_LIGHT = ColorGetter.byResId(R.color.primary_light)
+    val PRIMARY_DARK = ColorGetter.byResId(R.color.primary_dark)
+
+    val GREEN = ColorGetter.byResId(R.color.green)
+    val GREEN_LIGHT = ColorGetter.byResId(R.color.green_light)
+    val GREEN_DARK = ColorGetter.byResId(R.color.green_dark)
+
+    val ORANGE = ColorGetter.byResId(R.color.orange)
+    val ORANGE_LIGHT = ColorGetter.byResId(R.color.orange_light)
+    val ORANGE_DARK = ColorGetter.byResId(R.color.orange_dark)
+
+    val RED = ColorGetter.byResId(R.color.red)
+    val RED_LIGHT = ColorGetter.byResId(R.color.red_light)
+    val RED_DARK = ColorGetter.byResId(R.color.red_dark)
+
+    val PURPLE = ColorGetter.byResId(R.color.purple)
+    val PURPLE_LIGHT = ColorGetter.byResId(R.color.purple_light)
+    val PURPLE_DARK = ColorGetter.byResId(R.color.purple_dark)
 
     val FG_T50 = FG.mapWithAlpha(0.5f)
     val BG_T50 = BG.mapWithAlpha(0.5f)
 
     val RIPPLE_INFO = RippleInfo()
 
-    private const val RIPPLE_ALPHA = 0.1f
+    const val RIPPLE_ALPHA = 0.25f
 
-    val BG_ON_PRIMARY_RIPPLE_INFO = RippleDrawInfo(
+    val FG_ON_TRANSPARENT_RIPPLE_INFO = RippleDrawInfo(
         rippleInfo = RIPPLE_INFO,
-        backgroundColor = PRIMARY,
-        color = BG,
+        backgroundColor = TRANSPARENT,
+        color = FG,
         rippleAlpha = RIPPLE_ALPHA
     )
 
@@ -85,8 +98,8 @@ object ColorManager {
     val FG_SMALL_SINGLE_LINE_LABEL_INFO =
         FG_SINGLE_LINE_LABEL_INFO.copy(textSize = SizeManager.TEXT_12)
 
-    val DEFAULT_SHADOW_INFO = ShadowInfo(dp4, dp8, BLACK, 0.4f)
-    val DEFAULT_PRESSED_SHADOW_INFO = ShadowInfo(dp2, dp4, BLACK, 0.4f)
+    val DEFAULT_SHADOW_INFO = ShadowInfo(dp4, dp8, ColorGetter.BLACK, 0.75f)
+    val DEFAULT_PRESSED_SHADOW_INFO = ShadowInfo(dp2, dp4, ColorGetter.BLACK, 0.75f)
     val DEFAULT_BUTTON_SHADOW_INFO = ButtonShadowInfo(
         normal = DEFAULT_SHADOW_INFO,
         pressed = DEFAULT_PRESSED_SHADOW_INFO,
@@ -103,19 +116,22 @@ object ColorManager {
         scrollFactor = 0.5f
     )
 
+    val DEFAULT_WATER_COLOR = MaterialWaiterColor(
+        foreground = PRIMARY,
+        background = BG.mapWithAlpha(0.5f)
+    )
+
     fun createWaiterView(
         context: Context,
         lockedProducer: LockedProducer,
-        size: MaterialWaiterSize = MaterialWaiterSize.LARGE
+        size: MaterialWaiterSize = MaterialWaiterSize.LARGE,
+        color: MaterialWaiterColor = DEFAULT_WATER_COLOR
     ) =
         MaterialWaiterView(
             context = context,
             lockedProducer = lockedProducer,
             size = size,
-            color = MaterialWaiterColor(
-                foreground = PRIMARY,
-                background = WHITE.mapWithAlpha(0.5f)
-            ),
+            color = color,
             visibilitySwitchingTime = TimeValue.MILLISECOND * 500
         )
 
