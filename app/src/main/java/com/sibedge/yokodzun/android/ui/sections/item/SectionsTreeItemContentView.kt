@@ -49,7 +49,7 @@ class SectionsTreeItemContentView(
                     mainColor = SectionsTreeUtils.getOffsetColor(it.depth)
                 )
             }
-            additionalButtonView.setSection(content?.section)
+            additionalButtonView.setSection(value?.section)
         }
 
     init {

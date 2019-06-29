@@ -13,7 +13,6 @@ import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.Section
-import com.sibedge.yokodzun.common.data.helpers.Description
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
@@ -51,23 +50,23 @@ class SectionsLayer(
     private val sectionsProducer
             by lazy { StateProducerSimple(battle.sections) }
 
+    private val list by lazy {
+        SectionsTreeListView.create(
+            context = context,
+            sections = sectionsProducer,
+            additionalButton = { section ->
+                AdditionalButton.Info(
+                    icon = DrawableGetter(R.drawable.ic_options_white),
+                    action = {
+                        addSection(section.id)
+                    }
+                )
+            }
+        )
+    }
+
     override fun afterCreate() {
         super.afterCreate()
-
-        val list by lazy {
-            SectionsTreeListView.create(
-                context = context,
-                sections = sectionsProducer,
-                additionalButton = { section ->
-                    AdditionalButton.Info(
-                        icon = DrawableGetter(R.drawable.ic_options_white),
-                        action = {
-                            addSection(section.id)
-                        }
-                    )
-                }
-            )
-        }
 
         val emptyInfoView by lazy {
             EmptyInfoView(
@@ -128,6 +127,7 @@ class SectionsLayer(
             parentSectionId = parentId
         )
         sectionsProducer.updateState(oldSectionsList + newSection)
+        list.openSection(parentId)
     }
 
 }

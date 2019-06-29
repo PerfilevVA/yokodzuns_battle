@@ -8,6 +8,6 @@ data class TreeSection(
     val depth: Int
 ) {
 
-    val key = "${depth}_{section.id}"
+    val key = "${depth}_${section.id}"
 
 }

@@ -5,6 +5,7 @@ import ru.hnau.androidutils.ui.view.list.base.*
 import ru.hnau.jutils.producer.Producer
 import com.sibedge.yokodzun.android.ui.list.YListItemsDevider
 import com.sibedge.yokodzun.android.utils.extensions.setBottomPaddingForPrimaryActionButtonDecoration
+import ru.hnau.jutils.takeIfPositive
 
 
 class ItemsListView<T : Any>(
@@ -26,7 +27,7 @@ class ItemsListView<T : Any>(
 ) {
 
     init {
-        setBottomPaddingForPrimaryActionButtonDecoration()
+        setBottomPaddingForPrimaryActionButtonDecoration(itemsProducer)
     }
 
 }
