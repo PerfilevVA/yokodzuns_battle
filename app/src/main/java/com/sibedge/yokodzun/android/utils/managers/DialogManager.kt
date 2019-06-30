@@ -170,7 +170,7 @@ object DialogManager {
 
     private val MATERIAL_DIALOG_VIEW_INFO = MaterialDialogViewInfo(
         button = MaterialDialogButtonInfo.DEFAULT.copy(
-            textFont = FontManager.UBUNTU_BOLD,
+            textFont = FontManager.BOLD,
             textColor = ColorManager.PRIMARY,
             rippleDrawInfo = ColorManager.PRIMARY_ON_TRANSPARENT_RIPPLE_INFO,
             textSize = SizeManager.TEXT_12
@@ -178,14 +178,14 @@ object DialogManager {
         title = MaterialDialogTitleInfo.DEFAULT.copy(
             labelInfo = MaterialDialogTitleInfo.DEFAULT.labelInfo.copy(
                 textColor = ColorManager.PRIMARY,
-                fontType = FontManager.UBUNTU_BOLD,
+                fontType = FontManager.BOLD,
                 textSize = SizeManager.TEXT_20
             )
         ),
         text = MaterialDialogTextInfo.DEFAULT.copy(
             labelInfo = MaterialDialogTextInfo.DEFAULT.labelInfo.copy(
                 textColor = ColorManager.FG,
-                fontType = FontManager.UBUNTU,
+                fontType = FontManager.REGULAR,
                 textSize = SizeManager.TEXT_16
             )
         ),
@@ -199,21 +199,21 @@ object DialogManager {
         title = BottomSheetTitleInfo.DEFAULT.copy(
             labelInfo = BottomSheetTitleInfo.DEFAULT.labelInfo.copy(
                 textColor = ColorManager.PRIMARY,
-                fontType = FontManager.UBUNTU_BOLD,
+                fontType = FontManager.BOLD,
                 textSize = SizeManager.TEXT_16
             )
         ),
         text = BottomSheetTextInfo.DEFAULT.copy(
             labelInfo = BottomSheetTextInfo.DEFAULT.labelInfo.copy(
                 textColor = ColorManager.FG,
-                fontType = FontManager.UBUNTU,
+                fontType = FontManager.REGULAR,
                 textSize = SizeManager.TEXT_12
             )
         ),
         item = BottomSheetItemInfo.DEFAULT.copy(
             labelInfo = BottomSheetItemInfo.DEFAULT.labelInfo.copy(
                 textColor = ColorManager.FG,
-                fontType = FontManager.UBUNTU,
+                fontType = FontManager.REGULAR,
                 textSize = SizeManager.TEXT_16
             ),
             rippleDrawInfo = ColorManager.FG_ON_TRANSPARENT_RIPPLE_INFO

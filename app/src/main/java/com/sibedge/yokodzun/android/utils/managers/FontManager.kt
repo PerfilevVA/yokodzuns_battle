@@ -5,10 +5,9 @@ import ru.hnau.androidutils.ui.font_type.FontTypeGetter
 
 object FontManager {
 
-    val UBUNTU = FontTypeGetter("fonts/Ubuntu-R.ttf")
-    val UBUNTU_BOLD = FontTypeGetter("fonts/Ubuntu-B.ttf")
-    val UBUNTU_MONO = FontTypeGetter("fonts/Ubuntu-M.ttf")
+    val REGULAR = FontTypeGetter("fonts/MontserratAlternates-Regular.ttf")
+    val BOLD = FontTypeGetter("fonts/MontserratAlternates-Bold.ttf")
 
-    val DEFAULT = UBUNTU
+    val DEFAULT = REGULAR
 
 }

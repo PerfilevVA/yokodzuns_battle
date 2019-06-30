@@ -52,7 +52,7 @@ open class BattleView(
         minLines = 1,
         maxLines = 1,
         gravity = HGravity.START_CENTER_VERTICAL,
-        fontType = FontManager.UBUNTU_BOLD,
+        fontType = FontManager.BOLD,
         textSize = SizeManager.TEXT_16
     )
 

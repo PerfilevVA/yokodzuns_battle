@@ -26,7 +26,7 @@ class PlusMinusView<T : Comparable<T>>(
     private val valueView = Label(
         context = context,
         gravity = HGravity.CENTER,
-        fontType = FontManager.UBUNTU_BOLD,
+        fontType = FontManager.BOLD,
         textColor = ColorManager.PRIMARY,
         textSize = SizeManager.TEXT_20,
         minLines = 1,

@@ -37,7 +37,6 @@
     <string name="global_menu_logout_confirm">Выйти</string>
 
     <string name="login_layer_title">Вход</string>
-    <string name="login_layer_logo_title">Битва\nёкодзун</string>
     <string name="login_layer_code_input_title">Код зрителя</string>
 
     <string name="settings_layer_title">Настройки</string>
@@ -81,7 +80,7 @@
     <string name="battle_action_edit_yokodzuns">Управление ёкодзунами</string>
     <string name="battle_action_edit_parameters">Управление параметрами</string>
     <string name="battle_action_view_sections">Просмотр разделов</string>
-    <string name="battle_action_view_yokodzuns">Просмотр ёкодзунов</string>
+    <string name="battle_action_view_yokodzuns">Просмотр ёкодзун</string>
     <string name="battle_action_view_parameters">Просмотр параметров</string>
     <string name="battle_action_view_rates">Результаты</string>
     <string name="battle_action_view_rates_for_sections">Результаты по разделам</string>

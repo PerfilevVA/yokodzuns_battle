@@ -46,31 +46,10 @@ class LoginLayer(
 
             addLinearSeparator(4f)
 
-            addHorizontalLayout {
-
-                applyCenterGravity()
-
-                addLayoutDrawableView(
-                    content = DrawableGetter(R.drawable.ic_launcher),
-                    layoutType = LayoutType.Inside
-                ) {
-                    applyLinearParams {
-                        setSize(dp(96))
-                    }
-                }
-
-                addLabel(
-                    text = StringGetter(R.string.login_layer_logo_title),
-                    gravity = HGravity.START_CENTER_VERTICAL,
-                    textSize = dp24,
-                    fontType = FontManager.UBUNTU_BOLD,
-                    textColor = ColorManager.FG
-                ) {
-                    applyLinearParams {
-                        setEndMargin(dp32)
-                    }
-                }
-            }
+            addLayoutDrawableView(
+                content = DrawableGetter(R.drawable.ic_logo_with_text),
+                layoutType = LayoutType.Independent
+            )
 
             addLinearSeparator()
 

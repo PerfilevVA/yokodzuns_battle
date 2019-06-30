@@ -45,7 +45,7 @@ object AdminEditSectionsLayerUtils {
                         actionPlus = { it + 1 }
                     )
                 ),
-                availableValueRange = 1..100
+                availableValueRange = 0..100
             ) {
                 callback.updateWeight(section.id, it)
                 return@showPlusMinusDialog true
