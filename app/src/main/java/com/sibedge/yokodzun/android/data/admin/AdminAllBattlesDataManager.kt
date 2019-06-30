@@ -3,8 +3,11 @@ package com.sibedge.yokodzun.android.data.admin
 import com.sibedge.yokodzun.android.api.API
 import com.sibedge.yokodzun.android.data.YDataManager
 import com.sibedge.yokodzun.android.utils.extensions.sortKey
+import com.sibedge.yokodzun.common.data.Parameter
 import com.sibedge.yokodzun.common.data.battle.Battle
+import com.sibedge.yokodzun.common.data.battle.BattleParameter
 import com.sibedge.yokodzun.common.data.battle.BattleStatus
+import com.sibedge.yokodzun.common.data.battle.Section
 import com.sibedge.yokodzun.common.data.helpers.Description
 import ru.hnau.jutils.handle
 
@@ -60,6 +63,30 @@ object AdminAllBattlesDataManager : YDataManager<List<Battle>>() {
     ) {
         API.updateBattleDescription(battleId, description).await()
         updateBattleOrInvalidate(battleId) { copy(description = description) }
+    }
+
+    suspend fun updateSections(
+        battleId: String,
+        sections: List<Section>
+    ) {
+        API.updateBattleSections(battleId, sections).await()
+        updateBattleOrInvalidate(battleId) { copy(sections = sections) }
+    }
+
+    suspend fun updateParameters(
+        battleId: String,
+        parameters: List<BattleParameter>
+    ) {
+        API.updateBattleParameters(battleId, parameters).await()
+        updateBattleOrInvalidate(battleId) { copy(parameters = parameters) }
+    }
+
+    suspend fun updateYokodzunsIds(
+        battleId: String,
+        yokodzunsIds: List<String>
+    ) {
+        API.updateBattleYokodzunsIds(battleId, yokodzunsIds).await()
+        updateBattleOrInvalidate(battleId) { copy(yokodzunsIds = yokodzunsIds) }
     }
 
 }

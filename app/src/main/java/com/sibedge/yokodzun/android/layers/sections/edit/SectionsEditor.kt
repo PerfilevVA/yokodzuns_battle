@@ -1,18 +1,13 @@
 package com.sibedge.yokodzun.android.layers.sections.edit
 
-import com.sibedge.yokodzun.android.layers.sections.base.SectionsLayer
-import com.sibedge.yokodzun.android.ui.sections.content.SectionsList
+import com.sibedge.yokodzun.android.ui.view.list.sections.content.SectionsList
 import com.sibedge.yokodzun.android.utils.Utils
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.Section
 import com.sibedge.yokodzun.common.data.helpers.Description
 import ru.hnau.jutils.handle
 import ru.hnau.jutils.ifTrue
-import ru.hnau.jutils.producer.ActualProducer
 import ru.hnau.jutils.producer.ActualProducerSimple
-import ru.hnau.jutils.producer.StateProducerSimple
-import java.util.*
-import java.util.Locale.filter
 import java.util.concurrent.CopyOnWriteArrayList
 
 
@@ -22,7 +17,10 @@ class SectionsEditor(
 
     private val sectionsProducer = ActualProducerSimple<List<Section>>(battle.sections)
 
-    val sectionsList = SectionsList(sectionsProducer)
+    val sectionsList =
+        SectionsList(sectionsProducer)
+
+    val sections get() = sectionsProducer.currentState
 
     override fun addSubsection(
         parentId: String

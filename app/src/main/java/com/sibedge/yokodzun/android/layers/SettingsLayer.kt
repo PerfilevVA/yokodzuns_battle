@@ -2,27 +2,22 @@ package com.sibedge.yokodzun.android.layers
 
 import android.content.Context
 import android.net.Uri
-import retrofit2.http.Url
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.context_getters.toGetter
 import ru.hnau.androidutils.ui.view.addLinearSeparator
 import ru.hnau.androidutils.ui.view.utils.apply.addChild
 import ru.hnau.androidutils.ui.view.utils.setPadding
 import ru.hnau.androidutils.utils.shortToast
-import ru.hnau.jutils.getter.toGetter
 import ru.hnau.jutils.tryOrNull
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.api.resetApi
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addBottomButtonView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addFgSmallInputLabelView
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
+import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
 import com.sibedge.yokodzun.android.utils.managers.SettingsManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
-import com.sibedge.yokodzun.common.utils.Validators
-import java.net.URL
 
 
 class SettingsLayer(

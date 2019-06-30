@@ -1,6 +1,5 @@
 package com.sibedge.yokodzun.android.utils.managers
 
-import android.util.Range
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.utils.Side
 import ru.hnau.androidutils.ui.view.layer.manager.LayerManagerConnector
@@ -19,10 +18,10 @@ import ru.hnau.androidutils.ui.view.layer.transaction.TransactionInfo
 import ru.hnau.androidutils.ui.view.utils.*
 import ru.hnau.jutils.TimeValue
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
-import com.sibedge.yokodzun.android.ui.plus_minus.PlusMinusColumnInfo
-import com.sibedge.yokodzun.android.ui.plus_minus.PlusMinusView
+import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputView
+import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputViewInfo
+import com.sibedge.yokodzun.android.ui.view.plus_minus.PlusMinusColumnInfo
+import com.sibedge.yokodzun.android.ui.view.plus_minus.PlusMinusView
 import ru.hnau.androidutils.ui.view.layer.preset.dialog.view.bottom_sheet.decoration.BottomSheetViewDecorationInfo
 import ru.hnau.androidutils.ui.view.layer.preset.dialog.view.material.decoration.MaterialDialogViewDecorationInfo
 

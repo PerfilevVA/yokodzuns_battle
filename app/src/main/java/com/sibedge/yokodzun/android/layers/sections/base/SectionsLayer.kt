@@ -3,10 +3,10 @@ package com.sibedge.yokodzun.android.layers.sections.base
 import android.content.Context
 import android.view.ViewGroup
 import com.sibedge.yokodzun.android.layers.base.AppLayer
-import com.sibedge.yokodzun.android.ui.empty_info.EmptyInfoView
-import com.sibedge.yokodzun.android.ui.sections.SectionsTreeListView
-import com.sibedge.yokodzun.android.ui.sections.content.SectionsList
-import com.sibedge.yokodzun.android.ui.sections.item.AdditionalButton
+import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
+import com.sibedge.yokodzun.android.ui.view.list.sections.SectionsTreeListView
+import com.sibedge.yokodzun.android.ui.view.list.sections.content.SectionsList
+import com.sibedge.yokodzun.android.ui.view.list.sections.item.AdditionalButton
 import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.common.data.battle.Battle

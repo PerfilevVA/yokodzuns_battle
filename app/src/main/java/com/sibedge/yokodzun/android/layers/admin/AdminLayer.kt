@@ -6,8 +6,8 @@ import com.sibedge.yokodzun.android.layers.admin.pages.AdminBattlesPageView
 import com.sibedge.yokodzun.android.layers.admin.pages.AdminParametersPageView
 import com.sibedge.yokodzun.android.layers.admin.pages.AdminYokodzunsPageView
 import com.sibedge.yokodzun.android.layers.base.AppLayer
-import com.sibedge.yokodzun.android.ui.pager.Pager
-import com.sibedge.yokodzun.android.ui.pager.PagerPage
+import com.sibedge.yokodzun.android.ui.view.pager.Pager
+import com.sibedge.yokodzun.android.ui.view.pager.PagerPage
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams

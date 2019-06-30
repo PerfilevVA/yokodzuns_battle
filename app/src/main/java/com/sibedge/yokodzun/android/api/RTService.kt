@@ -1,6 +1,8 @@
 package com.sibedge.yokodzun.android.api
 
 import com.sibedge.yokodzun.common.data.battle.Battle
+import com.sibedge.yokodzun.common.data.battle.BattleParameter
+import com.sibedge.yokodzun.common.data.battle.Section
 import com.sibedge.yokodzun.common.data.helpers.Description
 import com.sibedge.yokodzun.common.utils.Validators
 import kotlinx.coroutines.Deferred
@@ -49,6 +51,24 @@ interface RTService {
     fun updateBattleDescription(
         @Path("battle-id") battleId: String,
         @Body description: Description
+    ): Deferred<Unit>
+
+    @PATCH("/battles/{battle-id}/sections")
+    fun updateBattleSections(
+        @Path("battle-id") battleId: String,
+        @Body sections: List<Section>
+    ): Deferred<Unit>
+
+    @PATCH("/battles/{battle-id}/parameters")
+    fun updateBattleParameters(
+        @Path("battle-id") battleId: String,
+        @Body parameters: List<BattleParameter>
+    ): Deferred<Unit>
+
+    @PATCH("/battles/{battle-id}/yokodzuns-ids")
+    fun updateBattleYokodzunsIds(
+        @Path("battle-id") battleId: String,
+        @Body yokodzunsIds: List<String>
     ): Deferred<Unit>
 
 }

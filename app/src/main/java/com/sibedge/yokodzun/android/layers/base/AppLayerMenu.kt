@@ -11,16 +11,11 @@ import com.sibedge.yokodzun.android.layers.ChangePasswordLayer
 import com.sibedge.yokodzun.android.layers.LoginLayer
 import com.sibedge.yokodzun.android.layers.SettingsLayer
 import com.sibedge.yokodzun.android.layers.admin.AdminLayer
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
+import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.android.utils.managers.OptionsMenuManager
 import com.sibedge.yokodzun.android.utils.tryOrHandleError
 import com.sibedge.yokodzun.common.utils.Validators
-import ru.hnau.androidutils.context_getters.toGetter
-import ru.hnau.androidutils.utils.ToastDuration
-import ru.hnau.androidutils.utils.showToast
-import ru.hnau.jutils.handle
-import ru.hnau.jutils.ifTrue
 import java.util.*
 
 

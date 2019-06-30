@@ -13,9 +13,8 @@ import com.sibedge.yokodzun.android.api.API
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addBottomButtonView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addFgSmallInputLabelView
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
-import com.sibedge.yokodzun.android.ui.input.simple.addSimpleInput
+import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputView
+import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.exception.ApiException
 import com.sibedge.yokodzun.common.utils.Validators
@@ -38,14 +37,15 @@ class ChangePasswordLayer(
 
             addFgSmallInputLabelView(StringGetter(R.string.change_password_layer_old_password))
 
-            val oldPasswordInput = SimpleInputView(
-                context = context,
-                info = SimpleInputViewInfo(
-                    maxLength = Validators.MAX_PASSWORD_LENGTH,
-                    transformationMethod = PasswordTransformationMethod.getInstance(),
-                    inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            val oldPasswordInput =
+                SimpleInputView(
+                    context = context,
+                    info = SimpleInputViewInfo(
+                        maxLength = Validators.MAX_PASSWORD_LENGTH,
+                        transformationMethod = PasswordTransformationMethod.getInstance(),
+                        inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    )
                 )
-            )
             addChild(oldPasswordInput)
 
             addFgSmallInputLabelView(StringGetter(R.string.change_password_layer_new_password))
@@ -63,14 +63,15 @@ class ChangePasswordLayer(
 
             addFgSmallInputLabelView(StringGetter(R.string.change_password_layer_new_password_repeat))
 
-            val passwordRepeatInput = SimpleInputView(
-                context = context,
-                info = SimpleInputViewInfo(
-                    maxLength = Validators.MAX_PASSWORD_LENGTH,
-                    transformationMethod = PasswordTransformationMethod.getInstance(),
-                    inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            val passwordRepeatInput =
+                SimpleInputView(
+                    context = context,
+                    info = SimpleInputViewInfo(
+                        maxLength = Validators.MAX_PASSWORD_LENGTH,
+                        transformationMethod = PasswordTransformationMethod.getInstance(),
+                        inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    )
                 )
-            )
             addChild(passwordRepeatInput)
 
             addLinearSeparator()

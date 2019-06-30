@@ -2,15 +2,11 @@ package com.sibedge.yokodzun.android.ui.hierarchy_utils
 
 import android.view.ViewGroup
 import ru.hnau.androidutils.context_getters.StringGetter
-import ru.hnau.androidutils.ui.view.utils.MATCH_PARENT
-import ru.hnau.androidutils.ui.view.utils.WRAP_CONTENT
 import ru.hnau.androidutils.ui.view.utils.apply.applyTopPadding
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLayoutParams
-import ru.hnau.androidutils.ui.view.utils.setLayoutParams
-import ru.hnau.androidutils.ui.view.utils.setTopPadding
-import com.sibedge.yokodzun.android.ui.button.YButton
-import com.sibedge.yokodzun.android.ui.button.YButtonInfo
-import com.sibedge.yokodzun.android.ui.button.addYButton
+import com.sibedge.yokodzun.android.ui.view.button.YButton
+import com.sibedge.yokodzun.android.ui.view.button.YButtonInfo
+import com.sibedge.yokodzun.android.ui.view.button.addYButton
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 
 fun ViewGroup.addButtonView(

@@ -4,12 +4,12 @@ import android.content.Context
 import android.text.InputType
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.layers.base.AppLayer
-import com.sibedge.yokodzun.android.ui.description.DescriptionLogoView
+import com.sibedge.yokodzun.android.ui.view.description.DescriptionLogoView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addBottomButtonView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addFgSmallInputLabelView
-import com.sibedge.yokodzun.android.ui.input.multiline.MultilineInputView
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
-import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
+import com.sibedge.yokodzun.android.ui.view.input.multiline.MultilineInputView
+import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputView
+import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.helpers.Description
 import ru.hnau.androidutils.context_getters.StringGetter
@@ -47,21 +47,25 @@ abstract class EditDescriptionLayer(
 
                     addFgSmallInputLabelView(titleHint)
 
-                    val titleInput = SimpleInputView(
-                        context = context,
-                        text = initialDescription.title.toGetter()
-                    )
+                    val titleInput =
+                        SimpleInputView(
+                            context = context,
+                            text = initialDescription.title.toGetter()
+                        )
                     addChild(titleInput)
 
-                    val logoUrlInput = SimpleInputView(
-                        context = context,
-                        text = initialDescription.logoUrl.toGetter(),
-                        info = SimpleInputViewInfo(
-                            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
+                    val logoUrlInput =
+                        SimpleInputView(
+                            context = context,
+                            text = initialDescription.logoUrl.toGetter(),
+                            info = SimpleInputViewInfo(
+                                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
+                            )
                         )
-                    )
 
-                    val logoView = DescriptionLogoView(context).apply {
+                    val logoView = DescriptionLogoView(
+                        context
+                    ).apply {
                         applyLinearParams {
                             applyBottomGravity()
                             setStartMargin(SizeManager.SMALL_SEPARATION)

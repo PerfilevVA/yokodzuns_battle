@@ -4,10 +4,10 @@ import android.content.Context
 import android.widget.FrameLayout
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.data.admin.AdminAllBattlesDataManager
-import com.sibedge.yokodzun.android.ui.button.primary.addPrimaryActionButton
-import com.sibedge.yokodzun.android.ui.cell.AdminBattleView
-import com.sibedge.yokodzun.android.ui.empty_info.EmptyInfoView
-import com.sibedge.yokodzun.android.ui.list.base.ViewsWithContentListContainer
+import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
+import com.sibedge.yokodzun.android.ui.view.cell.AdminBattleView
+import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
+import com.sibedge.yokodzun.android.ui.view.list.base.ViewsWithContentListContainer
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import kotlinx.coroutines.CoroutineScope
@@ -28,20 +28,26 @@ class AdminBattlesPageView(
 ) {
 
     init {
-        val list = ViewsWithContentListContainer<Battle>(
-            context = context,
-            idGetter = Battle::id,
-            invalidator = AdminAllBattlesDataManager::invalidate,
-            onEmptyListInfoViewGenerator = {
-                EmptyInfoView(
-                    context = context,
-                    text = StringGetter(R.string.admin_add_layer_battles_page_no_battles_title),
-                    button = StringGetter(R.string.admin_add_layer_battles_add_battle) to this::onAddBattleClick
-                )
-            },
-            producer = AdminAllBattlesDataManager as Producer<GetterAsync<Unit, List<Battle>>>,
-            viewWithContentGenerator = { AdminBattleView(context, coroutinesExecutor) }
-        )
+        val list =
+            ViewsWithContentListContainer<Battle>(
+                context = context,
+                idGetter = Battle::id,
+                invalidator = AdminAllBattlesDataManager::invalidate,
+                onEmptyListInfoViewGenerator = {
+                    EmptyInfoView(
+                        context = context,
+                        text = StringGetter(R.string.admin_add_layer_battles_page_no_battles_title),
+                        button = StringGetter(R.string.admin_add_layer_battles_add_battle) to this::onAddBattleClick
+                    )
+                },
+                producer = AdminAllBattlesDataManager as Producer<GetterAsync<Unit, List<Battle>>>,
+                viewWithContentGenerator = {
+                    AdminBattleView(
+                        context,
+                        coroutinesExecutor
+                    )
+                }
+            )
 
         addChild(list)
 
@@ -60,6 +66,5 @@ class AdminBattlesPageView(
 
     private fun onAddBattleClick() =
         coroutinesExecutor { AdminAllBattlesDataManager.createNew() }
-
 
 }

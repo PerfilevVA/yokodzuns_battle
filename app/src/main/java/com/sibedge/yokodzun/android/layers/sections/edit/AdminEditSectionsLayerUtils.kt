@@ -2,12 +2,10 @@ package com.sibedge.yokodzun.android.layers.sections.edit
 
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.layers.description.EditSectionDescriptionLayer
-import com.sibedge.yokodzun.android.ui.cell.AdminBattleViewUtils
-import com.sibedge.yokodzun.android.ui.plus_minus.PlusMinusColumnInfo
+import com.sibedge.yokodzun.android.ui.view.plus_minus.PlusMinusColumnInfo
 import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.common.data.battle.Section
-import kotlinx.coroutines.CoroutineScope
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.context_getters.toGetter
 
