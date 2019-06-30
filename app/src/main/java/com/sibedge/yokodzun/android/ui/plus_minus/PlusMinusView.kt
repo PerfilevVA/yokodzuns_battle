@@ -28,7 +28,7 @@ class PlusMinusView<T : Comparable<T>>(
         gravity = HGravity.CENTER,
         fontType = FontManager.UBUNTU_BOLD,
         textColor = ColorManager.PRIMARY,
-        textSize = SizeManager.TEXT_16,
+        textSize = SizeManager.TEXT_20,
         minLines = 1,
         maxLines = 1
     )

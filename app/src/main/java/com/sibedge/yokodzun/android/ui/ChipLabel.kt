@@ -2,11 +2,10 @@ package com.sibedge.yokodzun.android.ui
 
 import android.content.Context
 import android.graphics.Canvas
-import android.view.View
-import com.sibedge.yokodzun.android.ui.ViewWithContent
 import com.sibedge.yokodzun.android.ui.gradient.YGradientPaint
+import com.sibedge.yokodzun.android.utils.ColorTriple
+import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
-import ru.hnau.androidutils.context_getters.ColorGetter
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.bounds_producer.createBoundsProducer
 import ru.hnau.androidutils.ui.canvas_shape.RoundSidesRectCanvasShape
@@ -21,40 +20,40 @@ import kotlin.math.min
 
 class ChipLabel(
     context: Context,
-    info: LabelInfo,
-    chipColorFrom: ColorGetter,
-    chipColorTo: ColorGetter
+    info: LabelInfo
 ) : Label(
     context = context,
     info = info
-), ViewWithContent<StringGetter> {
+), ViewWithContent<ChipLabel.Info> {
+
+    data class Info(
+        val text: StringGetter,
+        val color: ColorTriple
+    )
 
     override val view = this
 
-    override var content: StringGetter? = null
+    private val backgroundPaint = YGradientPaint(context)
+
+    override var content: Info? = null
         set(value) {
             field = value
-            text = value ?: StringGetter.EMPTY
+            text = value?.text ?: StringGetter.EMPTY
+            backgroundPaint.color = value?.color ?: ColorManager.PRIMARY_TRIPLE
         }
 
     private val boundsProducer = createBoundsProducer(false)
     private val canvasShape = RoundSidesRectCanvasShape(boundsProducer)
 
-    private val backgrounbdPaint = YGradientPaint(
-        context = context,
-        fromColor = chipColorFrom,
-        toColor = chipColorTo
-    )
-
     init {
         boundsProducer.attach {
-            backgrounbdPaint.setBounds(it.left, it.top, it.right, it.bottom)
+            backgroundPaint.setBounds(it.left, it.top, it.right, it.bottom)
         }
         applyPadding(SizeManager.EXTRA_SMALL_SEPARATION)
     }
 
     override fun draw(canvas: Canvas) {
-        canvasShape.draw(canvas, backgrounbdPaint)
+        canvasShape.draw(canvas, backgroundPaint)
         super.draw(canvas)
     }
 

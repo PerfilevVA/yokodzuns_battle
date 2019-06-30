@@ -40,8 +40,8 @@ class PlusMinusColumn<T : Comparable<T>>(
         initialText = title,
         maxLines = 1,
         minLines = 1,
-        textSize = SizeManager.TEXT_12,
-        textColor = ColorManager.PRIMARY,
+        textSize = SizeManager.TEXT_16,
+        textColor = ColorManager.FG,
         fontType = FontManager.DEFAULT,
         gravity = HGravity.CENTER
     )

@@ -3,6 +3,7 @@ package com.sibedge.yokodzun.android.ui.cell
 import android.content.Context
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
@@ -16,9 +17,7 @@ object BattleViewUtils {
     private fun createCountView(
         context: Context,
         title: StringGetter,
-        textColor: ColorGetter,
-        fromColor: ColorGetter,
-        toColor: ColorGetter,
+        color: ColorTriple,
         toCount: Battle.() -> Int?,
         onClick: (Battle) -> Unit
     ) = object : ViewWithContent<Battle> {
@@ -26,9 +25,7 @@ object BattleViewUtils {
         override val view = CountView(
             context = context,
             title = title,
-            textColor = textColor,
-            fromColor = fromColor,
-            toColor = toColor,
+            color = color,
             onClick = this::onClick
         ).apply {
             applyPadding(SizeManager.SMALL_SEPARATION)
@@ -53,9 +50,7 @@ object BattleViewUtils {
     ) = createCountView(
         context = context,
         title = StringGetter(R.string.battle_view_yokodzuns),
-        fromColor = ColorManager.ORANGE_LIGHT,
-        toColor = ColorManager.ORANGE_DARK,
-        textColor = ColorManager.ORANGE,
+        color = ColorManager.ORANGE_TRIPLE,
         toCount = { yokodzunsIds.size },
         onClick = onClick
     )
@@ -66,9 +61,7 @@ object BattleViewUtils {
     ) = createCountView(
         context = context,
         title = StringGetter(R.string.battle_view_parameters),
-        fromColor = ColorManager.GREEN_LIGHT,
-        toColor = ColorManager.GREEN_DARK,
-        textColor = ColorManager.GREEN,
+        color = ColorManager.GREEN_TRIPLE,
         toCount = { parameters.size },
         onClick = onClick
     )
@@ -79,9 +72,7 @@ object BattleViewUtils {
     ) = createCountView(
         context = context,
         title = StringGetter(R.string.battle_view_sections),
-        fromColor = ColorManager.PRIMARY_LIGHT,
-        toColor = ColorManager.PRIMARY_DARK,
-        textColor = ColorManager.PRIMARY,
+        color = ColorManager.PRIMARY_TRIPLE,
         toCount = { sections.size },
         onClick = onClick
     )

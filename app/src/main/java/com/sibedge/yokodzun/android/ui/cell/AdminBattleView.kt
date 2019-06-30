@@ -17,8 +17,8 @@ class AdminBattleView(
     coroutinesExecutor: (suspend CoroutineScope.() -> Unit) -> Unit
 ) : BattleView(
     context = context,
-    onClick = { AdminBattleViewUtils.onClick(it, coroutinesExecutor) },
-    onParametersCountClicked = AdminBattleViewUtils::editBattleParameters,
-    onSectionsCountClicked = AdminBattleViewUtils::editBattleSectios,
-    onYoconzunsCountClicked = AdminBattleViewUtils::editBattleYokodzuns
+    onClick = { AdminBattleViewUtils.showBattleActions(it, coroutinesExecutor) },
+    onParametersCountClicked = { AdminBattleViewUtils.onParametersClicked(it, coroutinesExecutor) },
+    onSectionsCountClicked = { AdminBattleViewUtils.onSectionsClicked(it, coroutinesExecutor) },
+    onYoconzunsCountClicked = { AdminBattleViewUtils.onYokodzunsClicked(it, coroutinesExecutor) }
 )

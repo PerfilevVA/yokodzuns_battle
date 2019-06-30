@@ -1,6 +1,7 @@
 package com.sibedge.yokodzun.android.ui.button
 
 import android.graphics.Color
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import ru.hnau.androidutils.context_getters.ColorGetter
 import ru.hnau.androidutils.context_getters.dp_px.*
 import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter.Companion.dp
@@ -11,6 +12,7 @@ import ru.hnau.androidutils.ui.font_type.FontTypeGetter
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
+import com.sibedge.yokodzun.android.utils.toTriple
 
 
 data class YButtonInfo(
@@ -22,8 +24,7 @@ data class YButtonInfo(
     val borderInfo: BorderInfo? = null,
     val textColor: ColorGetter,
     val underline: Boolean = false,
-    val backgroundColorFrom: ColorGetter,
-    val backgroundColorTo: ColorGetter = backgroundColorFrom
+    val backgroundColor: ColorTriple
 ) {
 
     companion object {
@@ -32,15 +33,14 @@ data class YButtonInfo(
             shadow = ColorManager.DEFAULT_BUTTON_SHADOW_INFO,
             height = dp(44),
             textColor = ColorManager.FG,
-            backgroundColorFrom = ColorManager.PRIMARY,
-            backgroundColorTo = ColorManager.PRIMARY_DARK
+            backgroundColor = ColorManager.PRIMARY_TRIPLE
         )
 
         val SMALL_FG_TEXT_UNDERLINE = YButtonInfo(
             textSize = SizeManager.TEXT_12,
             height = dp40,
             textColor = ColorManager.FG,
-            backgroundColorFrom = ColorManager.BG,
+            backgroundColor = ColorManager.BG.toTriple(),
             underline = true
         )
 
@@ -49,7 +49,7 @@ data class YButtonInfo(
                 textSize = SizeManager.TEXT_12,
                 height = dp32,
                 textColor = ColorManager.PRIMARY,
-                backgroundColorFrom = ColorManager.TRANSPARENT,
+                backgroundColor = ColorManager.TRANSPARENT.toTriple(),
                 borderInfo = createBorderInfo(ColorManager.PRIMARY)
             )
 

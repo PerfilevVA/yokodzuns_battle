@@ -6,6 +6,7 @@ import android.view.MotionEvent
 import android.widget.LinearLayout
 import com.sibedge.yokodzun.android.ui.ChipLabel
 import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
@@ -34,9 +35,7 @@ import ru.hnau.jutils.ifNull
 class CountView(
     context: Context,
     title: StringGetter,
-    textColor: ColorGetter,
-    fromColor: ColorGetter,
-    toColor: ColorGetter,
+    private val color: ColorTriple,
     onClick: () -> Unit
 ) : LinearLayout(
     context
@@ -53,7 +52,7 @@ class CountView(
     private val titleView = Label(
         context = context,
         textSize = TEXT_SIZE,
-        textColor = textColor,
+        textColor = color.main,
         fontType = FontManager.DEFAULT,
         gravity = HGravity.START_CENTER_VERTICAL,
         maxLines = 1,
@@ -74,9 +73,7 @@ class CountView(
             gravity = HGravity.CENTER,
             maxLines = 1,
             minLines = 1
-        ),
-        chipColorFrom = fromColor,
-        chipColorTo = toColor
+        )
     )
 
     override var content: Int? = null
@@ -85,7 +82,10 @@ class CountView(
             value.handle(
                 ifNotNull = {
                     numberView.setVisible()
-                    numberView.text = it.toString().toGetter()
+                    numberView.content = ChipLabel.Info(
+                        text = it.toString().toGetter(),
+                        color = color
+                    )
                 },
                 ifNull = {
                     numberView.setInvisible()
@@ -108,7 +108,7 @@ class CountView(
         rippleDrawInfo = RippleDrawInfo(
             rippleInfo = ColorManager.RIPPLE_INFO,
             backgroundColor = ColorManager.TRANSPARENT,
-            color = textColor,
+            color = color.main,
             rippleAlpha = ColorManager.RIPPLE_ALPHA
         )
     )

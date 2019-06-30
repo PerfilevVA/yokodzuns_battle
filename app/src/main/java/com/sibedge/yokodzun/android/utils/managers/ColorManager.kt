@@ -17,6 +17,7 @@ import ru.hnau.androidutils.ui.view.waiter.material.drawer.params.MaterialWaiter
 import ru.hnau.jutils.TimeValue
 import ru.hnau.jutils.producer.locked_producer.LockedProducer
 import com.sibedge.yokodzun.android.R
+import com.sibedge.yokodzun.android.utils.ColorTriple
 
 
 object ColorManager {
@@ -26,26 +27,38 @@ object ColorManager {
     val BG = ColorGetter.byResId(R.color.background)
     val BG_LIGHT = ColorGetter.byResId(R.color.background_light)
     val FG = ColorGetter.byResId(R.color.foreground)
-    
+
     val PRIMARY = ColorGetter.byResId(R.color.primary)
-    val PRIMARY_LIGHT = ColorGetter.byResId(R.color.primary_light)
-    val PRIMARY_DARK = ColorGetter.byResId(R.color.primary_dark)
 
-    val GREEN = ColorGetter.byResId(R.color.green)
-    val GREEN_LIGHT = ColorGetter.byResId(R.color.green_light)
-    val GREEN_DARK = ColorGetter.byResId(R.color.green_dark)
+    val PRIMARY_TRIPLE = ColorTriple(
+        main = PRIMARY,
+        dark = ColorGetter.byResId(R.color.primary_dark),
+        light = ColorGetter.byResId(R.color.primary_light)
+    )
 
-    val ORANGE = ColorGetter.byResId(R.color.orange)
-    val ORANGE_LIGHT = ColorGetter.byResId(R.color.orange_light)
-    val ORANGE_DARK = ColorGetter.byResId(R.color.orange_dark)
+    val GREEN_TRIPLE = ColorTriple(
+        main = ColorGetter.byResId(R.color.green),
+        dark = ColorGetter.byResId(R.color.green_dark),
+        light = ColorGetter.byResId(R.color.green_light)
+    )
 
-    val RED = ColorGetter.byResId(R.color.red)
-    val RED_LIGHT = ColorGetter.byResId(R.color.red_light)
-    val RED_DARK = ColorGetter.byResId(R.color.red_dark)
+    val ORANGE_TRIPLE = ColorTriple(
+        main = ColorGetter.byResId(R.color.orange),
+        dark = ColorGetter.byResId(R.color.orange_dark),
+        light = ColorGetter.byResId(R.color.orange_light)
+    )
 
-    val PURPLE = ColorGetter.byResId(R.color.purple)
-    val PURPLE_LIGHT = ColorGetter.byResId(R.color.purple_light)
-    val PURPLE_DARK = ColorGetter.byResId(R.color.purple_dark)
+    val RED_TRIPLE = ColorTriple(
+        main = ColorGetter.byResId(R.color.red),
+        dark = ColorGetter.byResId(R.color.red_dark),
+        light = ColorGetter.byResId(R.color.red_light)
+    )
+
+    val PURPLE_TRIPLE = ColorTriple(
+        main = ColorGetter.byResId(R.color.purple),
+        dark = ColorGetter.byResId(R.color.purple_dark),
+        light = ColorGetter.byResId(R.color.purple_light)
+    )
 
     val FG_T50 = FG.mapWithAlpha(0.5f)
     val BG_T50 = BG.mapWithAlpha(0.5f)

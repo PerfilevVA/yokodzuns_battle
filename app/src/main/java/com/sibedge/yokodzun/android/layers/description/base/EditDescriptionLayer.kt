@@ -1,4 +1,4 @@
-package com.sibedge.yokodzun.android.layers
+package com.sibedge.yokodzun.android.layers.description.base
 
 import android.content.Context
 import android.text.InputType
@@ -12,64 +12,22 @@ import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.helpers.Description
-import kotlinx.coroutines.CoroutineScope
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.context_getters.toGetter
-import ru.hnau.androidutils.ui.view.layer.layer.LayerState
 import ru.hnau.androidutils.ui.view.utils.apply.*
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 
 
-class EditDescriptionLayer(
-    context: Context
+abstract class EditDescriptionLayer(
+    context: Context,
+    private val titleHint: StringGetter,
+    private val logoUrlHint: StringGetter,
+    private val descriptionHint: StringGetter
 ) : AppLayer(
     context = context
 ) {
 
-    companion object {
-
-        fun newInstance(
-            context: Context,
-            title: StringGetter,
-            editingDescription: Description,
-            titleHint: StringGetter,
-            logoUrlHint: StringGetter,
-            descriptionHint: StringGetter,
-            save: (
-                    (suspend CoroutineScope.() -> Unit) -> Unit,
-                    Description
-            ) -> Unit
-        ) = EditDescriptionLayer(context).apply {
-            this.title = title
-            this.initialDescription = editingDescription
-            this.titleHint = titleHint
-            this.logoUrlHint = logoUrlHint
-            this.descriptionHint = descriptionHint
-            this.save = save
-        }
-
-    }
-
-    @LayerState
-    override lateinit var title: StringGetter
-
-    @LayerState
-    private lateinit var initialDescription: Description
-
-    @LayerState
-    private lateinit var titleHint: StringGetter
-
-    @LayerState
-    private lateinit var logoUrlHint: StringGetter
-
-    @LayerState
-    private lateinit var descriptionHint: StringGetter
-
-    @LayerState
-    private lateinit var save: (
-            (suspend CoroutineScope.() -> Unit) -> Unit,
-            Description
-    ) -> Unit
+    protected abstract val initialDescription: Description
 
     override fun afterCreate() {
         super.afterCreate()
@@ -157,7 +115,7 @@ class EditDescriptionLayer(
                                 logoUrl = logoUrlInput.text.toString(),
                                 description = descriptionInput.text.toString()
                             )
-                            save(this@EditDescriptionLayer::uiJobLocked, newDescription)
+                            save(newDescription)
                         }
                     )
 
@@ -168,5 +126,14 @@ class EditDescriptionLayer(
         }
 
     }
+
+    private fun save(
+        editedDescription: Description
+    ) = uiJobLocked {
+        saveAsync(editedDescription)
+        managerConnector.goBack()
+    }
+
+    protected abstract suspend fun saveAsync(editedDescription: Description)
 
 }

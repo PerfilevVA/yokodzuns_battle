@@ -9,6 +9,8 @@ import com.sibedge.yokodzun.android.layers.ChangePasswordLayer
 import com.sibedge.yokodzun.common.exception.ApiException
 import com.sibedge.yokodzun.common.exception.ApiExceptionContent
 import ru.hnau.androidutils.context_getters.toGetter
+import ru.hnau.androidutils.ui.utils.logE
+import ru.hnau.jutils.stringStackTrace
 import java.lang.IllegalStateException
 
 
@@ -24,6 +26,8 @@ object ErrorHandler : (Throwable) -> Unit {
         handle(th)
 
     fun handle(th: Throwable) {
+
+        logE(th.stringStackTrace)
 
         CrashliticsManager.handle(th)
 

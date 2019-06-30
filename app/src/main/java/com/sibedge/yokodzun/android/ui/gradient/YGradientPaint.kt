@@ -3,7 +3,9 @@ package com.sibedge.yokodzun.android.ui.gradient
 import android.content.Context
 import android.graphics.LinearGradient
 import android.graphics.Paint
+import android.graphics.RectF
 import android.graphics.Shader
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import ru.hnau.androidutils.context_getters.ColorGetter
 import ru.hnau.androidutils.utils.ContextConnector.context
@@ -11,19 +13,35 @@ import ru.hnau.androidutils.utils.ContextConnector.context
 
 class YGradientPaint(
     private val context: Context,
-    private val fromColor: ColorGetter = ColorManager.PRIMARY_LIGHT,
-    private val toColor: ColorGetter = ColorManager.PRIMARY_DARK
-
+    color: ColorTriple = ColorManager.PRIMARY_TRIPLE
 ) : Paint(ANTI_ALIAS_FLAG) {
 
-    fun setBounds(left: Number, top: Number, right: Number, bottom: Number) {
+    private val boundsRect = RectF()
+
+    var color: ColorTriple = color
+        set(value) {
+            if (field != value) {
+                field = value
+                updateGradient()
+            }
+        }
+
+    private fun updateGradient() {
         shader = LinearGradient(
-            left.toFloat(), top.toFloat(),
-            right.toFloat(), bottom.toFloat(),
-            fromColor.get(context),
-            toColor.get(context),
+            boundsRect.left, boundsRect.top,
+            boundsRect.right, boundsRect.bottom,
+            color.light.get(context),
+            color.dark.get(context),
             Shader.TileMode.CLAMP
         )
+    }
+
+    fun setBounds(left: Number, top: Number, right: Number, bottom: Number) {
+        boundsRect.set(
+            left.toFloat(), top.toFloat(),
+            right.toFloat(), bottom.toFloat()
+        )
+        updateGradient()
     }
 
 }

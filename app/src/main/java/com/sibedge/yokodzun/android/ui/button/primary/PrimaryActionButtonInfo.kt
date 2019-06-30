@@ -1,10 +1,10 @@
 package com.sibedge.yokodzun.android.ui.button.primary
 
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import ru.hnau.androidutils.animations.AnimationsUtils
-import ru.hnau.androidutils.animations.AnimationsUtils.DEFAULT_ANIMATION_TIME
 import ru.hnau.androidutils.context_getters.ColorGetter
 import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter
 import ru.hnau.androidutils.context_getters.dp_px.dp16
@@ -25,8 +25,7 @@ data class PrimaryActionButtonInfo(
         fontType = FontManager.DEFAULT,
         textSize = SizeManager.TEXT_16
     ),
-    val backgroundColorFrom: ColorGetter = ColorManager.PRIMARY_LIGHT,
-    val backgroundColorTo: ColorGetter = ColorManager.PRIMARY_DARK
+    val backgroundColor: ColorTriple = ColorManager.PRIMARY_TRIPLE
 ) {
 
     companion object {

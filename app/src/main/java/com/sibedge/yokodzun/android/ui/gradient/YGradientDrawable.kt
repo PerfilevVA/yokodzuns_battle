@@ -2,20 +2,21 @@ package com.sibedge.yokodzun.android.ui.gradient
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.ColorFilter
 import android.graphics.PixelFormat
 import android.graphics.drawable.Drawable
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import ru.hnau.androidutils.context_getters.ColorGetter
 
 
 class YGradientDrawable(
     context: Context,
-    fromColor: ColorGetter = ColorManager.PRIMARY_LIGHT,
-    toColor: ColorGetter = ColorManager.PRIMARY_DARK
+    color: ColorTriple = ColorManager.PRIMARY_TRIPLE
 ) : Drawable() {
 
-    private val paint = YGradientPaint(context, fromColor, toColor)
+    private val paint = YGradientPaint(context, color)
 
     override fun draw(canvas: Canvas) =
         canvas.drawRect(bounds, paint)

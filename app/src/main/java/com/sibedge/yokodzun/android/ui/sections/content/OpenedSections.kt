@@ -1,27 +1,26 @@
-package com.sibedge.yokodzun.android.ui.sections.subsections
+package com.sibedge.yokodzun.android.ui.sections.content
 
 import ru.hnau.jutils.handle
 import ru.hnau.jutils.producer.AlwaysProducer
 
 
-class OpenedSections : AlwaysProducer<Collection<String>>(),
-    SubsectionsVisibilitySwitcher {
+class OpenedSections : AlwaysProducer<Collection<String>>() {
 
     override val value = LinkedHashSet<String>()
 
-    override fun switchSectionVisibility(
+    fun switchSectionVisibility(
         sectionId: String
     ) = (sectionId in value).handle(
         onTrue = { closeSection(sectionId) },
         onFalse = { openSection(sectionId) }
     )
 
-    override fun openSection(sectionId: String) {
+    fun openSection(sectionId: String) {
         value.add(sectionId)
         onValueChanged()
     }
 
-    override fun closeSection(sectionId: String) {
+    fun closeSection(sectionId: String) {
         value.remove(sectionId)
         onValueChanged()
     }

@@ -19,6 +19,8 @@
     <string name="default_admin_password_error_dialog_button">Настроить</string>
 
     <string name="entity_battle">Битва</string>
+    <string name="entity_section">Раздел</string>
+    <string name="entity_section_property_weight">Вес оценки</string>
 
     <string name="global_menu_item_title_settings">Настройки</string>
     <string name="global_menu_item_title_admin_change_password">Сменить пароль</string>
@@ -70,28 +72,50 @@
     <string name="battle_view_status_in_progress">В процессе</string>
     <string name="battle_view_status_after">Завершена</string>
 
-    <string name="battle_view_admin_action_remove">Удалить</string>
-    <string name="battle_view_admin_action_start">Начать</string>
-    <string name="battle_view_admin_action_stop">Завершить</string>
-    <string name="battle_view_admin_action_edit">Изменить описание</string>
-    <string name="battle_view_admin_action_update_raters">Управление зрителями</string>
-    <string name="battle_view_admin_action_update_yokodzuns">Управление ёкодзунами</string>
-    <string name="battle_view_admin_action_update_parameters">Управление параметрами</string>
-    <string name="battle_view_admin_action_update_sections">Управление разделами</string>
-    <string name="battle_view_admin_start_confirm_dialog_title">Запуск битвы</string>
-    <string name="battle_view_admin_start_confirm_dialog_text">Запустить битву?</string>
-    <string name="battle_view_admin_start_confirm_dialog_button">Запустить</string>
-    <string name="battle_view_admin_stop_confirm_dialog_title">Остановка битвы</string>
-    <string name="battle_view_admin_stop_confirm_dialog_text">Остановить битву?</string>
-    <string name="battle_view_admin_stop_confirm_dialog_button">Остановить</string>
-    <string name="battle_view_admin_remove_confirm_dialog_title">Удаление битвы</string>
-    <string name="battle_view_admin_remove_confirm_dialog_text">Удалить битву?</string>
-    <string name="battle_view_admin_edit_description_title">Описание битвы</string>
-    <string name="battle_view_admin_edit_description_title_hint">Название битвы</string>
-    <string name="battle_view_admin_edit_description_logo_url_hint">URL изображения битвы</string>
-    <string name="battle_view_admin_edit_description_description_hint">Описание битвы</string>
+    <string name="battle_action_remove">Удалить</string>
+    <string name="battle_action_start">Начать</string>
+    <string name="battle_action_stop">Завершить</string>
+    <string name="battle_action_edit_description">Изменить описание</string>
+    <string name="battle_action_edit_raters">Управление зрителями</string>
+    <string name="battle_action_edit_sections">Управление разделами</string>
+    <string name="battle_action_edit_yokodzuns">Управление ёкодзунами</string>
+    <string name="battle_action_edit_parameters">Управление параметрами</string>
+    <string name="battle_action_view_sections">Просмотр разделов</string>
+    <string name="battle_action_view_yokodzuns">Просмотр ёкодзунов</string>
+    <string name="battle_action_view_parameters">Просмотр параметров</string>
+    <string name="battle_action_view_rates">Результаты</string>
+    <string name="battle_action_view_rates_for_sections">Результаты по разделам</string>
+
+    <string name="battle_action_start_confirm_dialog_title">Запуск битвы</string>
+    <string name="battle_action_start_confirm_dialog_text">Запустить битву?</string>
+    <string name="battle_action_start_confirm_dialog_button">Запустить</string>
+    <string name="battle_action_stop_confirm_dialog_title">Остановка битвы</string>
+    <string name="battle_action_stop_confirm_dialog_text">Остановить битву?</string>
+    <string name="battle_action_stop_confirm_dialog_button">Остановить</string>
+    <string name="battle_action_remove_confirm_dialog_title">Удаление битвы</string>
+    <string name="battle_action_remove_confirm_dialog_text">Удалить битву?</string>
+    
+    <string name="edit_battle_description_layer_title">Описание битвы</string>
+    <string name="edit_battle_description_layer_title_hint">Название битвы</string>
+    <string name="edit_battle_description_layer_logo_url_hint">URL изображения битвы</string>
+    <string name="edit_battle_description_layer_description_hint">Описание битвы</string>
+
+    <string name="edit_section_description_layer_title">Описание раздела</string>
+    <string name="edit_section_description_layer_title_hint">Название раздела</string>
+    <string name="edit_section_description_layer_logo_url_hint">URL изображения раздела</string>
+    <string name="edit_section_description_layer_description_hint">Описание раздела</string>
 
     <string name="sections_layer_no_sections_title">Разделы отсутствуют</string>
     <string name="sections_layer_no_sections_add_section">Добавить раздел</string>
+
+    <string name="admin_edit_sections_layer_section_change_weight_title">Изменить вес раздела</string>
+    <string name="admin_edit_sections_layer_section_change_weight_text">Данный коэффициент определяет значимость раздела при подсчете результатов</string>
+    <string name="admin_edit_sections_layer_section_remove_title">Удаление раздела</string>
+    <string name="admin_edit_sections_layer_section_remove_text">Удалить раздел и все его подразделы?</string>
+
+    <string name="section_action_add_subsection">Добавить подраздел</string>
+    <string name="section_action_edit_description">Изменить описание</string>
+    <string name="section_action_change_weight">Изменить вес</string>
+    <string name="section_action_remove">Удалить</string>
 
 </resources>

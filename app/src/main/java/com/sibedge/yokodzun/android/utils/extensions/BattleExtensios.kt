@@ -30,6 +30,6 @@ val BattleStatus.title
 
 val BattleStatus.color
     get() = when (this) {
-        BattleStatus.IN_PROGRESS -> ColorManager.GREEN
+        BattleStatus.IN_PROGRESS -> ColorManager.GREEN_TRIPLE.main
         else -> ColorManager.PRIMARY
     }

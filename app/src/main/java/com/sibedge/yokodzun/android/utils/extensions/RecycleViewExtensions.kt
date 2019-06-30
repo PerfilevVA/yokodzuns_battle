@@ -14,10 +14,14 @@ fun RecyclerView.setBottomPaddingForPrimaryActionButtonDecoration(itemsProducer:
     itemsProducer.attach { notifyAdapterLastItemChanged() }
 }
 
-private val handler = Handler()
+private val notifyAdapterLastItemChangedHandler = Handler()
 
 private fun RecyclerView.notifyAdapterLastItemChanged() {
     val adapter = this.adapter ?: return
-    val size = adapter.itemCount.takeIfPositive() ?: return
-    handler.post { adapter.notifyItemChanged(size - 1) }
+    val beforeId = adapter.itemCount.takeIfPositive()?.minus(1)
+    notifyAdapterLastItemChangedHandler.post {
+        val afterId = adapter.itemCount.takeIfPositive()?.minus(1)
+        beforeId?.let { adapter.notifyItemChanged(it) }
+        afterId?.let { adapter.notifyItemChanged(it) }
+    }
 }

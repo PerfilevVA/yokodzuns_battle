@@ -52,8 +52,7 @@ class PrimaryActionButton(
 
     private val backgroundPaint = YGradientPaint(
         context = context,
-        fromColor = info.backgroundColorFrom,
-        toColor = info.backgroundColorTo
+        color = info.backgroundColor
     )
 
     private val rippleDrawer = RippleDrawer(

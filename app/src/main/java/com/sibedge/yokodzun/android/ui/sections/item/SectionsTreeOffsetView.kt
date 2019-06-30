@@ -11,7 +11,7 @@ import ru.hnau.androidutils.context_getters.dp_px.dp4
 import ru.hnau.androidutils.ui.view.utils.getDefaultMeasurement
 
 
-class SectionsTreeItemOffsetView(
+class SectionsTreeOffsetView(
     context: Context
 ) : View(
     context
@@ -45,7 +45,7 @@ class SectionsTreeItemOffsetView(
         val cy = height / 2f
         repeat(offsetCount) { i ->
             val x = (i + 1f) * itemWidth - circleRadius
-            circlesPaint.color = SectionsTreeUtils.getOffsetColor(i).get(context)
+            circlesPaint.color = SectionsTreeUtils.getOffsetColor(i).main.get(context)
             canvas.drawCircle(x, cy, circleRadius, circlesPaint)
         }
     }

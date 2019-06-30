@@ -11,7 +11,7 @@ import ru.hnau.androidutils.ui.view.utils.apply.applyHorizontalOrientation
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 
 
-class SectionsTreeItemView(
+class SectionView(
     context: Context,
     additionalButton: (Section) -> AdditionalButton.Info?,
     private val onClick: (TreeSection) -> Unit
@@ -22,8 +22,8 @@ class SectionsTreeItemView(
 
     override val view = this
 
-    private val offsetView = SectionsTreeItemOffsetView(context)
-    private val contentView = SectionsTreeItemContentView(context, additionalButton)
+    private val offsetView = SectionsTreeOffsetView(context)
+    private val contentView = SectionContentView(context, additionalButton)
         .applyLinearParams { setStretchedWidth() }
 
     private var section: TreeSection? = null

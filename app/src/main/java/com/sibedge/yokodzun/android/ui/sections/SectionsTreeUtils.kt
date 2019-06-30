@@ -13,11 +13,11 @@ import kotlin.collections.ArrayList
 object SectionsTreeUtils {
 
     private val OFFSET_COLORS = arrayOf(
-        ColorManager.PRIMARY,
-        ColorManager.RED,
-        ColorManager.GREEN,
-        ColorManager.ORANGE,
-        ColorManager.PURPLE
+        ColorManager.PRIMARY_TRIPLE,
+        ColorManager.RED_TRIPLE,
+        ColorManager.GREEN_TRIPLE,
+        ColorManager.ORANGE_TRIPLE,
+        ColorManager.PURPLE_TRIPLE
     )
 
     fun getOffsetColor(offset: Int) =
