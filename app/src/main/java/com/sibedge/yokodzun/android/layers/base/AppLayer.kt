@@ -39,7 +39,6 @@ import ru.hnau.androidutils.ui.view.utils.apply.*
 
 
 @SuppressLint("ViewConstructor")
-@Suppress("LeakingThis")
 abstract class AppLayer(
     context: Context,
     private val showGoBackButton: Boolean = true

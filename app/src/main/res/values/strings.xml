@@ -165,4 +165,12 @@
     <string name="select_parameter_for_battle_layer_title">Выбор параметра</string>
     <string name="select_parameter_for_battle_layer_no_parameters">Доступные для выбора параметры отсутствуют</string>
 
+    <string name="raters_layer_title">Зрители битвы %s</string>
+    <string name="raters_layer_no_raters_title">В битве отсутствуют зрители</string>
+    <string name="raters_layer_no_raters_add_parameter">Добавить зрителей</string>
+    <string name="raters_layer_add_count_title">Зарегистрировать зрителей</string>
+    <string name="raters_layer_add_count_text">Введите кол-во зрителей, для которых необходимо сгенерировать коды авторизации</string>
+    <string name="raters_layer_remove_confirm_dialog_title">Удаление зрителя</string>
+    <string name="raters_layer_remove_confirm_dialog_text">Удалить зрителя?</string>
+
 </resources>

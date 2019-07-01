@@ -15,10 +15,8 @@ object BattleActionEditSections : BattleAction(
     override fun execute(
         battle: Battle,
         coroutinesExecutor: (suspend CoroutineScope.() -> Unit) -> Unit
-    ) {
-        AppActivityConnector.showLayer({ context ->
-            AdminEditSectionsLayer.newInstance(context, battle)
-        })
-    }
+    ) = AppActivityConnector.showLayer({ context ->
+        AdminEditSectionsLayer.newInstance(context, battle)
+    })
 
 }

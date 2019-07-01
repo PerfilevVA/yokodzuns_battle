@@ -111,4 +111,20 @@ interface RTService {
         @Body description: Description
     ): Deferred<Unit>
 
+    @GET("/raters")
+    fun ratersGetForBattle(
+        @Query("battle-id") battleId: String
+    ): Deferred<List<String>>
+
+    @PUT("/raters")
+    fun ratersAdd(
+        @Query("battle-id") battleId: String,
+        @Query("count") count: Int
+    ): Deferred<List<String>>
+
+    @DELETE("/raters/{rater-code}")
+    fun raterRemove(
+        @Path("rater-code") raterCode: String
+    ): Deferred<Unit>
+
 }
