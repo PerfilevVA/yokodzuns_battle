@@ -78,7 +78,7 @@ abstract class AppLayer(
             context = context,
             textColor = ColorManager.FG,
             fontType = FontManager.DEFAULT,
-            textSize = SizeManager.TEXT_20,
+            textSize = SizeManager.TEXT_16,
             gravity = HGravity.CENTER
         ).apply {
             if (!showGoBackButton) {

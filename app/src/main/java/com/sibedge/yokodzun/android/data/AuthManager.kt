@@ -31,10 +31,10 @@ object AuthManager : PreferencesManager("auth") {
         onUserLoggedProducerInner.callListeners()
     }
 
-    suspend fun loginAsRater(
+    fun loginAsRater(
         raterCode: String
     ) {
-        //TODO
+        this.raterCode = raterCode
         onUserLoggedProducerInner.callListeners()
     }
 

@@ -9,13 +9,15 @@ import ru.hnau.androidutils.ui.view.utils.setLeftPadding
 import ru.hnau.androidutils.ui.view.utils.setTopPadding
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
+import ru.hnau.androidutils.ui.view.utils.apply.applyStartPadding
+import ru.hnau.androidutils.ui.view.utils.apply.applyTopPadding
 
 fun ViewGroup.addLabelView(
     text: StringGetter,
     info: LabelInfo,
     viewConfigurator: (Label.() -> Unit)? = null
 ) = addLabel(text, info) {
-    setTopPadding(SizeManager.DEFAULT_SEPARATION)
+    applyTopPadding(SizeManager.DEFAULT_SEPARATION)
     viewConfigurator?.invoke(this)
 }
 
@@ -30,6 +32,6 @@ fun ViewGroup.addFgSmallInputLabelView(
     viewConfigurator: (Label.() -> Unit)? = null
 ) =
     addLabelView(text, ColorManager.FG_SMALL_LABEL_INFO) {
-        setLeftPadding(SizeManager.DEFAULT_SEPARATION)
+        applyStartPadding(SizeManager.DEFAULT_SEPARATION)
         viewConfigurator?.invoke(this)
     }

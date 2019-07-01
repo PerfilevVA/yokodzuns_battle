@@ -10,6 +10,7 @@ import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import ru.hnau.androidutils.context_getters.StringGetter
+import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter
 import ru.hnau.androidutils.context_getters.toGetter
 import ru.hnau.androidutils.ui.bounds_producer.createBoundsProducer
 import ru.hnau.androidutils.ui.canvas_shape.RoundSidesRectCanvasShape
@@ -32,22 +33,18 @@ class ClickableCountView(
     context: Context,
     title: StringGetter,
     private val color: ColorTriple,
+    textSize: DpPxGetter,
+    titleCountSeparation: DpPxGetter,
     onClick: () -> Unit
 ) : LinearLayout(
     context
 ), ViewWithData<Int> {
 
-    companion object {
-
-        private val TEXT_SIZE = SizeManager.TEXT_12
-
-    }
-
     override val view = this
 
     private val titleView = Label(
         context = context,
-        textSize = TEXT_SIZE,
+        textSize = textSize,
         textColor = color.main,
         fontType = FontManager.DEFAULT,
         gravity = HGravity.START_CENTER_VERTICAL,
@@ -57,13 +54,13 @@ class ClickableCountView(
         ellipsize = false
     ).applyLinearParams {
         setStretchedWidth()
-        setEndMargin(SizeManager.EXTRA_SMALL_SEPARATION)
+        setEndMargin(titleCountSeparation)
     }
 
     private val numberView = ChipLabel(
         context = context,
         info = LabelInfo(
-            textSize = TEXT_SIZE,
+            textSize = textSize,
             textColor = ColorManager.FG,
             fontType = FontManager.BOLD,
             gravity = HGravity.CENTER,

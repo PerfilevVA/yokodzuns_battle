@@ -127,4 +127,8 @@ interface RTService {
         @Path("rater-code") raterCode: String
     ): Deferred<Unit>
 
+    @GET("/battle/for-rater")
+    fun battleForRater(
+    ): Deferred<Battle>
+
 }

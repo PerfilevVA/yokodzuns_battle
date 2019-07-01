@@ -3,7 +3,7 @@ package com.sibedge.yokodzun.android.layers.admin.pages.battles
 import android.content.Context
 import android.widget.FrameLayout
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.BattlesDataManager
+import com.sibedge.yokodzun.android.data.AdminBattlesDataManager
 import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
 import com.sibedge.yokodzun.android.ui.view.cell.battle.BattleView
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
@@ -32,7 +32,7 @@ class AdminBattlesPageView(
             AsyncViewsWithContentListContainer<Battle>(
                 context = context,
                 idGetter = Battle::id,
-                invalidator = BattlesDataManager::invalidate,
+                invalidator = AdminBattlesDataManager::invalidate,
                 onEmptyListInfoViewGenerator = {
                     EmptyInfoView(
                         context = context,
@@ -40,7 +40,7 @@ class AdminBattlesPageView(
                         button = StringGetter(R.string.admin_layer_battles_page_add_battle) to this::onAddBattleClick
                     )
                 },
-                producer = BattlesDataManager as Producer<GetterAsync<Unit, List<Battle>>>,
+                producer = AdminBattlesDataManager as Producer<GetterAsync<Unit, List<Battle>>>,
                 viewWithDataGenerator = {
                     BattleView(
                         context = context,
@@ -76,6 +76,6 @@ class AdminBattlesPageView(
     }
 
     private fun onAddBattleClick() =
-        coroutinesExecutor { BattlesDataManager.createNew() }
+        coroutinesExecutor { AdminBattlesDataManager.createNew() }
 
 }

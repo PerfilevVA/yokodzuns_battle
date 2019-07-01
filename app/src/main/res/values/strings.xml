@@ -9,6 +9,7 @@
     <string name="dialog_no">Нет</string>
     <string name="dialog_remove">Удалить</string>
     <string name="dialog_save">Сохранить</string>
+    <string name="dialog_rate">Голосовать</string>
 
     <string name="error_undefined">Ошибка</string>
     <string name="error_authentication">Ошибка аутентификации</string>

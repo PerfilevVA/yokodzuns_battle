@@ -8,7 +8,7 @@ import ru.hnau.androidutils.context_getters.StringGetter
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.data.AuthManager
 import com.sibedge.yokodzun.android.layers.ChangePasswordLayer
-import com.sibedge.yokodzun.android.layers.LoginLayer
+import com.sibedge.yokodzun.android.layers.login.LoginLayer
 import com.sibedge.yokodzun.android.layers.SettingsLayer
 import com.sibedge.yokodzun.android.layers.admin.AdminLayer
 import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputViewInfo

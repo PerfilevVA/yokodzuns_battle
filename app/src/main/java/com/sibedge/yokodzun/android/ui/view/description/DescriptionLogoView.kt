@@ -11,6 +11,7 @@ import com.sibedge.yokodzun.android.ui.view.circle.CircleLogoDrawable
 import com.sibedge.yokodzun.android.utils.ImagesLoader
 import com.sibedge.yokodzun.android.utils.tryOrLogToCrashlitics
 import com.sibedge.yokodzun.common.data.helpers.Description
+import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter
 import ru.hnau.androidutils.context_getters.dp_px.dp64
 import ru.hnau.androidutils.context_getters.toGetter
 import ru.hnau.androidutils.ui.view.utils.getDefaultMeasurement
@@ -22,7 +23,8 @@ import ru.hnau.jutils.takeIfNotEmpty
 
 
 class DescriptionLogoView(
-    context: Context
+    context: Context,
+    private val preferredSize: DpPxGetter = PREFERRED_SIZE
 ) : AsyncImageView(
     context = context,
     waiterSize = MaterialWaiterSize.SMALL
@@ -69,13 +71,13 @@ class DescriptionLogoView(
             makeExactlyMeasureSpec(
                 getDefaultMeasurement(
                     widthMeasureSpec,
-                    PREFERRED_SIZE.getPxInt(context) + horizontalPaddingSum
+                    preferredSize.getPxInt(context) + horizontalPaddingSum
                 )
             ),
             makeExactlyMeasureSpec(
                 getDefaultMeasurement(
                     heightMeasureSpec,
-                    PREFERRED_SIZE.getPxInt(context) + verticalPaddingSum
+                    preferredSize.getPxInt(context) + verticalPaddingSum
                 )
             )
         )

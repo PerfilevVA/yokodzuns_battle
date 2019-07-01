@@ -1,7 +1,6 @@
 package com.sibedge.yokodzun.android.layers.admin.pages.yokodzuns
 
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.BattlesDataManager
 import com.sibedge.yokodzun.android.data.YokodzunsDataManager
 import com.sibedge.yokodzun.android.layers.description.EditYokodzunDescriptionLayer
 import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle

@@ -27,6 +27,8 @@ object BattleViewUtils {
             context = context,
             title = title,
             color = color,
+            textSize = SizeManager.TEXT_12,
+            titleCountSeparation = SizeManager.EXTRA_SMALL_SEPARATION,
             onClick = this::onClick
         ).applyPadding(SizeManager.SMALL_SEPARATION)
 

@@ -9,7 +9,7 @@ import com.sibedge.yokodzun.common.data.helpers.Description
 import ru.hnau.jutils.ifTrue
 
 
-object BattlesDataManager : YListDataManager<String, String, Battle>() {
+object AdminBattlesDataManager : YListDataManager<String, String, Battle>() {
 
     override suspend fun getList() =
         API.getAllBattles().await()

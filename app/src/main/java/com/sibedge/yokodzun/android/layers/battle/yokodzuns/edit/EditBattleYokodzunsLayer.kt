@@ -3,7 +3,7 @@ package com.sibedge.yokodzun.android.layers.battle.yokodzuns.edit
 import android.content.Context
 import android.view.ViewGroup
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.BattlesDataManager
+import com.sibedge.yokodzun.android.data.AdminBattlesDataManager
 import com.sibedge.yokodzun.android.layers.battle.yokodzuns.BattleYokodzunsLayer
 import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
@@ -75,7 +75,7 @@ class EditBattleYokodzunsLayer(
 
     override fun handleGoBack(): Boolean {
         uiJobLocked {
-            BattlesDataManager.updateYokodzunsIds(
+            AdminBattlesDataManager.updateYokodzunsIds(
                 battleId = battle.id,
                 yokodzunsIds = editor.selectedYokodzunsIds
             )

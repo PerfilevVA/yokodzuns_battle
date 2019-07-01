@@ -3,8 +3,9 @@ package com.sibedge.yokodzun.android
 import android.content.Context
 import android.widget.FrameLayout
 import com.sibedge.yokodzun.android.data.AuthManager
-import com.sibedge.yokodzun.android.layers.LoginLayer
+import com.sibedge.yokodzun.android.layers.login.LoginLayer
 import com.sibedge.yokodzun.android.layers.admin.AdminLayer
+import com.sibedge.yokodzun.android.layers.rater.RaterLayer
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
 import ru.hnau.androidutils.coroutines.createUIJob
@@ -36,7 +37,7 @@ class AppActivityView(
 
     private fun getInitialLayer() = when {
         AuthManager.isAdmin -> AdminLayer(context)
-        AuthManager.isRater -> TODO()
+        AuthManager.isRater -> RaterLayer(context)
         else -> LoginLayer(context)
     }
 
