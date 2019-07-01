@@ -3,7 +3,7 @@ package com.sibedge.yokodzun.android.ui
 import android.view.View
 
 
-interface ViewWithContent<C> {
+interface ViewWithData<C> {
 
     val view: View
 

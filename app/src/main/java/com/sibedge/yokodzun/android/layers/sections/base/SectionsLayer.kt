@@ -31,15 +31,15 @@ abstract class SectionsLayer(
     protected open val sectionsList
             by lazy { SectionsList(battle.sections.toProducer()) }
 
+    protected open val additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)? = null
+
     private val listView by lazy {
         SectionsTreeListView(
             context = context,
             sectionsList = sectionsList,
-            additionalButton = this::createAdditionalButtonInfo
+            additionalButtonInfoCreator = additionalButtonInfoCreator
         )
     }
-
-    protected abstract fun createAdditionalButtonInfo(section: (Section)): AdditionalButton.Info?
 
     protected abstract val emptyInfoView: EmptyInfoView
 

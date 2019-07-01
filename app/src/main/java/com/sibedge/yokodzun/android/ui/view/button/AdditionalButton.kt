@@ -1,7 +1,7 @@
 package com.sibedge.yokodzun.android.ui.view.button
 
 import android.content.Context
-import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.ui.ViewWithData
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter.Companion.dp
@@ -17,7 +17,7 @@ class AdditionalButton<T>(
     context = context,
     rippleDrawInfo = ColorManager.PRIMARY_ON_TRANSPARENT_RIPPLE_INFO,
     initialContent = DrawableGetter.EMPTY
-), ViewWithContent<T> {
+), ViewWithData<T> {
 
     data class Info(
         val icon: DrawableGetter,

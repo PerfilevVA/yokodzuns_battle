@@ -44,6 +44,8 @@ object BattlesDataManager : YListDataManager<String, String, Battle>() {
         battleId: String,
         description: Description
     ) {
+        val currentDescription = existenceValue?.find { it.id == battleId }?.description
+        (currentDescription == description).ifTrue { return }
         API.updateBattleDescription(battleId, description).await()
         updateOrInvalidateItem(battleId) { copy(description = description) }
     }
@@ -52,26 +54,33 @@ object BattlesDataManager : YListDataManager<String, String, Battle>() {
         battleId: String,
         sections: List<Section>
     ) {
+        val sortedSections = sections.sortedBy { it.sortKey }
         val currentSections = existenceValue?.find { it.id == battleId }?.sections
-        (currentSections == sections).ifTrue { return }
-        API.updateBattleSections(battleId, sections).await()
-        updateOrInvalidateItem(battleId) { copy(sections = sections) }
+        (currentSections == sortedSections).ifTrue { return }
+        API.updateBattleSections(battleId, sortedSections).await()
+        updateOrInvalidateItem(battleId) { copy(sections = sortedSections) }
     }
 
     suspend fun updateParameters(
         battleId: String,
         parameters: List<BattleParameter>
     ) {
-        API.updateBattleParameters(battleId, parameters).await()
-        updateOrInvalidateItem(battleId) { copy(parameters = parameters) }
+        val sortedParameters = parameters.sortedBy { it.sortKey }
+        val currentParameter = existenceValue?.find { it.id == battleId }?.parameters
+        (currentParameter == sortedParameters).ifTrue { return }
+        API.updateBattleParameters(battleId, sortedParameters).await()
+        updateOrInvalidateItem(battleId) { copy(parameters = sortedParameters) }
     }
 
     suspend fun updateYokodzunsIds(
         battleId: String,
         yokodzunsIds: List<String>
     ) {
-        API.updateBattleYokodzunsIds(battleId, yokodzunsIds).await()
-        updateOrInvalidateItem(battleId) { copy(yokodzunsIds = yokodzunsIds) }
+        val sortedYokodzunsIds = yokodzunsIds.sorted()
+        val currentYokodzunsIds = existenceValue?.find { it.id == battleId }?.yokodzunsIds
+        (currentYokodzunsIds == sortedYokodzunsIds).ifTrue { return }
+        API.updateBattleYokodzunsIds(battleId, sortedYokodzunsIds).await()
+        updateOrInvalidateItem(battleId) { copy(yokodzunsIds = sortedYokodzunsIds) }
     }
 
 }

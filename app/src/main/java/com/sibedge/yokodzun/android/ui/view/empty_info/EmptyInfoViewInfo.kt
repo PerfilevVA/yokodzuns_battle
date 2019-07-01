@@ -13,12 +13,12 @@ data class EmptyInfoViewInfo(
     val title: LabelInfo = LabelInfo(
         fontType = FontManager.DEFAULT,
         textSize = SizeManager.TEXT_16,
-        textColor = ColorManager.PRIMARY,
+        textColor = ColorManager.FG,
         gravity = HGravity.CENTER
     ),
     val buttonInfo: YButtonInfo = YButtonInfo.SMALL_PRIMARY_TEXT_AND_BORDER,
-    val paddingHorizontal: DpPxGetter = SizeManager.LARGE_SEPARATION,
-    val paddingVertical: DpPxGetter = SizeManager.LARGE_SEPARATION,
+    val paddingHorizontal: DpPxGetter = SizeManager.LARGE_SEPARATION * 2,
+    val paddingVertical: DpPxGetter = SizeManager.LARGE_SEPARATION * 4,
     val titleButtonSeparation: DpPxGetter = SizeManager.DEFAULT_SEPARATION
 ) {
 

@@ -2,7 +2,7 @@ package com.sibedge.yokodzun.android.ui.view
 
 import android.content.Context
 import android.graphics.Canvas
-import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.ui.ViewWithData
 import com.sibedge.yokodzun.android.ui.gradient.YGradientPaint
 import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
@@ -28,7 +28,7 @@ class ChipLabel(
     context = context,
     info = info
 ),
-    ViewWithContent<ChipLabel.Info> {
+    ViewWithData<ChipLabel.Info> {
 
     data class Info(
         val text: StringGetter,

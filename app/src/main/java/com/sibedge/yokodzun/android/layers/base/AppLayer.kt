@@ -68,7 +68,7 @@ abstract class AppLayer(
         context = context,
         icon = LayoutDrawable.createIndependent(
             context,
-            DrawableGetter(R.drawable.ic_options_white)
+            DrawableGetter(R.drawable.ic_options_fg)
         ).toGetter(),
         rippleDrawInfo = ColorManager.FG_ON_TRANSPARENT_RIPPLE_INFO,
         onClick = this::showOptionsMenu
@@ -78,7 +78,7 @@ abstract class AppLayer(
         HeaderTitle(
             context = context,
             textColor = ColorManager.FG,
-            fontType = FontManager.BOLD,
+            fontType = FontManager.DEFAULT,
             textSize = SizeManager.TEXT_20,
             gravity = HGravity.CENTER
         ).apply {

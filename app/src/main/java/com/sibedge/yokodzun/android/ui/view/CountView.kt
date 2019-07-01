@@ -1,69 +1,65 @@
 package com.sibedge.yokodzun.android.ui.view
 
 import android.content.Context
-import android.graphics.Canvas
-import android.view.MotionEvent
 import android.widget.LinearLayout
-import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.ui.ViewWithData
 import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.context_getters.toGetter
-import ru.hnau.androidutils.ui.bounds_producer.createBoundsProducer
-import ru.hnau.androidutils.ui.canvas_shape.RoundSidesRectCanvasShape
-import ru.hnau.androidutils.ui.drawer.ripple.RippleDrawer
-import ru.hnau.androidutils.ui.drawer.ripple.info.RippleDrawInfo
 import ru.hnau.androidutils.ui.utils.h_gravity.HGravity
 import ru.hnau.androidutils.ui.view.label.Label
 import ru.hnau.androidutils.ui.view.label.LabelInfo
-import ru.hnau.androidutils.ui.view.utils.apply.applyCenterGravity
+import ru.hnau.androidutils.ui.view.utils.apply.applyEndGravity
 import ru.hnau.androidutils.ui.view.utils.apply.applyHorizontalOrientation
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
-import ru.hnau.androidutils.ui.view.utils.createIsVisibleToUserProducer
-import ru.hnau.androidutils.ui.view.utils.setInvisible
+import ru.hnau.androidutils.ui.view.utils.setGone
 import ru.hnau.androidutils.ui.view.utils.setVisible
-import ru.hnau.androidutils.ui.view.utils.touch.TouchHandler
-import ru.hnau.jutils.handle
+import ru.hnau.jutils.takeIfPositive
 
 
 class CountView(
     context: Context,
-    title: StringGetter,
-    private val color: ColorTriple,
-    onClick: () -> Unit
+    title: StringGetter
 ) : LinearLayout(
     context
-), ViewWithContent<Int> {
+), ViewWithData<CountView.Info> {
 
-    companion object {
-
-        private val TEXT_SIZE = SizeManager.TEXT_12
-
-    }
+    data class Info(
+        val count: Int,
+        val color: ColorTriple = ColorManager.PRIMARY_TRIPLE
+    )
 
     override val view = this
 
-    private val titleView = Label(
-        context = context,
-        textSize = TEXT_SIZE,
-        textColor = color.main,
-        fontType = FontManager.DEFAULT,
-        gravity = HGravity.START_CENTER_VERTICAL,
-        maxLines = 1,
-        minLines = 1,
-        initialText = title,
-        ellipsize = false
-    ).applyLinearParams {
-        setStretchedWidth()
-        setEndMargin(SizeManager.EXTRA_SMALL_SEPARATION)
-    }
+    override var data: Info? = null
+        set(value) {
+            if (field != value) {
+                field = value
+                updateData(value)
+            }
+        }
 
-    private val numberView = ChipLabel(
+    private val textView = Label(
         context = context,
         info = LabelInfo(
-            textSize = TEXT_SIZE,
+            textSize = SizeManager.TEXT_12,
+            fontType = FontManager.DEFAULT,
+            maxLines = 1,
+            minLines = 1,
+            gravity = HGravity.START_CENTER_VERTICAL
+        ),
+        initialText = title
+    ).applyLinearParams {
+        setEndMargin(SizeManager.SMALL_SEPARATION)
+    }
+
+    private val chipLabel = ChipLabel(
+        context = context,
+        info = LabelInfo(
+            textSize = SizeManager.TEXT_12,
             textColor = ColorManager.FG,
             fontType = FontManager.BOLD,
             gravity = HGravity.CENTER,
@@ -72,60 +68,29 @@ class CountView(
         )
     )
 
-    override var data: Int? = null
-        set(value) {
-            field = value
-            value.handle(
-                ifNotNull = {
-                    numberView.setVisible()
-                    numberView.data = ChipLabel.Info(
-                        text = it.toString().toGetter(),
-                        color = color
-                    )
-                },
-                ifNull = {
-                    numberView.setInvisible()
-                }
-            )
-        }
-
-    private val boundsProducer = createBoundsProducer(false)
-    private val isVisibleToUserProducer = createIsVisibleToUserProducer()
-    private val canvasShape = RoundSidesRectCanvasShape(boundsProducer)
-    private val touchHandler = TouchHandler(
-        canvasShape = canvasShape,
-        onClick = onClick
-    )
-    private val rippleDrawer = RippleDrawer(
-        canvasShape = canvasShape,
-        animatingView = this,
-        animatingViewIsVisibleToUser = isVisibleToUserProducer,
-        touchHandler = touchHandler,
-        rippleDrawInfo = RippleDrawInfo(
-            rippleInfo = ColorManager.RIPPLE_INFO,
-            backgroundColor = ColorManager.TRANSPARENT,
-            color = color.main,
-            rippleAlpha = ColorManager.RIPPLE_ALPHA
-        )
-    )
-
     init {
         applyHorizontalOrientation()
-        applyCenterGravity()
-        addView(titleView)
-        addView(numberView)
+        applyEndGravity()
+        addView(textView)
+        addView(chipLabel)
     }
 
-    override fun dispatchDraw(canvas: Canvas) {
-        rippleDrawer.draw(canvas)
-        super.dispatchDraw(canvas)
-    }
+    private fun updateData(info: Info?) {
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        super.onTouchEvent(event)
-        touchHandler.handle(event)
-        return true
-    }
+        val count = info?.count?.takeIfPositive()
+        if (count == null) {
+            setGone()
+            return
+        }
 
+        setVisible()
+        val color = info.color
+        textView.textColor = color.main
+        chipLabel.data = ChipLabel.Info(
+            text = count.toString().toGetter(),
+            color = color
+        )
+
+    }
 
 }

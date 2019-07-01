@@ -19,7 +19,7 @@ import ru.hnau.jutils.producer.extensions.combine
 class SectionsTreeListView(
     context: Context,
     sectionsList: SectionsList,
-    additionalButton: (Section) -> AdditionalButton.Info?
+    additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)?
 ) : BaseList<TreeSection>(
     context = context,
     fixedSize = false,
@@ -29,7 +29,7 @@ class SectionsTreeListView(
         combiner = SectionsTreeUtils::sectionsListToTree
     ),
     viewWrappersCreator = {
-        SectionView(context, additionalButton)
+        SectionView(context, additionalButtonInfoCreator)
         { sectionsList.openedSections.switchSectionVisibility(it.section.id) }
     },
     orientation = BaseListOrientation.VERTICAL,

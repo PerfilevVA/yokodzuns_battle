@@ -16,7 +16,6 @@ object AdminBattleUtils {
             BattleActionStart to listOf(BattleStatus.BEFORE),
             BattleActionStop to listOf(BattleStatus.IN_PROGRESS),
             BattleActionViewRates to listOf(BattleStatus.IN_PROGRESS, BattleStatus.AFTER),
-            BattleActionViewSectionsRates to listOf(BattleStatus.IN_PROGRESS, BattleStatus.AFTER),
             BattleActionEditDescription to listOf(BattleStatus.BEFORE),
             BattleActionEditParameters to listOf(BattleStatus.BEFORE),
             BattleActionEditYokodzuns to listOf(BattleStatus.BEFORE),

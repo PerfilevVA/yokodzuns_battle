@@ -3,7 +3,7 @@ package com.sibedge.yokodzun.android.ui.view.description
 import android.content.Context
 import android.widget.LinearLayout
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.ui.ViewWithData
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
@@ -24,7 +24,7 @@ class DescriptionView(
     context: Context
 ) : LinearLayout(
     context
-), ViewWithContent<DescriptionView.Item> {
+), ViewWithData<DescriptionView.Item> {
 
     data class Item(
         val description: Description,

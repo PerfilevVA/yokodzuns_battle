@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import com.sibedge.yokodzun.android.ui.view.AsyncImageView
-import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.ui.ViewWithData
 import com.sibedge.yokodzun.android.ui.view.circle.CircleBitmapDrawable
 import com.sibedge.yokodzun.android.ui.view.circle.CircleLetterDrawable
 import com.sibedge.yokodzun.android.ui.view.circle.CircleLogoDrawable
@@ -26,7 +26,7 @@ class DescriptionLogoView(
 ) : AsyncImageView(
     context = context,
     waiterSize = MaterialWaiterSize.SMALL
-), ViewWithContent<Description> {
+), ViewWithData<Description> {
 
     companion object {
 

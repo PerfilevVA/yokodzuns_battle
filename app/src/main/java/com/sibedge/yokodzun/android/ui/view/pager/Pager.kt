@@ -73,7 +73,7 @@ open class Pager(
         view.forEachChildren { child ->
             when (child) {
                 is TextView -> {
-                    child.typeface = FontManager.BOLD.get(context).typeface
+                    child.typeface = FontManager.DEFAULT.get(context).typeface
                     child.setTextSize(
                         TypedValue.COMPLEX_UNIT_PX,
                         SizeManager.TEXT_12.getPx(context)

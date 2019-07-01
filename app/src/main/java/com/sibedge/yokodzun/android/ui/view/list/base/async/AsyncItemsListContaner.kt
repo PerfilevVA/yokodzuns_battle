@@ -1,4 +1,4 @@
-package com.sibedge.yokodzun.android.ui.view.list.base
+package com.sibedge.yokodzun.android.ui.view.list.base.async
 
 import android.content.Context
 import android.view.View
@@ -11,10 +11,11 @@ import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.SimpleDataProducer
 import com.sibedge.yokodzun.android.ui.view.addSuspendPresenter
+import com.sibedge.yokodzun.android.ui.view.list.base.ItemsListView
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 
 
-open class ItemsListContaner<T : Any>(
+open class AsyncItemsListContaner<T : Any>(
     context: Context,
     private val producer: Producer<GetterAsync<Unit, List<T>>>,
     viewWrappersCreator: (itemType: Int) -> BaseListViewWrapper<T>,

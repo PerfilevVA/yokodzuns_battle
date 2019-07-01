@@ -3,7 +3,7 @@ package com.sibedge.yokodzun.android.ui.view.cell.battle
 import android.content.Context
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.ui.view.description.DescriptionView
-import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.ui.ViewWithData
 import com.sibedge.yokodzun.android.utils.extensions.color
 import com.sibedge.yokodzun.android.utils.extensions.title
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
@@ -12,6 +12,7 @@ import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.utils.h_gravity.HGravity
+import ru.hnau.androidutils.ui.view.addLinearSeparator
 import ru.hnau.androidutils.ui.view.clickable.ClickableLinearLayout
 import ru.hnau.androidutils.ui.view.label.Label
 import ru.hnau.androidutils.ui.view.label.addLabel
@@ -28,7 +29,7 @@ class BattleView(
 ) : ClickableLinearLayout(
     context = context,
     rippleDrawInfo = ColorManager.PRIMARY_ON_TRANSPARENT_RIPPLE_INFO
-), ViewWithContent<Battle> {
+), ViewWithData<Battle> {
 
     override val view = this
 
@@ -57,18 +58,9 @@ class BattleView(
     )
 
     private val countViews = listOf(
-        BattleViewUtils.createYokodzunsCountView(
-            context,
-            onYoconzunsCountClicked
-        ),
-        BattleViewUtils.createParametersCountView(
-            context,
-            onParametersCountClicked
-        ),
-        BattleViewUtils.createSectionsCountView(
-            context,
-            onSectionsCountClicked
-        )
+        BattleViewUtils.createYokodzunsCountView(context, onYoconzunsCountClicked),
+        BattleViewUtils.createParametersCountView(context, onParametersCountClicked),
+        BattleViewUtils.createSectionsCountView(context, onSectionsCountClicked)
     )
 
     init {
@@ -95,8 +87,13 @@ class BattleView(
         }
 
         addHorizontalLayout {
-            applyStartPadding(SizeManager.SMALL_SEPARATION)
-            countViews.forEach { addView(it.view) }
+            applyHorizontalPadding(SizeManager.SMALL_SEPARATION)
+            countViews.forEachIndexed { i, countView ->
+                addView(countView.view)
+                if (i < countViews.size - 1) {
+                    addLinearSeparator()
+                }
+            }
         }
     }
 

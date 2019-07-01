@@ -7,7 +7,7 @@ import com.sibedge.yokodzun.android.data.YokodzunsDataManager
 import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
 import com.sibedge.yokodzun.android.ui.view.cell.YokodzunView
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
-import com.sibedge.yokodzun.android.ui.view.list.base.ViewsWithContentListContainer
+import com.sibedge.yokodzun.android.ui.view.list.base.async.AsyncViewsWithContentListContainer
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.Yokodzun
 import kotlinx.coroutines.CoroutineScope
@@ -29,7 +29,7 @@ class AdminYokodzunsPageView(
 
     init {
         val list =
-            ViewsWithContentListContainer<Yokodzun>(
+            AsyncViewsWithContentListContainer<Yokodzun>(
                 context = context,
                 idGetter = Yokodzun::id,
                 invalidator = YokodzunsDataManager::invalidate,
@@ -41,7 +41,7 @@ class AdminYokodzunsPageView(
                     )
                 },
                 producer = YokodzunsDataManager as Producer<GetterAsync<Unit, List<Yokodzun>>>,
-                viewWithContentGenerator = {
+                viewWithDataGenerator = {
                     YokodzunView(
                         context = context,
                         onClick = { AdminYokodzunUtils.showYokodzunActions(it, coroutinesExecutor) }
@@ -52,7 +52,7 @@ class AdminYokodzunsPageView(
         addChild(list)
 
         addPrimaryActionButton(
-            icon = DrawableGetter(R.drawable.ic_add_white),
+            icon = DrawableGetter(R.drawable.ic_add_fg),
             title = StringGetter(R.string.admin_layer_yokodzuns_page_add_yokodzun),
             needShowTitle = list.onListScrolledToTopProducer.not(),
             onClick = this::onAddYokodzunClick

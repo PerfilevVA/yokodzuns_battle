@@ -7,7 +7,7 @@ import com.sibedge.yokodzun.android.data.BattlesDataManager
 import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
 import com.sibedge.yokodzun.android.ui.view.cell.battle.BattleView
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
-import com.sibedge.yokodzun.android.ui.view.list.base.ViewsWithContentListContainer
+import com.sibedge.yokodzun.android.ui.view.list.base.async.AsyncViewsWithContentListContainer
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import kotlinx.coroutines.CoroutineScope
@@ -29,7 +29,7 @@ class AdminBattlesPageView(
 
     init {
         val list =
-            ViewsWithContentListContainer<Battle>(
+            AsyncViewsWithContentListContainer<Battle>(
                 context = context,
                 idGetter = Battle::id,
                 invalidator = BattlesDataManager::invalidate,
@@ -41,7 +41,7 @@ class AdminBattlesPageView(
                     )
                 },
                 producer = BattlesDataManager as Producer<GetterAsync<Unit, List<Battle>>>,
-                viewWithContentGenerator = {
+                viewWithDataGenerator = {
                     BattleView(
                         context = context,
                         onClick = { battle ->
@@ -63,7 +63,7 @@ class AdminBattlesPageView(
         addChild(list)
 
         addPrimaryActionButton(
-            icon = DrawableGetter(R.drawable.ic_add_white),
+            icon = DrawableGetter(R.drawable.ic_add_fg),
             title = StringGetter(R.string.admin_layer_battles_page_add_battle),
             needShowTitle = list.onListScrolledToTopProducer.not(),
             onClick = this::onAddBattleClick

@@ -2,13 +2,12 @@ package com.sibedge.parameter.android.layers.admin.pages.parameter
 
 import android.content.Context
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import com.sibedge.parameter.android.data.ParametersDataManager
 import com.sibedge.parameter.android.ui.view.cell.ParameterView
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
-import com.sibedge.yokodzun.android.ui.view.list.base.ViewsWithContentListContainer
+import com.sibedge.yokodzun.android.ui.view.list.base.async.AsyncViewsWithContentListContainer
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.Parameter
 import kotlinx.coroutines.CoroutineScope
@@ -30,7 +29,7 @@ class AdminParametersPageView(
 
     init {
         val list =
-            ViewsWithContentListContainer<Parameter>(
+            AsyncViewsWithContentListContainer<Parameter>(
                 context = context,
                 idGetter = Parameter::id,
                 invalidator = ParametersDataManager::invalidate,
@@ -42,10 +41,15 @@ class AdminParametersPageView(
                     )
                 },
                 producer = ParametersDataManager as Producer<GetterAsync<Unit, List<Parameter>>>,
-                viewWithContentGenerator = {
+                viewWithDataGenerator = {
                     ParameterView(
                         context = context,
-                        onClick = { AdminParameterUtils.showParameterActions(it, coroutinesExecutor) }
+                        onClick = {
+                            AdminParameterUtils.showParameterActions(
+                                it,
+                                coroutinesExecutor
+                            )
+                        }
                     )
                 }
             )
@@ -53,7 +57,7 @@ class AdminParametersPageView(
         addChild(list)
 
         addPrimaryActionButton(
-            icon = DrawableGetter(R.drawable.ic_add_white),
+            icon = DrawableGetter(R.drawable.ic_add_fg),
             title = StringGetter(R.string.admin_layer_parameters_page_add_parameter),
             needShowTitle = list.onListScrolledToTopProducer.not(),
             onClick = this::onAddParameterClick

@@ -185,7 +185,7 @@ object DialogManager {
         text = MaterialDialogTextInfo.DEFAULT.copy(
             labelInfo = MaterialDialogTextInfo.DEFAULT.labelInfo.copy(
                 textColor = ColorManager.FG,
-                fontType = FontManager.REGULAR,
+                fontType = FontManager.DEFAULT,
                 textSize = SizeManager.TEXT_16
             )
         ),
@@ -206,14 +206,14 @@ object DialogManager {
         text = BottomSheetTextInfo.DEFAULT.copy(
             labelInfo = BottomSheetTextInfo.DEFAULT.labelInfo.copy(
                 textColor = ColorManager.FG,
-                fontType = FontManager.REGULAR,
+                fontType = FontManager.DEFAULT,
                 textSize = SizeManager.TEXT_12
             )
         ),
         item = BottomSheetItemInfo.DEFAULT.copy(
             labelInfo = BottomSheetItemInfo.DEFAULT.labelInfo.copy(
                 textColor = ColorManager.FG,
-                fontType = FontManager.REGULAR,
+                fontType = FontManager.DEFAULT,
                 textSize = SizeManager.TEXT_16
             ),
             rippleDrawInfo = ColorManager.FG_ON_TRANSPARENT_RIPPLE_INFO

@@ -23,6 +23,7 @@
     <string name="entity_parameter">Параметр</string>
     <string name="entity_section">Раздел</string>
     <string name="entity_section_property_weight">Вес оценки</string>
+    <string name="entity_parameter_property_weight">Вес параметра</string>
 
     <string name="global_menu_item_title_settings">Настройки</string>
     <string name="global_menu_item_title_admin_change_password">Сменить пароль</string>
@@ -99,7 +100,6 @@
     <string name="battle_action_view_yokodzuns">Просмотр ёкодзун</string>
     <string name="battle_action_view_parameters">Просмотр параметров</string>
     <string name="battle_action_view_rates">Результаты</string>
-    <string name="battle_action_view_rates_for_sections">Результаты по разделам</string>
 
     <string name="battle_action_start_confirm_dialog_title">Запуск битвы</string>
     <string name="battle_action_start_confirm_dialog_text">Запустить битву?</string>
@@ -121,7 +121,7 @@
     <string name="edit_section_description_layer_description_hint">Описание раздела</string>
 
     <string name="edit_yokodzun_description_layer_title">Описание ёкодзуны</string>
-    <string name="edit_yokodzun_description_layer_title_hint">Название ёкодзуны</string>
+    <string name="edit_yokodzun_description_layer_title_hint">ФИО ёкодзуны</string>
     <string name="edit_yokodzun_description_layer_logo_url_hint">URL изображения ёкодзуны</string>
     <string name="edit_yokodzun_description_layer_description_hint">Описание ёкодзуны</string>
 
@@ -142,5 +142,27 @@
     <string name="section_action_edit_description">Изменить описание</string>
     <string name="section_action_change_weight">Изменить вес</string>
     <string name="section_action_remove">Удалить</string>
+
+    <string name="battle_yokodzuns_layer_title">Ёкодзуны битвы %s</string>
+    <string name="battle_yokodzuns_layer_no_yokodzuns_title">В битве отсутствуют ёкодзуны</string>
+    <string name="battle_yokodzuns_layer_no_yokodzuns_add_yokodzun">Добавить ёкодзуну</string>
+    <string name="battle_yokodzuns_layer_remove_confirm_dialog_title">Удаление ёкодзуны</string>
+    <string name="battle_yokodzuns_layer_remove_confirm_dialog_text">Удалить ёкодзуну из списка учавствующих в битве?</string>
+
+    <string name="battle_parameters_layer_title">Параметры битвы %s</string>
+    <string name="battle_parameters_layer_no_parameters_title">В битве отсутствуют параметры</string>
+    <string name="battle_parameters_layer_no_parameters_add_parameter">Добавить параметр</string>
+    <string name="battle_parameters_layer_action_chanhe_weight">Изменить вес</string>
+    <string name="battle_parameters_layer_action_remove">Удалить</string>
+    <string name="battle_parameters_layer_remove_confirm_dialog_title">Удаление параметра</string>
+    <string name="battle_parameters_layer_remove_confirm_dialog_text">Удалить параметр из битвы?</string>
+    <string name="battle_parameters_layer_change_weight_title">Изменить вес параметра</string>
+    <string name="battle_parameters_layer_change_weight_text">Данный коэффициент определяет значимость параметра при подсчете результатов</string>
+
+    <string name="select_yokodzun_for_battle_layer_title">Выбор ёкодзуны</string>
+    <string name="select_yokodzun_for_battle_layer_no_yokodzuns">Доступные для выбора ёкодзуны отсутствуют</string>
+
+    <string name="select_parameter_for_battle_layer_title">Выбор параметра</string>
+    <string name="select_parameter_for_battle_layer_no_parameters">Доступные для выбора параметры отсутствуют</string>
 
 </resources>

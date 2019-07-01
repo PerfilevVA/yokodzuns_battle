@@ -1,17 +1,16 @@
-package com.sibedge.yokodzun.android.layers.sections.edit
+package com.sibedge.parameter.android.layers.battle.parameters.edit
 
 import android.content.Context
 import android.view.ViewGroup
+import com.sibedge.parameter.android.layers.battle.parameters.BattleParametersLayer
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.data.BattlesDataManager
-import com.sibedge.yokodzun.android.layers.sections.base.SectionsLayer
+import com.sibedge.yokodzun.android.layers.battle.parameters.item.BattleFullParameter
 import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
-import com.sibedge.yokodzun.android.ui.view.list.sections.SectionsTreeListView
-import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
+import com.sibedge.yokodzun.android.ui.view.list.base.async.AsyncItemsListContaner
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
-import com.sibedge.yokodzun.common.data.battle.Section
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
@@ -19,9 +18,9 @@ import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyFrameParams
 import ru.hnau.jutils.producer.extensions.not
 
 
-class AdminEditSectionsLayer(
+class EditBattleParametersLayer(
     context: Context
-) : SectionsLayer(
+) : BattleParametersLayer(
     context
 ) {
 
@@ -30,9 +29,9 @@ class AdminEditSectionsLayer(
         fun newInstance(
             context: Context,
             battle: Battle
-        ) = AdminEditSectionsLayer(context).apply {
+        ) = EditBattleParametersLayer(context).apply {
             this.battle = battle
-            this.editor = SectionsEditor(battle)
+            this.editor = BattleParametersEditor(battle)
         }
 
     }
@@ -41,38 +40,30 @@ class AdminEditSectionsLayer(
     override lateinit var battle: Battle
 
     @LayerState
-    private lateinit var editor: SectionsEditor
+    private lateinit var editor: BattleParametersEditor
 
-    override val sectionsList get() = editor.sectionsList
+    override val parametersProducer
+        get() = editor.selectedParameters
 
-    override val additionalButtonInfoCreator = { section: Section ->
-        AdditionalButton.Info(
-            icon = DrawableGetter(R.drawable.ic_options_fg),
-            action = {
-                AdminEditSectionsLayerUtils.showSectionActions(
-                    section = section,
-                    callback = editor
-                )
-            }
-        )
-    }
+    override fun invalidateBattleFullParameters() = editor.invalidate()
 
-    override val emptyInfoView by lazy {
+    override val onEmptyListInfoView by lazy {
         EmptyInfoView(
             context = context,
-            text = StringGetter(R.string.sections_layer_no_sections_title),
-            button = StringGetter(R.string.sections_layer_no_sections_add_section) to editor::addRootSection
+            text = StringGetter(R.string.battle_parameters_layer_no_parameters_title),
+            button = StringGetter(R.string.battle_parameters_layer_no_parameters_add_parameter) to editor::selectNewParameter
         )
     }
 
-    override fun ViewGroup.configureView(
-        listView: SectionsTreeListView
-    ) {
+    override fun onClick(parameter: BattleFullParameter) =
+        editor.onParameterCick(parameter)
+
+    override fun ViewGroup.configureView(listView: AsyncItemsListContaner<BattleFullParameter>) {
         addPrimaryActionButton(
             icon = DrawableGetter(R.drawable.ic_add_fg),
-            title = StringGetter(R.string.sections_layer_no_sections_add_section),
+            title = StringGetter(R.string.battle_parameters_layer_no_parameters_add_parameter),
             needShowTitle = listView.onListScrolledToTopProducer.not(),
-            onClick = editor::addRootSection
+            onClick = editor::selectNewParameter
         ) {
             applyFrameParams {
                 setMargins(SizeManager.DEFAULT_SEPARATION)
@@ -83,7 +74,10 @@ class AdminEditSectionsLayer(
 
     override fun handleGoBack(): Boolean {
         uiJobLocked {
-            BattlesDataManager.updateSections(battle.id, editor.sections)
+            BattlesDataManager.updateParameters(
+                battleId = battle.id,
+                parameters = editor.alreadySelectedParameters
+            )
             managerConnector.goBack()
         }
         return true

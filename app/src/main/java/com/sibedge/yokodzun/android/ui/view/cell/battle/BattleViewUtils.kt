@@ -2,14 +2,15 @@ package com.sibedge.yokodzun.android.ui.view.cell.battle
 
 import android.content.Context
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.ui.ViewWithContent
-import com.sibedge.yokodzun.android.ui.view.CountView
+import com.sibedge.yokodzun.android.ui.ViewWithData
+import com.sibedge.yokodzun.android.ui.view.ClickableCountView
 import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.utils.apply.applyPadding
+import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 
 
 object BattleViewUtils {
@@ -20,16 +21,14 @@ object BattleViewUtils {
         color: ColorTriple,
         toCount: Battle.() -> Int?,
         onClick: (Battle) -> Unit
-    ) = object : ViewWithContent<Battle> {
+    ) = object : ViewWithData<Battle> {
 
-        override val view = CountView(
+        override val view = ClickableCountView(
             context = context,
             title = title,
             color = color,
             onClick = this::onClick
-        ).apply {
-            applyPadding(SizeManager.SMALL_SEPARATION)
-        }
+        ).applyPadding(SizeManager.SMALL_SEPARATION)
 
         override var data: Battle? = null
             set(value) {

@@ -14,7 +14,7 @@ import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 
 class SectionView(
     context: Context,
-    additionalButton: (Section) -> AdditionalButton.Info?,
+    additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)?,
     private val onClick: (TreeSection) -> Unit
 ) : ClickableLinearLayout(
     context = context,
@@ -25,11 +25,11 @@ class SectionView(
 
     private val offsetView =
         SectionsTreeOffsetView(context)
+
     private val contentView = SectionContentView(
-        context,
-        additionalButton
-    )
-        .applyLinearParams { setStretchedWidth() }
+        context = context,
+        additionalButtonInfoCreator = additionalButtonInfoCreator
+    ).applyLinearParams { setStretchedWidth() }
 
     private var section: TreeSection? = null
         set(value) {

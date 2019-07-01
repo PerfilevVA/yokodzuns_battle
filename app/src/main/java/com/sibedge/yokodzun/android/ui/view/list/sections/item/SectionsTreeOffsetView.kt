@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.view.View
-import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.ui.ViewWithData
 import com.sibedge.yokodzun.android.ui.view.list.sections.SectionsTreeUtils
 import ru.hnau.androidutils.context_getters.dp_px.dp24
 import ru.hnau.androidutils.context_getters.dp_px.dp4
@@ -15,7 +15,7 @@ class SectionsTreeOffsetView(
     context: Context
 ) : View(
     context
-), ViewWithContent<Int> {
+), ViewWithData<Int> {
 
     companion object {
 
