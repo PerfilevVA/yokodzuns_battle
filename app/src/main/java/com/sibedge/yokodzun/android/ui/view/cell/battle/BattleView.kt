@@ -1,4 +1,4 @@
-package com.sibedge.yokodzun.android.ui.view.cell
+package com.sibedge.yokodzun.android.ui.view.cell.battle
 
 import android.content.Context
 import com.sibedge.yokodzun.android.R
@@ -19,7 +19,7 @@ import ru.hnau.androidutils.ui.view.utils.apply.*
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 
 
-open class BattleView(
+class BattleView(
     context: Context,
     private val onClick: (Battle) -> Unit,
     onYoconzunsCountClicked: (Battle) -> Unit,
@@ -32,7 +32,7 @@ open class BattleView(
 
     override val view = this
 
-    override var content: Battle? = null
+    override var data: Battle? = null
         set(value) {
             field = value
             updateContent(value)
@@ -101,15 +101,15 @@ open class BattleView(
     }
 
     private fun updateContent(content: Battle?) {
-        descriptionView.content = content?.description?.let { DescriptionView.Item(it) }
-        countViews.forEach { it.content = content }
+        descriptionView.data = content?.description?.let { DescriptionView.Item(it) }
+        countViews.forEach { it.data = content }
         statusView.textColor = content?.status?.color ?: ColorManager.TRANSPARENT
         statusView.text = content?.status?.title ?: StringGetter.EMPTY
     }
 
     override fun onClick() {
         super.onClick()
-        content?.let(onClick)
+        data?.let(onClick)
     }
 
 

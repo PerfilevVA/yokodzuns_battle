@@ -33,7 +33,7 @@ class DescriptionView(
 
     override val view = this
 
-    override var content: Item? = null
+    override var data: Item? = null
         set(value) {
             field = value
             updateContent(value)
@@ -88,7 +88,7 @@ class DescriptionView(
 
         val description = item?.description
 
-        logoView.content = description
+        logoView.data = description
 
         titleView.textColor = item?.mainColor ?: ColorManager.PRIMARY
         titleView.text = description?.title?.takeIfNotEmpty()?.toGetter()

@@ -1,4 +1,4 @@
-package com.sibedge.yokodzun.android.utils.battle.action
+package com.sibedge.yokodzun.android.utils.battle
 
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.common.data.battle.Battle
@@ -6,8 +6,8 @@ import kotlinx.coroutines.CoroutineScope
 import ru.hnau.androidutils.context_getters.StringGetter
 
 
-object BattleActionViewParameters : BattleAction(
-    title = StringGetter(R.string.battle_action_view_parameters)
+object BattleActionViewRates : BattleAction(
+    title = StringGetter(R.string.battle_action_view_rates)
 ) {
 
     override fun execute(

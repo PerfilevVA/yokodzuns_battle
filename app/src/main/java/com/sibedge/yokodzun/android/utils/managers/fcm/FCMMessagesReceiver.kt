@@ -50,13 +50,13 @@ object FCMMessagesReceiver {
 
         val clazz = data[RTToUserNotification.SERIALIZATION_KEY_CLASS]
                 ?.takeIfNotEmpty()
-                ?: throw IllegalArgumentException("content class is empty")
+                ?: throw IllegalArgumentException("data class is empty")
 
-        val content = data[RTToUserNotification.SERIALIZATION_KEY_CONTENT]
+        val data = data[RTToUserNotification.SERIALIZATION_KEY_CONTENT]
                 ?.takeIfNotEmpty()
-                ?: throw IllegalArgumentException("content json is empty")
+                ?: throw IllegalArgumentException("data json is empty")
 
-        return RTNotification.deserialize(clazz, content)
+        return RTNotification.deserialize(clazz, data)
     }*/
 
 }

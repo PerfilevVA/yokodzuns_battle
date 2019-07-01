@@ -19,6 +19,8 @@
     <string name="default_admin_password_error_dialog_button">Настроить</string>
 
     <string name="entity_battle">Битва</string>
+    <string name="entity_yokodzun">Ёкодзуна</string>
+    <string name="entity_parameter">Параметр</string>
     <string name="entity_section">Раздел</string>
     <string name="entity_section_property_weight">Вес оценки</string>
 
@@ -57,8 +59,22 @@
     <string name="admin_layer_page_title_yokodzuns">Ёкодзуны</string>
     <string name="admin_layer_page_title_parameters">Параметры</string>
 
-    <string name="admin_add_layer_battles_page_no_battles_title">Битвы отсутствуют</string>
-    <string name="admin_add_layer_battles_add_battle">Добавить битву</string>
+    <string name="admin_layer_battles_page_no_battles_title">Битвы отсутствуют</string>
+    <string name="admin_layer_battles_page_add_battle">Добавить битву</string>
+
+    <string name="admin_layer_yokodzuns_page_no_yokodzuns_title">Ёкодзуны отсутствуют</string>
+    <string name="admin_layer_yokodzuns_page_add_yokodzun">Добавить ёкодзуну</string>
+    <string name="yokodzun_action_edit_description">Изменить описание</string>
+    <string name="yokodzun_action_remove">Удалить</string>
+    <string name="yokodzun_action_remove_confirm_dialog_title">Удаление ёкодзуны</string>
+    <string name="yokodzun_action_remove_confirm_dialog_text">Удалить ёкодзуну?</string>
+
+    <string name="admin_layer_parameters_page_no_parameters_title">Параметры отсутствуют</string>
+    <string name="admin_layer_parameters_page_add_parameter">Добавить параметр</string>
+    <string name="parameter_action_edit_description">Изменить описание</string>
+    <string name="parameter_action_remove">Удалить</string>
+    <string name="parameter_action_remove_confirm_dialog_title">Удаление параметра</string>
+    <string name="parameter_action_remove_confirm_dialog_text">Удалить параметр?</string>
 
     <string name="description_view_no_title_placeholder">&#60;Заголовок отсутствует&#62;</string>
     <string name="description_view_no_description_placeholder">&#60;Описание отсутствует&#62;</string>
@@ -103,6 +119,16 @@
     <string name="edit_section_description_layer_title_hint">Название раздела</string>
     <string name="edit_section_description_layer_logo_url_hint">URL изображения раздела</string>
     <string name="edit_section_description_layer_description_hint">Описание раздела</string>
+
+    <string name="edit_yokodzun_description_layer_title">Описание ёкодзуны</string>
+    <string name="edit_yokodzun_description_layer_title_hint">Название ёкодзуны</string>
+    <string name="edit_yokodzun_description_layer_logo_url_hint">URL изображения ёкодзуны</string>
+    <string name="edit_yokodzun_description_layer_description_hint">Описание ёкодзуны</string>
+
+    <string name="edit_parameter_description_layer_title">Описание параметра</string>
+    <string name="edit_parameter_description_layer_title_hint">Название параметра</string>
+    <string name="edit_parameter_description_layer_logo_url_hint">URL изображения параметра</string>
+    <string name="edit_parameter_description_layer_description_hint">Описание параметра</string>
 
     <string name="sections_layer_no_sections_title">Разделы отсутствуют</string>
     <string name="sections_layer_no_sections_add_section">Добавить раздел</string>

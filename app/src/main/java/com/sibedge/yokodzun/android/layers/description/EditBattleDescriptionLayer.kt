@@ -2,9 +2,8 @@ package com.sibedge.yokodzun.android.layers.description
 
 import android.content.Context
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.admin.AdminAllBattlesDataManager
+import com.sibedge.yokodzun.android.data.BattlesDataManager
 import com.sibedge.yokodzun.android.layers.description.base.EditDescriptionLayer
-import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.helpers.Description
 import ru.hnau.androidutils.context_getters.StringGetter
@@ -39,7 +38,7 @@ class EditBattleDescriptionLayer(
     override val initialDescription get() = battle.description
 
     override suspend fun saveAsync(editedDescription: Description) {
-        AdminAllBattlesDataManager.updateDescription(battle.id, editedDescription)
+        BattlesDataManager.updateDescription(battle.id, editedDescription)
     }
 
 }

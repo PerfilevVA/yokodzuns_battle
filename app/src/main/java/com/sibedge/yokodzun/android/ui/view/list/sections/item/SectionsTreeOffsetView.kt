@@ -32,13 +32,13 @@ class SectionsTreeOffsetView(
 
     override val view = this
 
-    override var content: Int? = null
+    override var data: Int? = null
         set(value) {
             field = value
             requestLayout()
         }
 
-    private val offsetCount get() = content ?: 0
+    private val offsetCount get() = data ?: 0
 
     override fun draw(canvas: Canvas) {
         super.draw(canvas)

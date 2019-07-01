@@ -36,7 +36,7 @@ class DescriptionLogoView(
 
     override val view = this
 
-    override var content: Description? = null
+    override var data: Description? = null
         set(value) {
             field = value
             setImage { loadLogo(value).toGetter() }

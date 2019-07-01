@@ -12,9 +12,11 @@ import ru.hnau.androidutils.ui.bounds_producer.createBoundsProducer
 import ru.hnau.androidutils.ui.canvas_shape.RoundSidesRectCanvasShape
 import ru.hnau.androidutils.ui.view.label.Label
 import ru.hnau.androidutils.ui.view.label.LabelInfo
+import ru.hnau.androidutils.ui.view.utils.apply.applyHorizontalPadding
 import ru.hnau.androidutils.ui.view.utils.apply.applyPadding
 import ru.hnau.androidutils.ui.view.utils.getMaxMeasurement
 import ru.hnau.androidutils.ui.view.utils.makeMeasureSpec
+import ru.hnau.jutils.handle
 import ru.hnau.jutils.ifTrue
 import kotlin.math.min
 
@@ -37,11 +39,17 @@ class ChipLabel(
 
     private val backgroundPaint = YGradientPaint(context)
 
-    override var content: Info? = null
+    override var data: Info? = null
         set(value) {
             field = value
             text = value?.text ?: StringGetter.EMPTY
             backgroundPaint.color = value?.color ?: ColorManager.PRIMARY_TRIPLE
+            applyHorizontalPadding(
+                (text.get(context).length > 1).handle(
+                    forTrue = SizeManager.SMALL_SEPARATION,
+                    forFalse = SizeManager.EXTRA_SMALL_SEPARATION
+                )
+            )
         }
 
     private val boundsProducer = createBoundsProducer(false)

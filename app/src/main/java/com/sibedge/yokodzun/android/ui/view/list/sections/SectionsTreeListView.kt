@@ -3,7 +3,7 @@ package com.sibedge.yokodzun.android.ui.view.list.sections
 import android.content.Context
 import com.sibedge.yokodzun.android.ui.view.list.YListItemsDevider
 import com.sibedge.yokodzun.android.ui.view.list.sections.content.SectionsList
-import com.sibedge.yokodzun.android.ui.view.list.sections.item.AdditionalButton
+import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.ui.view.list.sections.item.SectionView
 import com.sibedge.yokodzun.android.ui.view.list.sections.item.TreeSection
 import com.sibedge.yokodzun.android.utils.extensions.setBottomPaddingForPrimaryActionButtonDecoration

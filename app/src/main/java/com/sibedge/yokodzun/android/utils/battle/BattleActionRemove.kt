@@ -1,7 +1,7 @@
-package com.sibedge.yokodzun.android.utils.battle.action
+package com.sibedge.yokodzun.android.utils.battle
 
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.admin.AdminAllBattlesDataManager
+import com.sibedge.yokodzun.android.data.BattlesDataManager
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.common.data.battle.Battle
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +20,7 @@ object BattleActionRemove : BattleAction(
         text = StringGetter(R.string.battle_action_remove_confirm_dialog_text),
         confirmText = StringGetter(R.string.dialog_remove)
     ) {
-        coroutinesExecutor { AdminAllBattlesDataManager.remove(battleId = battle.id) }
+        coroutinesExecutor { BattlesDataManager.remove(battleId = battle.id) }
     }
 
 }

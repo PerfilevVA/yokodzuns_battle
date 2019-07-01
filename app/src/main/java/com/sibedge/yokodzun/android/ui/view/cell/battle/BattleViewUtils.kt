@@ -1,8 +1,9 @@
-package com.sibedge.yokodzun.android.ui.view.cell
+package com.sibedge.yokodzun.android.ui.view.cell.battle
 
 import android.content.Context
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.ui.ViewWithContent
+import com.sibedge.yokodzun.android.ui.view.CountView
 import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
@@ -30,14 +31,14 @@ object BattleViewUtils {
             applyPadding(SizeManager.SMALL_SEPARATION)
         }
 
-        override var content: Battle? = null
+        override var data: Battle? = null
             set(value) {
                 field = value
-                view.content = value?.toCount()
+                view.data = value?.toCount()
             }
 
         private fun onClick() {
-            content?.let(onClick)
+            data?.let(onClick)
         }
 
     }

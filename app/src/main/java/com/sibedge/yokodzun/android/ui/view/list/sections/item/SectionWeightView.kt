@@ -30,7 +30,7 @@ class SectionWeightView(
 
     override val view = this
 
-    override var content: TreeSection? = null
+    override var data: TreeSection? = null
         set(value) {
             if (field != value) {
                 field = value
@@ -58,7 +58,7 @@ class SectionWeightView(
         info = LabelInfo(
             textSize = SizeManager.TEXT_12,
             textColor = ColorManager.FG,
-            fontType = FontManager.DEFAULT,
+            fontType = FontManager.BOLD,
             gravity = HGravity.CENTER,
             maxLines = 1,
             minLines = 1
@@ -83,7 +83,7 @@ class SectionWeightView(
         setVisible()
         val color = SectionsTreeUtils.getOffsetColor(section.depth)
         textView.textColor = color.main
-        weightView.content = ChipLabel.Info(
+        weightView.data = ChipLabel.Info(
             text = weight.toString().toGetter(),
             color = color
         )

@@ -1,4 +1,4 @@
-package com.sibedge.yokodzun.android.utils.battle.action
+package com.sibedge.yokodzun.android.utils.battle
 
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.layers.sections.edit.AdminEditSectionsLayer

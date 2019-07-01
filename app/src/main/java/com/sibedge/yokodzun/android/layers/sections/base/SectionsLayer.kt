@@ -6,7 +6,7 @@ import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.view.list.sections.SectionsTreeListView
 import com.sibedge.yokodzun.android.ui.view.list.sections.content.SectionsList
-import com.sibedge.yokodzun.android.ui.view.list.sections.item.AdditionalButton
+import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.common.data.battle.Battle

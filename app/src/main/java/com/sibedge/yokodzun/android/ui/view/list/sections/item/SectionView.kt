@@ -1,6 +1,7 @@
 package com.sibedge.yokodzun.android.ui.view.list.sections.item
 
 import android.content.Context
+import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.common.data.battle.Section
 import ru.hnau.androidutils.ui.view.clickable.ClickableLinearLayout
@@ -33,8 +34,8 @@ class SectionView(
     private var section: TreeSection? = null
         set(value) {
             field = value
-            offsetView.content = value?.depth
-            contentView.content = value
+            offsetView.data = value?.depth
+            contentView.data = value
         }
 
     init {

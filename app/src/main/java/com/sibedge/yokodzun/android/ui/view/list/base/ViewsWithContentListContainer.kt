@@ -23,7 +23,7 @@ class ViewsWithContentListContainer<T : Any>(
         object : BaseListViewWrapper<T> {
             override val view = viewWithContent.view
             override fun setContent(content: T, position: Int) {
-                viewWithContent.content = content
+                viewWithContent.data = content
             }
         }
     },

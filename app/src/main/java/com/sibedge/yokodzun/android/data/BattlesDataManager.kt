@@ -1,60 +1,43 @@
-package com.sibedge.yokodzun.android.data.admin
+package com.sibedge.yokodzun.android.data
 
 import com.sibedge.yokodzun.android.api.API
-import com.sibedge.yokodzun.android.data.YDataManager
-import com.sibedge.yokodzun.android.utils.extensions.sortKey
-import com.sibedge.yokodzun.common.data.Parameter
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.BattleParameter
 import com.sibedge.yokodzun.common.data.battle.BattleStatus
 import com.sibedge.yokodzun.common.data.battle.Section
 import com.sibedge.yokodzun.common.data.helpers.Description
-import ru.hnau.jutils.handle
+import ru.hnau.jutils.ifTrue
 
 
-object AdminAllBattlesDataManager : YDataManager<List<Battle>>() {
+object BattlesDataManager : YListDataManager<String, String, Battle>() {
 
-    override suspend fun getValue() =
-        API.getAllBattles().await().sortedBy { it.sortKey }
+    override suspend fun getList() =
+        API.getAllBattles().await()
 
     suspend fun createNew() {
         val battle = API.createNewBattle().await()
-        updateOrInvalidate { oldBattles ->
-            (oldBattles + battle).sortedBy { it.sortKey }
-        }
-    }
-
-    private inline fun updateBattleOrInvalidate(
-        battleId: String,
-        crossinline update: Battle.() -> Battle
-    ) = updateOrInvalidate {
-        it.map {
-            (it.id == battleId).handle(
-                onTrue = { it.update() },
-                onFalse = { it }
-            )
-        }.sortedBy { it.sortKey }
+        insertItem(battle)
     }
 
     suspend fun start(
         battleId: String
     ) {
         API.startBattle(battleId).await()
-        updateBattleOrInvalidate(battleId) { copy(status = BattleStatus.IN_PROGRESS) }
+        updateOrInvalidateItem(battleId) { copy(status = BattleStatus.IN_PROGRESS) }
     }
 
     suspend fun stop(
         battleId: String
     ) {
         API.stopBattle(battleId).await()
-        updateBattleOrInvalidate(battleId) { copy(status = BattleStatus.AFTER) }
+        updateOrInvalidateItem(battleId) { copy(status = BattleStatus.AFTER) }
     }
 
     suspend fun remove(
         battleId: String
     ) {
         API.removeBattle(battleId).await()
-        updateOrInvalidate { it.filter { it.id != battleId } }
+        removeItem(battleId)
     }
 
     suspend fun updateDescription(
@@ -62,15 +45,17 @@ object AdminAllBattlesDataManager : YDataManager<List<Battle>>() {
         description: Description
     ) {
         API.updateBattleDescription(battleId, description).await()
-        updateBattleOrInvalidate(battleId) { copy(description = description) }
+        updateOrInvalidateItem(battleId) { copy(description = description) }
     }
 
     suspend fun updateSections(
         battleId: String,
         sections: List<Section>
     ) {
+        val currentSections = existenceValue?.find { it.id == battleId }?.sections
+        (currentSections == sections).ifTrue { return }
         API.updateBattleSections(battleId, sections).await()
-        updateBattleOrInvalidate(battleId) { copy(sections = sections) }
+        updateOrInvalidateItem(battleId) { copy(sections = sections) }
     }
 
     suspend fun updateParameters(
@@ -78,7 +63,7 @@ object AdminAllBattlesDataManager : YDataManager<List<Battle>>() {
         parameters: List<BattleParameter>
     ) {
         API.updateBattleParameters(battleId, parameters).await()
-        updateBattleOrInvalidate(battleId) { copy(parameters = parameters) }
+        updateOrInvalidateItem(battleId) { copy(parameters = parameters) }
     }
 
     suspend fun updateYokodzunsIds(
@@ -86,7 +71,7 @@ object AdminAllBattlesDataManager : YDataManager<List<Battle>>() {
         yokodzunsIds: List<String>
     ) {
         API.updateBattleYokodzunsIds(battleId, yokodzunsIds).await()
-        updateBattleOrInvalidate(battleId) { copy(yokodzunsIds = yokodzunsIds) }
+        updateOrInvalidateItem(battleId) { copy(yokodzunsIds = yokodzunsIds) }
     }
 
 }

@@ -1,11 +1,11 @@
-package com.sibedge.yokodzun.android.layers.admin.pages
+package com.sibedge.yokodzun.android.layers.admin.pages.battles
 
 import android.content.Context
 import android.widget.FrameLayout
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.admin.AdminAllBattlesDataManager
+import com.sibedge.yokodzun.android.data.BattlesDataManager
 import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
-import com.sibedge.yokodzun.android.ui.view.cell.AdminBattleView
+import com.sibedge.yokodzun.android.ui.view.cell.battle.BattleView
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.view.list.base.ViewsWithContentListContainer
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
@@ -32,19 +32,30 @@ class AdminBattlesPageView(
             ViewsWithContentListContainer<Battle>(
                 context = context,
                 idGetter = Battle::id,
-                invalidator = AdminAllBattlesDataManager::invalidate,
+                invalidator = BattlesDataManager::invalidate,
                 onEmptyListInfoViewGenerator = {
                     EmptyInfoView(
                         context = context,
-                        text = StringGetter(R.string.admin_add_layer_battles_page_no_battles_title),
-                        button = StringGetter(R.string.admin_add_layer_battles_add_battle) to this::onAddBattleClick
+                        text = StringGetter(R.string.admin_layer_battles_page_no_battles_title),
+                        button = StringGetter(R.string.admin_layer_battles_page_add_battle) to this::onAddBattleClick
                     )
                 },
-                producer = AdminAllBattlesDataManager as Producer<GetterAsync<Unit, List<Battle>>>,
+                producer = BattlesDataManager as Producer<GetterAsync<Unit, List<Battle>>>,
                 viewWithContentGenerator = {
-                    AdminBattleView(
-                        context,
-                        coroutinesExecutor
+                    BattleView(
+                        context = context,
+                        onClick = { battle ->
+                            AdminBattleUtils.showBattleActions(battle, coroutinesExecutor)
+                        },
+                        onParametersCountClicked = { battle ->
+                            AdminBattleUtils.onParametersClicked(battle, coroutinesExecutor)
+                        },
+                        onSectionsCountClicked = { battle ->
+                            AdminBattleUtils.onSectionsClicked(battle, coroutinesExecutor)
+                        },
+                        onYoconzunsCountClicked = { battle ->
+                            AdminBattleUtils.onYokodzunsClicked(battle, coroutinesExecutor)
+                        }
                     )
                 }
             )
@@ -53,7 +64,7 @@ class AdminBattlesPageView(
 
         addPrimaryActionButton(
             icon = DrawableGetter(R.drawable.ic_add_white),
-            title = StringGetter(R.string.admin_add_layer_battles_add_battle),
+            title = StringGetter(R.string.admin_layer_battles_page_add_battle),
             needShowTitle = list.onListScrolledToTopProducer.not(),
             onClick = this::onAddBattleClick
         ) {
@@ -65,6 +76,6 @@ class AdminBattlesPageView(
     }
 
     private fun onAddBattleClick() =
-        coroutinesExecutor { AdminAllBattlesDataManager.createNew() }
+        coroutinesExecutor { BattlesDataManager.createNew() }
 
 }

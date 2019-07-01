@@ -1,6 +1,6 @@
-package com.sibedge.yokodzun.android.utils.battle
+package com.sibedge.yokodzun.android.layers.admin.pages.battles
 
-import com.sibedge.yokodzun.android.utils.battle.action.*
+import com.sibedge.yokodzun.android.utils.battle.*
 import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.common.data.battle.Battle

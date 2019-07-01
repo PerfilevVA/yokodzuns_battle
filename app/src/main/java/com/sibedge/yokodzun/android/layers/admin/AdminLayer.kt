@@ -1,10 +1,10 @@
 package com.sibedge.yokodzun.android.layers.admin
 
 import android.content.Context
+import com.sibedge.parameter.android.layers.admin.pages.parameter.AdminParametersPageView
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.layers.admin.pages.AdminBattlesPageView
-import com.sibedge.yokodzun.android.layers.admin.pages.AdminParametersPageView
-import com.sibedge.yokodzun.android.layers.admin.pages.AdminYokodzunsPageView
+import com.sibedge.yokodzun.android.layers.admin.pages.battles.AdminBattlesPageView
+import com.sibedge.yokodzun.android.layers.admin.pages.yokodzuns.AdminYokodzunsPageView
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.view.pager.Pager
 import com.sibedge.yokodzun.android.ui.view.pager.PagerPage
@@ -38,11 +38,11 @@ class AdminLayer(
                 ),
                 PagerPage(
                     title = StringGetter(R.string.admin_layer_page_title_yokodzuns),
-                    viewCreator = { AdminYokodzunsPageView(context) }
+                    viewCreator = { AdminYokodzunsPageView(context, this::uiJobLocked) }
                 ),
                 PagerPage(
                     title = StringGetter(R.string.admin_layer_page_title_parameters),
-                    viewCreator = { AdminParametersPageView(context) }
+                    viewCreator = { AdminParametersPageView(context, this::uiJobLocked) }
                 )
             ),
             selectedPage = VariableConnector(

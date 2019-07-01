@@ -30,8 +30,12 @@ class YGradientPaint(
         shader = LinearGradient(
             boundsRect.left, boundsRect.top,
             boundsRect.right, boundsRect.bottom,
-            color.light.get(context),
-            color.dark.get(context),
+            intArrayOf(
+                color.light.get(context),
+                color.main.get(context),
+                color.dark.get(context)
+            ),
+            floatArrayOf(0f, 0.5f, 1f),
             Shader.TileMode.CLAMP
         )
     }

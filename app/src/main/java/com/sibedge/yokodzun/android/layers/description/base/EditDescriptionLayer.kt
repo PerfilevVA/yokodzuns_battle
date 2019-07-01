@@ -71,7 +71,7 @@ abstract class EditDescriptionLayer(
                             setStartMargin(SizeManager.SMALL_SEPARATION)
                             setEndMargin(SizeManager.SMALL_SEPARATION)
                         }
-                        content = initialDescription
+                        data = initialDescription
                     }
 
                     addHorizontalLayout {
@@ -85,15 +85,15 @@ abstract class EditDescriptionLayer(
 
                     titleInput.setOnFocusChangeListener { _, focused ->
                         if (!focused) {
-                            logoView.content =
-                                logoView.content?.copy(title = titleInput.text.toString())
+                            logoView.data =
+                                logoView.data?.copy(title = titleInput.text.toString())
                         }
                     }
 
                     logoUrlInput.setOnFocusChangeListener { _, focused ->
                         if (!focused) {
-                            logoView.content =
-                                logoView.content?.copy(logoUrl = logoUrlInput.text.toString())
+                            logoView.data =
+                                logoView.data?.copy(logoUrl = logoUrlInput.text.toString())
                         }
                     }
 

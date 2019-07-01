@@ -7,6 +7,6 @@ interface ViewWithContent<C> {
 
     val view: View
 
-    var content: C?
+    var data: C?
 
 }

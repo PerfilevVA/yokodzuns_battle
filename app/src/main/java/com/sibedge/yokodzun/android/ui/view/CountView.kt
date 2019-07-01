@@ -1,10 +1,9 @@
-package com.sibedge.yokodzun.android.ui.view.cell
+package com.sibedge.yokodzun.android.ui.view
 
 import android.content.Context
 import android.graphics.Canvas
 import android.view.MotionEvent
 import android.widget.LinearLayout
-import com.sibedge.yokodzun.android.ui.view.ChipLabel
 import com.sibedge.yokodzun.android.ui.ViewWithContent
 import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
@@ -66,20 +65,20 @@ class CountView(
         info = LabelInfo(
             textSize = TEXT_SIZE,
             textColor = ColorManager.FG,
-            fontType = FontManager.DEFAULT,
+            fontType = FontManager.BOLD,
             gravity = HGravity.CENTER,
             maxLines = 1,
             minLines = 1
         )
     )
 
-    override var content: Int? = null
+    override var data: Int? = null
         set(value) {
             field = value
             value.handle(
                 ifNotNull = {
                     numberView.setVisible()
-                    numberView.content = ChipLabel.Info(
+                    numberView.data = ChipLabel.Info(
                         text = it.toString().toGetter(),
                         color = color
                     )

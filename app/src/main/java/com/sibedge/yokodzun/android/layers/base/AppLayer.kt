@@ -78,7 +78,7 @@ abstract class AppLayer(
         HeaderTitle(
             context = context,
             textColor = ColorManager.FG,
-            fontType = FontManager.DEFAULT,
+            fontType = FontManager.BOLD,
             textSize = SizeManager.TEXT_20,
             gravity = HGravity.CENTER
         ).apply {

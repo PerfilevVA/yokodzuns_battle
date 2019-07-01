@@ -3,12 +3,12 @@ package com.sibedge.yokodzun.android.layers.sections.edit
 import android.content.Context
 import android.view.ViewGroup
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.admin.AdminAllBattlesDataManager
+import com.sibedge.yokodzun.android.data.BattlesDataManager
 import com.sibedge.yokodzun.android.layers.sections.base.SectionsLayer
 import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.view.list.sections.SectionsTreeListView
-import com.sibedge.yokodzun.android.ui.view.list.sections.item.AdditionalButton
+import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.Section
@@ -83,7 +83,7 @@ class AdminEditSectionsLayer(
 
     override fun handleGoBack(): Boolean {
         uiJobLocked {
-            AdminAllBattlesDataManager.updateSections(battle.id, editor.sections)
+            BattlesDataManager.updateSections(battle.id, editor.sections)
             managerConnector.goBack()
         }
         return true

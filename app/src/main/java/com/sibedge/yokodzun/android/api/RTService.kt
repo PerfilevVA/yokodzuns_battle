@@ -1,5 +1,7 @@
 package com.sibedge.yokodzun.android.api
 
+import com.sibedge.yokodzun.common.data.Parameter
+import com.sibedge.yokodzun.common.data.Yokodzun
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.BattleParameter
 import com.sibedge.yokodzun.common.data.battle.Section
@@ -69,6 +71,44 @@ interface RTService {
     fun updateBattleYokodzunsIds(
         @Path("battle-id") battleId: String,
         @Body yokodzunsIds: List<String>
+    ): Deferred<Unit>
+
+    @GET("/yokodzuns")
+    fun getAllYokodzuns(
+    ): Deferred<List<Yokodzun>>
+
+    @PUT("/yokodzuns")
+    fun createNewYokodzun(
+    ): Deferred<String>
+
+    @DELETE("/yokodzuns/{yokodzun-id}/remove")
+    fun removeYokodzun(
+        @Path("yokodzun-id") yokodzunId: String
+    ): Deferred<Unit>
+
+    @PATCH("/yokodzuns/{yokodzun-id}/description")
+    fun updateYokodzunDescription(
+        @Path("yokodzun-id") yokodzunId: String,
+        @Body description: Description
+    ): Deferred<Unit>
+
+    @GET("/parameters")
+    fun getAllParameters(
+    ): Deferred<List<Parameter>>
+
+    @PUT("/parameters")
+    fun createNewParameter(
+    ): Deferred<String>
+
+    @DELETE("/parameters/{parameter-id}/remove")
+    fun removeParameter(
+        @Path("parameter-id") parameterId: String
+    ): Deferred<Unit>
+
+    @PATCH("/parameters/{parameter-id}/description")
+    fun updateParameterDescription(
+        @Path("parameter-id") parameterId: String,
+        @Body description: Description
     ): Deferred<Unit>
 
 }
