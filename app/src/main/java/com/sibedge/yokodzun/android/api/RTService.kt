@@ -1,6 +1,7 @@
 package com.sibedge.yokodzun.android.api
 
 import com.sibedge.yokodzun.common.data.Parameter
+import com.sibedge.yokodzun.common.data.Rate
 import com.sibedge.yokodzun.common.data.Yokodzun
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.BattleParameter
@@ -130,5 +131,23 @@ interface RTService {
     @GET("/battle/for-rater")
     fun battleForRater(
     ): Deferred<Battle>
+
+    @GET("/rater/rates")
+    fun getRaterRates(
+    ): Deferred<List<Rate>>
+
+    @PUT("/battle/{battle-id}/section/{section-id}/parameter/{parameter-id}/yokodzun/{yokodzun-id}/rate")
+    fun rate(
+        @Path("battle-id") battleId: String,
+        @Path("section-id") sectionId: String,
+        @Path("parameter-id") parameterId: String,
+        @Path("yokodzun-id") yokodzunId: String,
+        @Query("value") value: Float
+    ): Deferred<Unit>
+
+    @GET("/battles/{battle-id}/rates")
+    fun getBattleRates(
+        @Path("battle-id") battleId: String
+    ): Deferred<List<Rate>>
 
 }

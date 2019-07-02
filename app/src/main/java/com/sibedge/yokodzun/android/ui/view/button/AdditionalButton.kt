@@ -2,6 +2,7 @@ package com.sibedge.yokodzun.android.ui.view.button
 
 import android.content.Context
 import com.sibedge.yokodzun.android.ui.ViewWithData
+import com.sibedge.yokodzun.android.utils.Utils
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter.Companion.dp
@@ -26,7 +27,7 @@ class AdditionalButton<T>(
 
     companion object {
 
-        private val PREFERRED_WIDTH = dp(44)
+        private val PREFERRED_WIDTH = Utils.HEADER_HEIGHT
 
     }
 

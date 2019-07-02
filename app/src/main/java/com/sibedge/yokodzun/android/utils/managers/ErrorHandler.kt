@@ -6,6 +6,8 @@ import ru.hnau.androidutils.utils.shortToast
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.data.AuthManager
 import com.sibedge.yokodzun.android.layers.ChangePasswordLayer
+import com.sibedge.yokodzun.android.layers.SettingsLayer
+import com.sibedge.yokodzun.android.layers.login.LoginLayer
 import com.sibedge.yokodzun.common.exception.ApiException
 import com.sibedge.yokodzun.common.exception.ApiExceptionContent
 import ru.hnau.androidutils.context_getters.toGetter
@@ -68,9 +70,7 @@ object ErrorHandler : (Throwable) -> Unit {
 
     private fun onAuthError() {
         displayError(StringGetter(R.string.error_authentication))
-
-        //TODO
-        //AppActivityConnector.showLayer(::LoginLayer, true)
+        AppActivityConnector.showLayer(::LoginLayer, true)
     }
 
     private fun onAdminPasswordNotConfigured() {
@@ -84,14 +84,13 @@ object ErrorHandler : (Throwable) -> Unit {
     }
 
     private fun onHostNotConfigured() {
-        //TODO
-        /*AppActivityConnector.showDialog {
+        AppActivityConnector.showDialog {
             title(StringGetter(R.string.host_not_configured_error_dialog_title))
             text(StringGetter(R.string.host_not_configured_error_dialog_text))
             closeButton(StringGetter(R.string.host_not_configured_error_dialog_button)) {
                 AppActivityConnector.showLayer(::SettingsLayer)
             }
-        }*/
+        }
     }
 
 }

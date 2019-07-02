@@ -43,7 +43,7 @@ class RateSectionsLayer(
     override val additionalButtonInfoCreator = { section: Section ->
         (section.weight > 0).handle(
             onTrue = {
-                AdditionalButton.Info(DrawableGetter(R.drawable.ic_rate_fg)) {
+                AdditionalButton.Info(DrawableGetter(R.drawable.ic_rate_half_fg)) {
                     AppActivityConnector.showLayer({
                         RateSectionLayer.newInstance(context, section)
                     })

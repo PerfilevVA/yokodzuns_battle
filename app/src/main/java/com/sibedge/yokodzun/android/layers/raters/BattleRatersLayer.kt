@@ -1,13 +1,9 @@
 package com.sibedge.yokodzun.android.layers.raters
 
 import android.content.Context
-import androidx.lifecycle.Transformations.map
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.data.RatersDataManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
-import com.sibedge.yokodzun.android.layers.battle.parameters.item.BattleFullParameter
-import com.sibedge.yokodzun.android.layers.battle.parameters.item.BattleFullParameterView
-import com.sibedge.yokodzun.android.layers.description.EditBattleDescriptionLayer
 import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.view.list.base.async.AsyncItemsListContaner
@@ -16,7 +12,6 @@ import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.utils.Validators
-import kotlinx.coroutines.cancel
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.context_getters.toGetter
@@ -25,14 +20,12 @@ import ru.hnau.androidutils.ui.view.utils.apply.addFrameLayout
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyFrameParams
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 import ru.hnau.jutils.getter.base.GetterAsync
-import ru.hnau.jutils.handle
 import ru.hnau.jutils.me
 import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.extensions.not
-import java.util.Locale.filter
 
 
-class RatersLayer(
+class BattleRatersLayer(
     context: Context
 ) : AppLayer(
     context = context
@@ -43,7 +36,7 @@ class RatersLayer(
         fun newInstance(
             context: Context,
             battle: Battle
-        ) = RatersLayer(context).apply {
+        ) = BattleRatersLayer(context).apply {
             this.battle = battle
         }
 
@@ -68,7 +61,7 @@ class RatersLayer(
                 EmptyInfoView(
                     context = context,
                     text = StringGetter(R.string.raters_layer_no_raters_title),
-                    button = StringGetter(R.string.raters_layer_no_raters_add_parameter) to this@RatersLayer::addRaters
+                    button = StringGetter(R.string.raters_layer_no_raters_add_parameter) to this@BattleRatersLayer::addRaters
                 )
             },
             invalidator = ratersDataManager::invalidate,
@@ -76,7 +69,7 @@ class RatersLayer(
             viewWrappersCreator = {
                 RaterView(
                     context = context,
-                    onRemoveClick = this@RatersLayer::askAndRemoveRater
+                    onRemoveClick = this@BattleRatersLayer::askAndRemoveRater
                 )
             }
         )
@@ -95,7 +88,7 @@ class RatersLayer(
                     icon = DrawableGetter(R.drawable.ic_add_fg),
                     title = StringGetter(R.string.raters_layer_no_raters_add_parameter),
                     needShowTitle = list.onListScrolledToTopProducer.not(),
-                    onClick = this@RatersLayer::addRaters
+                    onClick = this@BattleRatersLayer::addRaters
                 ) {
                     applyFrameParams {
                         setMargins(SizeManager.DEFAULT_SEPARATION)

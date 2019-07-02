@@ -29,6 +29,7 @@ import ru.hnau.jutils.producer.locked_producer.SuspendLockedProducer
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.ui.gradient.YGradientDrawable
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addWaiter
+import com.sibedge.yokodzun.android.utils.Utils
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
 import com.sibedge.yokodzun.android.utils.managers.FontManager
@@ -53,7 +54,7 @@ abstract class AppLayer(
     private val isVisibleToUserProducer =
         createIsVisibleToUserProducer()
 
-    private val uiJob = createUIJob(
+    protected val uiJob = createUIJob(
         isVisibleToUserProducer,
         ErrorHandler
     )
@@ -101,7 +102,7 @@ abstract class AppLayer(
             addHeader(
                 underStatusBar = true,
                 headerBackgroundColor = ColorManager.TRANSPARENT,
-                headerHeight = dp(44)
+                headerHeight = Utils.HEADER_HEIGHT
             ) {
 
                 if (showGoBackButton) {

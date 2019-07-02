@@ -15,12 +15,15 @@ import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.utils.extensions.text
 import com.sibedge.yokodzun.android.utils.managers.CrashliticsManager
 import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
+import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter.Companion.dp
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
 
 object Utils {
+
+    val HEADER_HEIGHT = dp(44)
 
     fun genUUID() = UUID.randomUUID()
         .toString()

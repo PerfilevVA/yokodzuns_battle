@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Битва ёкодзун</string>
 
+    <string name="notification_channel_title_default">Уведомления битвы ёкодзун</string>
+    <string name="notification_channel_description_default">Стандартные уведомления</string>
+
     <string name="dialog_next">Далее</string>
     <string name="dialog_close">Закрыть</string>
     <string name="dialog_cancel">Отмена</string>
@@ -18,6 +21,9 @@
     <string name="default_admin_password_error_dialog_title">Пароль администратора не настроен</string>
     <string name="default_admin_password_error_dialog_text">Для обеспечения безопасности необходимо настроить пароль администратора</string>
     <string name="default_admin_password_error_dialog_button">Настроить</string>
+    <string name="host_not_configured_error_dialog_title">Адрес сервера не настроен</string>v
+    <string name="host_not_configured_error_dialog_text">Настроить адрес сервера?</string>
+    <string name="host_not_configured_error_dialog_button">Настроить</string>
 
     <string name="entity_battle">Битва</string>
     <string name="entity_yokodzun">Ёкодзуна</string>
@@ -177,5 +183,10 @@
     <string name="edit_description_layer_warning_not_saved_title">Описание не сохранено</string>
     <string name="edit_description_layer_warning_not_saved_text">Сохранить описание?</string>
     <string name="edit_description_layer_warning_not_saved_reset_button">Отменить</string>
+
+    <string name="battle_rates_layer_no_results">Результаты отсутствуют</string>
+    <string name="battle_rates_layer_all_parameters">Все параметры</string>
+    <string name="battle_rates_layer_select_parameter_title">Параметр</string>
+    <string name="battle_rates_layer_select_parameter_text">Выберите параметр для просмотра результатов по нему</string>
 
 </resources>
