@@ -1,6 +1,7 @@
 package com.sibedge.yokodzun.android.data
 
 import com.sibedge.yokodzun.android.api.API
+import com.sibedge.yokodzun.android.utils.tryOrLogToCrashlitics
 import com.sibedge.yokodzun.common.exception.ApiException
 import com.sibedge.yokodzun.common.utils.AuthUtils
 import kotlinx.coroutines.Dispatchers
@@ -55,7 +56,11 @@ object AuthManager : PreferencesManager("auth") {
     fun logout() {
         adminAuthToken = ""
         raterCode = ""
-        Dispatchers.IO.launch { API.onLogout(AppInstanceManager.uuid).await() }
+        Dispatchers.IO.launch {
+            tryOrLogToCrashlitics {
+                API.onLogout(AppInstanceManager.uuid).await()
+            }
+        }
     }
 
 }
