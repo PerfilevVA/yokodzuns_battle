@@ -46,10 +46,11 @@ object AuthManager : PreferencesManager("auth") {
     ) {
         this.raterCode = raterCode
         try {
-            API.raterLogin(AppInstanceManager.uuid)
+            API.raterLogin(AppInstanceManager.uuid).await()
             onUserLoggedProducerInner.callListeners()
         } catch (th: Throwable) {
             this.raterCode = ""
+            throw th
         }
     }
 

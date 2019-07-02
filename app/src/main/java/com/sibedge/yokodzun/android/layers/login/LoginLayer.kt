@@ -47,49 +47,47 @@ class LoginLayer(
 
         content {
 
-            addVerticalLayout {
+            applyCenterGravity()
+            applyPadding(dp40, SizeManager.DEFAULT_SEPARATION)
 
-                applyCenterGravity()
-                applyPadding(dp40, SizeManager.DEFAULT_SEPARATION)
+            addLinearSeparator()
 
-                addLinearSeparator(4f)
-
-                addLayoutDrawableView(
-                    content = DrawableGetter(R.drawable.ic_logo_with_text),
-                    layoutType = LayoutType.Independent
-                )
-
-                addLinearSeparator()
-
-                addLabel(
-                    fontType = FontManager.DEFAULT,
-                    textSize = SizeManager.TEXT_16,
-                    textColor = ColorManager.FG,
-                    text = StringGetter(R.string.login_layer_code_input_title),
-                    maxLines = 1,
-                    minLines = 1,
-                    gravity = HGravity.CENTER
-                )
-
-                val raterCodeInput = RaterCodeInput(
-                    context = context,
-                    onEntered = this@LoginLayer::loginAsRater
-                )
-
-                addView(raterCodeInput)
-
-                addLinearSeparator(5f)
-
-                KeyboardManager.showAndRequestFocus(raterCodeInput)
-
-            }
-
-            if (SettingsManager.host.isBlank()) {
-                postDelayed(TimeValue.SECOND) {
-                    ErrorHandler.handle(ApiException.HOST_NOT_CONFIGURED)
+            addLayoutDrawableView(
+                content = DrawableGetter(R.drawable.ic_logo_with_text),
+                layoutType = LayoutType.Independent
+            ) {
+                applyLinearParams {
+                    setBottomMargin(SizeManager.LARGE_SEPARATION)
                 }
             }
 
+            addLabel(
+                fontType = FontManager.DEFAULT,
+                textSize = SizeManager.TEXT_16,
+                textColor = ColorManager.FG,
+                text = StringGetter(R.string.login_layer_code_input_title),
+                maxLines = 1,
+                minLines = 1,
+                gravity = HGravity.CENTER
+            )
+
+            val raterCodeInput = RaterCodeInput(
+                context = context,
+                onEntered = this@LoginLayer::loginAsRater
+            )
+
+            addView(raterCodeInput)
+
+            addLinearSeparator()
+
+            KeyboardManager.showAndRequestFocus(raterCodeInput)
+
+        }
+
+        if (SettingsManager.host.isBlank()) {
+            postDelayed(TimeValue.SECOND) {
+                ErrorHandler.handle(ApiException.HOST_NOT_CONFIGURED)
+            }
         }
 
     }

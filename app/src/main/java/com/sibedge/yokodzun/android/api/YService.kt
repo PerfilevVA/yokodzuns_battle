@@ -25,7 +25,7 @@ interface YService {
     @PATCH("/rater/login")
     fun raterLogin(
         @Query("app-instance-uuid") appInstanceUUID: String
-    ): Deferred<String>
+    ): Deferred<Unit>
 
     @PATCH("/admin/change-password")
     fun adminChangePassword(
@@ -167,7 +167,7 @@ interface YService {
         @Query("app-instance-uuid") appInstanceUUID: String
     ): Deferred<Unit>
 
-    @PUT("/battles/{battle-id}/raters/message")
+    @PUT("/battles/{battle-id}/raters-message")
     fun sendMessageToRaters(
         @Path("battle-id") battleId: String,
         @Query("message") message: String
