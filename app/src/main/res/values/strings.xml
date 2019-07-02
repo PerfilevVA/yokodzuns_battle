@@ -27,6 +27,8 @@
     <string name="host_not_configured_error_dialog_title">Адрес сервера не настроен</string>v
     <string name="host_not_configured_error_dialog_text">Настроить адрес сервера?</string>
     <string name="host_not_configured_error_dialog_button">Настроить</string>
+    <string name="error_ddos">Вы заблокированы за чрезмерную активность</string>
+    <string name="error_ddos_seconds_to_unlock">До разблокировки %s</string>
 
     <string name="entity_battle">Битва</string>
     <string name="entity_yokodzun">Ёкодзуна</string>

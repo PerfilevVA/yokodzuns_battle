@@ -10,8 +10,10 @@ import com.sibedge.yokodzun.android.layers.SettingsLayer
 import com.sibedge.yokodzun.android.layers.login.LoginLayer
 import com.sibedge.yokodzun.common.exception.ApiException
 import com.sibedge.yokodzun.common.exception.ApiExceptionContent
+import com.sibedge.yokodzun.common.utils.uiString
 import ru.hnau.androidutils.context_getters.toGetter
 import ru.hnau.androidutils.ui.utils.logE
+import ru.hnau.jutils.TimeValue
 import ru.hnau.jutils.stringStackTrace
 import java.lang.IllegalStateException
 
@@ -55,9 +57,8 @@ object ErrorHandler : (Throwable) -> Unit {
             is ApiExceptionContent.Authentication -> onAuthError()
             is ApiExceptionContent.AdminPasswordNotConfigured -> onAdminPasswordNotConfigured()
             is ApiExceptionContent.HostNotConfigured -> onHostNotConfigured()
-            is ApiExceptionContent.Common -> displayError(
-                content.message.toGetter()
-            )
+            is ApiExceptionContent.Common -> displayError(content.message.toGetter())
+            is ApiExceptionContent.DdosBlocked -> onDdosError(content.secondsToUnlock)
             else -> displayError(StringGetter(R.string.error_undefined))
 
         }
@@ -67,6 +68,20 @@ object ErrorHandler : (Throwable) -> Unit {
 
     private fun displayError(message: StringGetter) =
         shortToast(message)
+
+    private fun onDdosError(secondsToUnlock: Long?) {
+        AppActivityConnector.showDialog {
+            title(StringGetter(R.string.error_undefined))
+            val timeToUnlockSuffix = secondsToUnlock?.let { seconds ->
+                StringGetter("\n") + StringGetter(
+                    R.string.error_ddos_seconds_to_unlock,
+                    TimeValue(seconds).uiString
+                )
+            } ?: StringGetter.EMPTY
+            text(StringGetter(R.string.error_ddos) + timeToUnlockSuffix)
+            closeButton(StringGetter(R.string.dialog_close))
+        }
+    }
 
     private fun onAuthError() {
         displayError(StringGetter(R.string.error_authentication))
