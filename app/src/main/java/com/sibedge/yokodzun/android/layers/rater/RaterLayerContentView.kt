@@ -2,12 +2,15 @@ package com.sibedge.yokodzun.android.layers.rater
 
 import android.content.Context
 import android.graphics.fonts.Font
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.sibedge.parameter.android.layers.battle.parameters.ImmutableBattleParametersLayer
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.layers.battle.yokodzuns.ImmutableBattleYokodzunsLayer
+import com.sibedge.yokodzun.android.layers.sections.RateSectionsLayer
+import com.sibedge.yokodzun.android.layers.sections.ViewSectionsLayer
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addBottomButtonView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addButtonView
 import com.sibedge.yokodzun.android.ui.view.AsyncImageView
@@ -35,17 +38,20 @@ import ru.hnau.androidutils.ui.view.label.addLabel
 import ru.hnau.androidutils.ui.view.utils.apply.*
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 import ru.hnau.androidutils.ui.view.waiter.material.drawer.params.MaterialWaiterSize
+import ru.hnau.jutils.handle
 import ru.hnau.jutils.takeIfNotEmpty
 
 
 class RaterLayerContentView(
     context: Context,
-    battle: Battle
+    private val battle: Battle
 ) : ScrollView(context) {
 
     init {
         isFillViewport = true
         addVerticalLayout {
+
+            applyVerticalPadding(SizeManager.LARGE_SEPARATION)
 
             addView(
                 DescriptionLogoView(
@@ -54,7 +60,7 @@ class RaterLayerContentView(
                 )
                     .apply {
                         applyLinearParams {
-                            setTopMargin(SizeManager.LARGE_SEPARATION * 2)
+                            setTopMargin(SizeManager.LARGE_SEPARATION)
                             setHorizontalMargins(SizeManager.DEFAULT_SEPARATION)
                         }
                         data = battle.description
@@ -143,9 +149,7 @@ class RaterLayerContentView(
                     ),
                     onClick = this@RaterLayerContentView::rateOrViewSections
                 ) {
-                    applyLinearParams {
-                        setBottomMargin(SizeManager.DEFAULT_SEPARATION)
-                    }
+                    applyLinearParams()
                 }
 
             }
@@ -155,7 +159,11 @@ class RaterLayerContentView(
     }
 
     private fun rateOrViewSections() {
-        //TODO
+        val layer = (battle.status == BattleStatus.IN_PROGRESS).handle(
+            onTrue = { RateSectionsLayer.newInstance(context, battle) },
+            onFalse = { ViewSectionsLayer.newInstance(context, battle) }
+        )
+        AppActivityConnector.showLayer({ layer })
     }
 
     private fun ViewGroup.addCountView(

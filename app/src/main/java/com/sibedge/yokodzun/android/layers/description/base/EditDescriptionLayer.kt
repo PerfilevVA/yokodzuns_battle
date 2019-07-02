@@ -10,12 +10,14 @@ import com.sibedge.yokodzun.android.ui.hierarchy_utils.addFgSmallInputLabelView
 import com.sibedge.yokodzun.android.ui.view.input.multiline.MultilineInputView
 import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputViewInfo
+import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.helpers.Description
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.context_getters.toGetter
 import ru.hnau.androidutils.ui.view.utils.apply.*
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
+import ru.hnau.jutils.ifTrue
 
 
 abstract class EditDescriptionLayer(
@@ -29,6 +31,44 @@ abstract class EditDescriptionLayer(
 
     protected abstract val initialDescription: Description
 
+    private val titleInput by lazy {
+        SimpleInputView(
+            context = context,
+            text = initialDescription.title.toGetter()
+        )
+    }
+
+    private val logoUrlInput by lazy {
+        SimpleInputView(
+            context = context,
+            text = initialDescription.logoUrl.toGetter(),
+            info = SimpleInputViewInfo(
+                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
+            )
+        )
+    }
+
+    private val descriptionInput by lazy {
+        MultilineInputView(
+            context = context,
+            text = initialDescription.description.toGetter(),
+            hint = descriptionHint + "..."
+        ).apply {
+            applyLinearParams {
+                setStretchedHeight()
+                setMatchParentWidth()
+            }
+        }
+    }
+
+    private val editedDescription
+        get() = Description(
+            title = titleInput.text.toString(),
+            logoUrl = logoUrlInput.text.toString(),
+            description = descriptionInput.text.toString()
+        )
+
+
     override fun afterCreate() {
         super.afterCreate()
 
@@ -37,7 +77,6 @@ abstract class EditDescriptionLayer(
             addScrollView {
 
                 isFillViewport = true
-                applyPadding(SizeManager.LARGE_SEPARATION, SizeManager.DEFAULT_SEPARATION)
                 applyLinearParams {
                     setMatchParentWidth()
                     setStretchedHeight()
@@ -45,34 +84,20 @@ abstract class EditDescriptionLayer(
 
                 addVerticalLayout {
 
-                    addFgSmallInputLabelView(titleHint)
+                    applyPadding(SizeManager.LARGE_SEPARATION, SizeManager.DEFAULT_SEPARATION)
 
-                    val titleInput =
-                        SimpleInputView(
-                            context = context,
-                            text = initialDescription.title.toGetter()
-                        )
+                    addFgSmallInputLabelView(titleHint)
                     addChild(titleInput)
 
-                    val logoUrlInput =
-                        SimpleInputView(
-                            context = context,
-                            text = initialDescription.logoUrl.toGetter(),
-                            info = SimpleInputViewInfo(
-                                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
-                            )
-                        )
-
-                    val logoView = DescriptionLogoView(
-                        context
-                    ).apply {
-                        applyLinearParams {
-                            applyBottomGravity()
-                            setStartMargin(SizeManager.SMALL_SEPARATION)
-                            setEndMargin(SizeManager.SMALL_SEPARATION)
+                    val logoView = DescriptionLogoView(context)
+                        .apply {
+                            applyLinearParams {
+                                applyBottomGravity()
+                                setStartMargin(SizeManager.SMALL_SEPARATION)
+                                setEndMargin(SizeManager.SMALL_SEPARATION)
+                            }
+                            data = initialDescription
                         }
-                        data = initialDescription
-                    }
 
                     addHorizontalLayout {
                         addVerticalLayout {
@@ -99,28 +124,12 @@ abstract class EditDescriptionLayer(
 
 
                     addFgSmallInputLabelView(descriptionHint)
-                    val descriptionInput = MultilineInputView(
-                        context = context,
-                        text = initialDescription.description.toGetter(),
-                        hint = descriptionHint + "..."
-                    ).apply {
-                        applyLinearParams {
-                            setStretchedHeight()
-                            setMatchParentWidth()
-                        }
-                    }
+
                     addChild(descriptionInput)
 
                     addBottomButtonView(
                         text = StringGetter(R.string.dialog_save),
-                        onClick = {
-                            val newDescription = Description(
-                                title = titleInput.text.toString(),
-                                logoUrl = logoUrlInput.text.toString(),
-                                description = descriptionInput.text.toString()
-                            )
-                            save(newDescription)
-                        }
+                        onClick = { save(editedDescription) }
                     )
 
                 }
@@ -139,5 +148,17 @@ abstract class EditDescriptionLayer(
     }
 
     protected abstract suspend fun saveAsync(editedDescription: Description)
+
+    override fun handleGoBack(): Boolean {
+        val editedDescription = this.editedDescription
+        (editedDescription == initialDescription).ifTrue { return false }
+        AppActivityConnector.showDialog {
+            title(StringGetter(R.string.edit_description_layer_warning_not_saved_title))
+            text(StringGetter(R.string.edit_description_layer_warning_not_saved_text))
+            closeButton(StringGetter(R.string.edit_description_layer_warning_not_saved_reset_button)) { managerConnector.goBack() }
+            closeButton(StringGetter(R.string.dialog_save)) { save(editedDescription) }
+        }
+        return true
+    }
 
 }

@@ -174,4 +174,8 @@
     <string name="raters_layer_remove_confirm_dialog_title">Удаление зрителя</string>
     <string name="raters_layer_remove_confirm_dialog_text">Удалить зрителя?</string>
 
+    <string name="edit_description_layer_warning_not_saved_title">Описание не сохранено</string>
+    <string name="edit_description_layer_warning_not_saved_text">Сохранить описание?</string>
+    <string name="edit_description_layer_warning_not_saved_reset_button">Отменить</string>
+
 </resources>
