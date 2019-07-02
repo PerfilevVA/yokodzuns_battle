@@ -16,18 +16,15 @@ import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.extensions.combine
 
 
-class SectionsTreeListView(
+class SectionsTreeListView private constructor(
     context: Context,
     sectionsList: SectionsList,
-    additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)?
+    additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)?,
+    itemsProducer: Producer<List<TreeSection>>
 ) : BaseList<TreeSection>(
     context = context,
     fixedSize = false,
-    itemsProducer = Producer.combine(
-        producer1 = sectionsList.sections,
-        producer2 = sectionsList.openedSections,
-        combiner = SectionsTreeUtils::sectionsListToTree
-    ),
+    itemsProducer = itemsProducer,
     viewWrappersCreator = {
         SectionView(context, additionalButtonInfoCreator)
         { sectionsList.openedSections.switchSectionVisibility(it.section.id) }
@@ -41,6 +38,25 @@ class SectionsTreeListView(
     itemsDecoration = YListItemsDevider.create(context)
 ) {
 
+    companion object {
+
+        fun create(
+            context: Context,
+            sectionsList: SectionsList,
+            additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)?
+        ) = SectionsTreeListView(
+            context = context,
+            sectionsList = sectionsList,
+            additionalButtonInfoCreator = additionalButtonInfoCreator,
+            itemsProducer = Producer.combine(
+                producer1 = sectionsList.sections,
+                producer2 = sectionsList.openedSections,
+                combiner = SectionsTreeUtils::sectionsListToTree
+            )
+        )
+
+    }
+
     private val onListScrolledProducer =
         createOnRecyclerViewScrolledProducer()
 
@@ -48,7 +64,7 @@ class SectionsTreeListView(
         createRecycleViewIsScrolledToTopProducer(onListScrolledProducer)
 
     init {
-        setBottomPaddingForPrimaryActionButtonDecoration(sectionsList.sections)
+        setBottomPaddingForPrimaryActionButtonDecoration(itemsProducer)
     }
 
 }

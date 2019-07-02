@@ -149,7 +149,9 @@ class RaterLayerContentView(
                     ),
                     onClick = this@RaterLayerContentView::rateOrViewSections
                 ) {
-                    applyLinearParams()
+                    applyLinearParams {
+                        setTopMargin(SizeManager.DEFAULT_SEPARATION)
+                    }
                 }
 
             }

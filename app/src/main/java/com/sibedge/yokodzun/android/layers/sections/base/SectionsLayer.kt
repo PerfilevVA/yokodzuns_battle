@@ -28,13 +28,12 @@ abstract class SectionsLayer(
 
     override val title get() = battle.entityNameWithTitle
 
-    protected open val sectionsList
-            by lazy { SectionsList(battle.sections.toProducer()) }
+    protected abstract val sectionsList: SectionsList
 
     protected open val additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)? = null
 
     private val listView by lazy {
-        SectionsTreeListView(
+        SectionsTreeListView.create(
             context = context,
             sectionsList = sectionsList,
             additionalButtonInfoCreator = additionalButtonInfoCreator
