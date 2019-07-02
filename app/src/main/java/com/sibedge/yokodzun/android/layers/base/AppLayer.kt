@@ -51,7 +51,7 @@ abstract class AppLayer(
 
     protected abstract val title: StringGetter
 
-    private val isVisibleToUserProducer =
+    protected val isVisibleToUserProducer =
         createIsVisibleToUserProducer()
 
     protected val uiJob = createUIJob(

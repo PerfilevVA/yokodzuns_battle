@@ -2,18 +2,24 @@ package com.sibedge.yokodzun.android.layers.sections
 
 import android.content.Context
 import com.sibedge.yokodzun.android.R
+import com.sibedge.yokodzun.android.layers.login.LoginLayer
 import com.sibedge.yokodzun.android.layers.rate.RateSectionLayer
+import com.sibedge.yokodzun.android.layers.rater.RaterLayer
 import com.sibedge.yokodzun.android.layers.sections.base.ImmutableSectionsLayer
 import com.sibedge.yokodzun.android.layers.sections.edit.AdminEditSectionsLayer
 import com.sibedge.yokodzun.android.layers.sections.edit.SectionsEditor
 import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.ui.view.list.sections.content.OpenedSections
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
+import com.sibedge.yokodzun.android.utils.managers.fcm.FCMMessagesReceiver
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.Section
+import com.sibedge.yokodzun.common.data.notification.type.YNotificationBattleStopped
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
+import ru.hnau.androidutils.utils.runUi
 import ru.hnau.jutils.handle
+import ru.hnau.jutils.producer.extensions.observeWhen
 
 
 class RateSectionsLayer(
@@ -51,6 +57,14 @@ class RateSectionsLayer(
             },
             onFalse = { null }
         )
+    }
+
+    init {
+        FCMMessagesReceiver.observeWhen(isVisibleToUserProducer) { message ->
+            if (message is YNotificationBattleStopped) {
+                runUi { managerConnector.showLayer(RaterLayer(context), true) }
+            }
+        }
     }
 
 }

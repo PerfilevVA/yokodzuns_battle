@@ -40,9 +40,6 @@ class RaterLayer(
         setSize(ScreenManager.width)
     }
 
-    private val isVisibleToUserProducer =
-        createIsVisibleToUserProducer()
-
     override fun afterCreate() {
         super.afterCreate()
 

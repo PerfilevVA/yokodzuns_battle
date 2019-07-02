@@ -95,15 +95,9 @@ class LoginLayer(
     }
 
     private fun loginAsRater(raterCode: String) {
-        AuthManager.loginAsRater(raterCode)
         uiJobLocked {
-            try {
-                RaterBattleDataManager.wait().get()
-                AppActivityConnector.showLayer(::RaterLayer, true)
-            } catch (th: Throwable) {
-                AuthManager.logout()
-                throw th
-            }
+            AuthManager.loginAsRater(raterCode)
+            AppActivityConnector.showLayer(::RaterLayer, true)
         }
     }
 

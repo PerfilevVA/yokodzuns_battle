@@ -5,21 +5,27 @@ import com.sibedge.parameter.android.data.ParametersDataManager
 import com.sibedge.yokodzun.android.data.RaterBattleDataManager
 import com.sibedge.yokodzun.android.data.YokodzunsDataManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
+import com.sibedge.yokodzun.android.layers.login.LoginLayer
 import com.sibedge.yokodzun.android.layers.rate.list.RatesList
+import com.sibedge.yokodzun.android.layers.rater.RaterLayer
 import com.sibedge.yokodzun.android.ui.view.addSuspendPresenter
 import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle
+import com.sibedge.yokodzun.android.utils.managers.fcm.FCMMessagesReceiver
 import com.sibedge.yokodzun.common.data.Parameter
 import com.sibedge.yokodzun.common.data.Yokodzun
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.Section
+import com.sibedge.yokodzun.common.data.notification.type.YNotificationBattleStopped
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
+import ru.hnau.androidutils.utils.runUi
 import ru.hnau.jutils.getter.SuspendGetter
 import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.getter.base.get
 import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.StateProducerSimple
 import ru.hnau.jutils.producer.extensions.combine
+import ru.hnau.jutils.producer.extensions.observeWhen
 
 
 class RateSectionLayer(
@@ -59,6 +65,14 @@ class RateSectionLayer(
     }
 
     private val rateInfo = StateProducerSimple<Triple<Battle, List<Parameter>, List<Yokodzun>>>()
+
+    init {
+        FCMMessagesReceiver.observeWhen(isVisibleToUserProducer) { message ->
+            if (message is YNotificationBattleStopped) {
+                runUi { managerConnector.showLayer(RaterLayer(context), true) }
+            }
+        }
+    }
 
     override fun afterCreate() {
         super.afterCreate()

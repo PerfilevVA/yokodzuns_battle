@@ -14,11 +14,17 @@ import retrofit2.http.*
 import ru.hnau.jutils.possible.Possible
 
 
-interface RTService {
+interface YService {
 
     @PATCH("/admin/login")
     fun adminLogin(
-        @Query("password") password: String
+        @Query("password") password: String,
+        @Query("app-instance-uuid") appInstanceUUID: String
+    ): Deferred<String>
+
+    @PATCH("/rater/login")
+    fun raterLogin(
+        @Query("app-instance-uuid") appInstanceUUID: String
     ): Deferred<String>
 
     @PATCH("/admin/change-password")
@@ -149,5 +155,22 @@ interface RTService {
     fun getBattleRates(
         @Path("battle-id") battleId: String
     ): Deferred<List<Rate>>
+
+    @PATCH("/client-app-instance/{app-instance-uuid}/push-token/{push-token}")
+    fun changePushToken(
+        @Path("app-instance-uuid") appInstanceUUID: String,
+        @Path("push-token") pushToken: String
+    ): Deferred<Unit>
+
+    @PATCH("/on-logout")
+    fun onLogout(
+        @Query("app-instance-uuid") appInstanceUUID: String
+    ): Deferred<Unit>
+
+    @PUT("/battles/{battle-id}/raters/message")
+    fun sendMessageToRaters(
+        @Path("battle-id") battleId: String,
+        @Query("message") message: String
+    ): Deferred<Unit>
 
 }

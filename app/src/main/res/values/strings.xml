@@ -4,6 +4,9 @@
     <string name="notification_channel_title_default">Уведомления битвы ёкодзун</string>
     <string name="notification_channel_description_default">Стандартные уведомления</string>
 
+    <string name="notification_battle_started_text">Битва %s началась</string>
+    <string name="notification_battle_stopped_text">Битва %s завершилась</string>
+
     <string name="dialog_next">Далее</string>
     <string name="dialog_close">Закрыть</string>
     <string name="dialog_cancel">Отмена</string>
@@ -98,6 +101,7 @@
     <string name="battle_action_remove">Удалить</string>
     <string name="battle_action_start">Начать</string>
     <string name="battle_action_stop">Завершить</string>
+    <string name="battle_action_send_message_to_raters">Отправить сообщение зрителям</string>
     <string name="battle_action_edit_description">Изменить описание</string>
     <string name="battle_action_edit_raters">Управление зрителями</string>
     <string name="battle_action_edit_sections">Управление разделами</string>
@@ -116,6 +120,11 @@
     <string name="battle_action_stop_confirm_dialog_button">Остановить</string>
     <string name="battle_action_remove_confirm_dialog_title">Удаление битвы</string>
     <string name="battle_action_remove_confirm_dialog_text">Удалить битву?</string>
+    <string name="battle_action_send_message_to_raters_title">Отправить сообщение</string>
+    <string name="battle_action_send_message_to_raters_text">Введите текст для сообщения зрителям</string>
+    <string name="battle_action_send_message_to_raters_hint">Текст сообщения</string>
+    <string name="battle_action_send_message_to_raters_send">Отправить</string>
+    <string name="battle_action_send_message_to_raters_empty_error">Введите текст сообщения</string>
     
     <string name="edit_battle_description_layer_title">Описание битвы</string>
     <string name="edit_battle_description_layer_title_hint">Название битвы</string>

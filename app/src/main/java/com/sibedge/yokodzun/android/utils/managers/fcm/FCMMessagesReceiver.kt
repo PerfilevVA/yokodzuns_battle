@@ -1,17 +1,20 @@
 package com.sibedge.yokodzun.android.utils.managers.fcm
 
 import com.google.firebase.messaging.RemoteMessage
+import com.sibedge.yokodzun.android.App
 import com.sibedge.yokodzun.android.data.AuthManager
 import ru.hnau.jutils.takeIfNotEmpty
 import ru.hnau.jutils.tryCatch
 import com.sibedge.yokodzun.android.utils.managers.CrashliticsManager
 import com.sibedge.yokodzun.common.data.notification.YNotification
 import com.sibedge.yokodzun.common.data.notification.YToUserNotification
+import ru.hnau.androidutils.utils.runUi
+import ru.hnau.jutils.producer.Producer
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 
 
-object FCMMessagesReceiver {
+object FCMMessagesReceiver: Producer<YNotification>() {
 
     fun onNewFcmMessage(fcmMessage: RemoteMessage?) {
 
@@ -27,8 +30,7 @@ object FCMMessagesReceiver {
             }
         ) ?: return
 
-        YNotificationsHandler.onNewYNotification(notification)
-
+        call(notification)
     }
 
     @Throws

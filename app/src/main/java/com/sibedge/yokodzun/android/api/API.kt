@@ -11,9 +11,9 @@ import com.sibedge.yokodzun.common.exception.ApiException
 import ru.hnau.jutils.takeIfNotEmpty
 
 
-var cached: RTService? = null
+var cached: YService? = null
 
-val API: RTService
+val API: YService
     get() {
         var result = cached
         if (result == null) {
@@ -27,7 +27,7 @@ fun resetApi() {
     cached = null
 }
 
-private fun getApi(): RTService {
+private fun getApi(): YService {
 
     val host = SettingsManager.host
     if (host.isEmpty()) {
@@ -61,5 +61,5 @@ private fun getApi(): RTService {
         .addCallAdapterFactory(DeferredCallAdapterFactory)
         .build()
 
-    return retrofit.create(RTService::class.java)
+    return retrofit.create(YService::class.java)
 }
