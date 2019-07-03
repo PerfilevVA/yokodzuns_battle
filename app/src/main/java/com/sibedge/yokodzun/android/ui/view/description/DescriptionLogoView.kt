@@ -8,7 +8,7 @@ import com.sibedge.yokodzun.android.ui.ViewWithData
 import com.sibedge.yokodzun.android.ui.view.circle.CircleBitmapDrawable
 import com.sibedge.yokodzun.android.ui.view.circle.CircleLetterDrawable
 import com.sibedge.yokodzun.android.ui.view.circle.CircleLogoDrawable
-import com.sibedge.yokodzun.android.utils.ImagesLoader
+import com.sibedge.yokodzun.android.utils.images.ImagesLoader
 import com.sibedge.yokodzun.android.utils.tryOrLogToCrashlitics
 import com.sibedge.yokodzun.common.data.helpers.Description
 import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter
@@ -24,7 +24,7 @@ import ru.hnau.jutils.takeIfNotEmpty
 
 class DescriptionLogoView(
     context: Context,
-    private val preferredSize: DpPxGetter = PREFERRED_SIZE
+    preferredSize: DpPxGetter = PREFERRED_SIZE
 ) : AsyncImageView(
     context = context,
     waiterSize = MaterialWaiterSize.SMALL
@@ -35,6 +35,8 @@ class DescriptionLogoView(
         private val PREFERRED_SIZE = dp64
 
     }
+
+    private val preferredSize = preferredSize.getPxInt(context)
 
     override val view = this
 
@@ -62,24 +64,14 @@ class DescriptionLogoView(
     private suspend fun loadByUrl(url: String?): Bitmap? {
         url?.takeIfNotEmpty() ?: return null
         return tryOrLogToCrashlitics {
-            ImagesLoader.load(url)
+            ImagesLoader.get(url, preferredSize, preferredSize)
         }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(
-            makeExactlyMeasureSpec(
-                getDefaultMeasurement(
-                    widthMeasureSpec,
-                    preferredSize.getPxInt(context) + horizontalPaddingSum
-                )
-            ),
-            makeExactlyMeasureSpec(
-                getDefaultMeasurement(
-                    heightMeasureSpec,
-                    preferredSize.getPxInt(context) + verticalPaddingSum
-                )
-            )
+            makeExactlyMeasureSpec(getDefaultMeasurement(widthMeasureSpec, preferredSize + horizontalPaddingSum)),
+            makeExactlyMeasureSpec(getDefaultMeasurement(heightMeasureSpec, preferredSize + verticalPaddingSum))
         )
     }
 

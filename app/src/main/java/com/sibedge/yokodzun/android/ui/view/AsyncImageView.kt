@@ -1,17 +1,10 @@
 package com.sibedge.yokodzun.android.ui.view
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.os.Build.VERSION_CODES.M
-import android.view.View
 import android.widget.FrameLayout
-import com.sibedge.yokodzun.android.utils.ImagesLoader
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.coroutines.createUIJob
-import ru.hnau.androidutils.ui.drawables.layout_drawable.LayoutType
-import ru.hnau.androidutils.ui.drawables.layout_drawable.view.LayoutDrawableView
-import ru.hnau.androidutils.ui.utils.logD
 import ru.hnau.androidutils.ui.view.utils.createIsVisibleToUserProducer
 import ru.hnau.androidutils.ui.view.waiter.material.drawer.params.MaterialWaiterColor
 import ru.hnau.androidutils.ui.view.waiter.material.drawer.params.MaterialWaiterSize
