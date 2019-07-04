@@ -8,6 +8,8 @@ import com.sibedge.yokodzun.android.ui.view.CountView
 import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.ui.view.description.DescriptionView
 import com.sibedge.yokodzun.android.ui.view.list.sections.SectionsTreeUtils
+import com.sibedge.yokodzun.android.utils.ColorTriple
+import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Section
 import ru.hnau.androidutils.context_getters.StringGetter
@@ -18,7 +20,8 @@ import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 
 class SectionContentView(
     context: Context,
-    additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)?
+    additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)?,
+    additionalButtonColor: ColorTriple = ColorManager.PRIMARY_TRIPLE
 ) : LinearLayout(
     context
 ), ViewWithData<TreeSection> {

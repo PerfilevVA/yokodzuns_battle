@@ -5,6 +5,7 @@ import com.sibedge.yokodzun.android.data.YokodzunsDataManager
 import com.sibedge.yokodzun.android.layers.select.SelectYokodzunForBattleLayer
 import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
+import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.common.data.Yokodzun
 import com.sibedge.yokodzun.common.data.battle.Battle
 import ru.hnau.androidutils.context_getters.DrawableGetter
@@ -46,7 +47,10 @@ class BattleYokodzunsEditor(
 
     fun createAdditionalButtonInfo(
         yokodzun: Yokodzun
-    ) = AdditionalButton.Info(DrawableGetter(R.drawable.ic_remove_fg)) {
+    ) = AdditionalButton.Info(
+        icon = DrawableGetter(R.drawable.ic_remove_fg),
+        color = ColorManager.RED_TRIPLE
+    ) {
         AppActivityConnector.showConfirmDialog(
             title = StringGetter(R.string.battle_yokodzuns_layer_remove_confirm_dialog_title),
             text = StringGetter(R.string.battle_yokodzuns_layer_remove_confirm_dialog_text),

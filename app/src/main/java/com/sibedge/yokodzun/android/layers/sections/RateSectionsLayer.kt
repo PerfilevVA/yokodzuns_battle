@@ -10,7 +10,9 @@ import com.sibedge.yokodzun.android.layers.sections.edit.AdminEditSectionsLayer
 import com.sibedge.yokodzun.android.layers.sections.edit.SectionsEditor
 import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.ui.view.list.sections.content.OpenedSections
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
+import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.fcm.FCMMessagesReceiver
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.Section
@@ -49,7 +51,10 @@ class RateSectionsLayer(
     override val additionalButtonInfoCreator = { section: Section ->
         (section.weight > 0).handle(
             onTrue = {
-                AdditionalButton.Info(DrawableGetter(R.drawable.ic_rate_half_fg)) {
+                AdditionalButton.Info(
+                    icon = DrawableGetter(R.drawable.ic_rate),
+                    color = ColorManager.PURPLE_TRIPLE
+                ) {
                     AppActivityConnector.showLayer({
                         RateSectionLayer.newInstance(context, section)
                     })
@@ -58,6 +63,8 @@ class RateSectionsLayer(
             onFalse = { null }
         )
     }
+
+    override val additionalButtonColor = ColorManager.PURPLE_TRIPLE
 
     init {
         FCMMessagesReceiver.observeWhen(isVisibleToUserProducer) { message ->

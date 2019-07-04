@@ -48,12 +48,7 @@ class DescriptionLogoView(
 
     private suspend fun loadLogo(description: Description?) =
         loadCircleDrawableByUrl(description?.logoUrl)
-            ?: description?.title?.takeIfNotEmpty()?.let {
-                CircleLetterDrawable(
-                    context,
-                    it
-                )
-            }
+            ?: description?.title?.takeIfNotEmpty()?.let { CircleLetterDrawable(context, it) }
             ?: CircleLogoDrawable(context)
 
     private suspend fun loadCircleDrawableByUrl(url: String?): Drawable? {

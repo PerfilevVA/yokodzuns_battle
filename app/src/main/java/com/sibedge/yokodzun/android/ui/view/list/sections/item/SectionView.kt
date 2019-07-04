@@ -2,6 +2,7 @@ package com.sibedge.yokodzun.android.ui.view.list.sections.item
 
 import android.content.Context
 import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.common.data.battle.Section
 import ru.hnau.androidutils.ui.view.clickable.ClickableLinearLayout
@@ -15,6 +16,7 @@ import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 class SectionView(
     context: Context,
     additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)?,
+    additionalButtonColor: ColorTriple = ColorManager.PRIMARY_TRIPLE,
     private val onClick: (TreeSection) -> Unit
 ) : ClickableLinearLayout(
     context = context,
@@ -28,7 +30,8 @@ class SectionView(
 
     private val contentView = SectionContentView(
         context = context,
-        additionalButtonInfoCreator = additionalButtonInfoCreator
+        additionalButtonInfoCreator = additionalButtonInfoCreator,
+        additionalButtonColor = additionalButtonColor
     ).applyLinearParams { setStretchedWidth() }
 
     private var section: TreeSection? = null

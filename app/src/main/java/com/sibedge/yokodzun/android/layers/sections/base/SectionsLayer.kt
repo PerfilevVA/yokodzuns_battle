@@ -7,6 +7,7 @@ import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.view.list.sections.SectionsTreeListView
 import com.sibedge.yokodzun.android.ui.view.list.sections.content.SectionsList
 import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.common.data.battle.Battle
@@ -32,11 +33,14 @@ abstract class SectionsLayer(
 
     protected open val additionalButtonInfoCreator: ((Section) -> AdditionalButton.Info?)? = null
 
+    protected open val additionalButtonColor: ColorTriple = ColorManager.PRIMARY_TRIPLE
+
     private val listView by lazy {
         SectionsTreeListView.create(
             context = context,
             sectionsList = sectionsList,
-            additionalButtonInfoCreator = additionalButtonInfoCreator
+            additionalButtonInfoCreator = additionalButtonInfoCreator,
+            additionalButtonColor = additionalButtonColor
         )
     }
 

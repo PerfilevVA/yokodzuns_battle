@@ -29,7 +29,10 @@ class RatesList(
                 battleParameter.id == parameter.id
             }
         }
-        yokodzuns.map { yokodzun ->
+        val battleYokodzuns = yokodzuns.filter { yokodzsun ->
+            yokodzsun.id in battle.yokodzunsIds
+        }
+        battleYokodzuns.map { yokodzun ->
             listOf(RatesListItem.createYokodzunTitle(yokodzun)) +
                     battleParameters.map { parameter ->
                         listOf(

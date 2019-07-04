@@ -12,11 +12,6 @@ class FilesLoader(
     private val client: OkHttpClient
 ) : SuspendGetter<String, ByteArray> {
 
-    /*private val client =
-        OkHttpClient.Builder()
-            .cache(Cache())
-            .build()*/
-
     override suspend fun get(
         key: String
     ): ByteArray {

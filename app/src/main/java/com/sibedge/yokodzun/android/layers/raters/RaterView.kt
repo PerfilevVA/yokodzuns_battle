@@ -44,7 +44,8 @@ class RaterView(
         additionalButtonInfo = { raterCode ->
             AdditionalButton.Info(
                 icon = DrawableGetter(R.drawable.ic_remove_fg),
-                action = { onRemoveClick(raterCode) }
+                action = { onRemoveClick(raterCode) },
+                color = ColorManager.RED_TRIPLE
             )
         }
     )

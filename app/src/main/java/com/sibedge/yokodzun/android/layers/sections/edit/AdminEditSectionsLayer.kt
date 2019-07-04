@@ -9,6 +9,7 @@ import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButto
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.view.list.sections.SectionsTreeListView
 import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
+import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.Section
@@ -48,13 +49,13 @@ class AdminEditSectionsLayer(
     override val additionalButtonInfoCreator = { section: Section ->
         AdditionalButton.Info(
             icon = DrawableGetter(R.drawable.ic_options_fg),
-            action = {
-                AdminEditSectionsLayerUtils.showSectionActions(
-                    section = section,
-                    callback = editor
-                )
-            }
-        )
+            color = ColorManager.PRIMARY_TRIPLE
+        ) {
+            AdminEditSectionsLayerUtils.showSectionActions(
+                section = section,
+                callback = editor
+            )
+        } //3sgq2m
     }
 
     override val emptyInfoView by lazy {

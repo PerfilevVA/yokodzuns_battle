@@ -16,6 +16,7 @@ import com.sibedge.yokodzun.android.utils.extensions.text
 import com.sibedge.yokodzun.android.utils.managers.CrashliticsManager
 import com.sibedge.yokodzun.android.utils.managers.ErrorHandler
 import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter.Companion.dp
+import ru.hnau.androidutils.context_getters.dp_px.dp64
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.coroutines.CoroutineContext
@@ -30,10 +31,10 @@ object Utils {
         .replace("-", "")
         .toUpperCase()
 
-   /* fun copyTextToClipboard(label: String, text: String) {
-        (ContextConnector.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
-            .primaryClip = ClipData.newPlainText(label, text)
-    }*/
+    /* fun copyTextToClipboard(label: String, text: String) {
+         (ContextConnector.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
+             .primaryClip = ClipData.newPlainText(label, text)
+     }*/
 
 }
 
