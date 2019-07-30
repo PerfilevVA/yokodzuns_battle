@@ -28,6 +28,8 @@ def retrofitVersion = "2.5.0"
 
 dependencies {
 
+    implementation fileTree(dir: 'libs', include: '*.jar')
+
     implementation "com.android.support:design:29.0.0"
     implementation "com.android.support:multidex:1.0.3"
 
@@ -40,8 +42,6 @@ dependencies {
 
     implementation "ru.hnau:jutils:2.1.1"
     implementation "ru.hnau:androidUtils:1.8.3"
-
-    implementation "com.sibedge.yokodzun:common:1.0.0"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
