@@ -2,15 +2,11 @@ package com.sibedge.yokodzun.android.layers.sections
 
 import android.content.Context
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.layers.login.LoginLayer
 import com.sibedge.yokodzun.android.layers.rate.RateSectionLayer
 import com.sibedge.yokodzun.android.layers.rater.RaterLayer
 import com.sibedge.yokodzun.android.layers.sections.base.ImmutableSectionsLayer
-import com.sibedge.yokodzun.android.layers.sections.edit.AdminEditSectionsLayer
-import com.sibedge.yokodzun.android.layers.sections.edit.SectionsEditor
 import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.ui.view.list.sections.content.OpenedSections
-import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.fcm.FCMMessagesReceiver
@@ -56,7 +52,7 @@ class RateSectionsLayer(
                     color = ColorManager.PURPLE_TRIPLE
                 ) {
                     AppActivityConnector.showLayer({
-                        RateSectionLayer.newInstance(context, section)
+                        RateSectionLayer.newInstance(context, battle, section)
                     })
                 }
             },
