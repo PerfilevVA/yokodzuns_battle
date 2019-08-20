@@ -44,7 +44,7 @@ class SelectYokodzunForBattleLayer(
     @LayerState
     private lateinit var alreadySelectedYokodzunsIds: List<String>
 
-    override val title = StringGetter(R.string.select_yokodzun_for_battle_layer_title)
+    override val title = StringGetter(R.string.select_team_for_battle_layer_title)
 
     override fun afterCreate() {
         super.afterCreate()
@@ -59,7 +59,7 @@ class SelectYokodzunForBattleLayer(
                     onEmptyListInfoViewGenerator = {
                         EmptyInfoView(
                             context = context,
-                            text = StringGetter(R.string.select_yokodzun_for_battle_layer_no_yokodzuns)
+                            text = StringGetter(R.string.select_team_for_battle_layer_no_teams)
                         )
                     },
                     producer = YokodzunsDataManager.map { yokodzunsGetter ->

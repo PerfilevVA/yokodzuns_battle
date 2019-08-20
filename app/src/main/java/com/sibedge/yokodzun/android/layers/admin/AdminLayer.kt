@@ -37,7 +37,7 @@ class AdminLayer(
                     viewCreator = { AdminBattlesPageView(context, this::uiJobLocked) }
                 ),
                 PagerPage(
-                    title = StringGetter(R.string.admin_layer_page_title_yokodzuns),
+                    title = StringGetter(R.string.admin_layer_page_title_teams),
                     viewCreator = { AdminYokodzunsPageView(context, this::uiJobLocked) }
                 ),
                 PagerPage(

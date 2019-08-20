@@ -9,7 +9,7 @@ import ru.hnau.androidutils.context_getters.StringGetter
 
 
 object BattleActionEditYokodzuns : BattleAction(
-    title = StringGetter(R.string.battle_action_edit_yokodzuns)
+    title = StringGetter(R.string.battle_action_edit_teams)
 ) {
 
     override fun execute(

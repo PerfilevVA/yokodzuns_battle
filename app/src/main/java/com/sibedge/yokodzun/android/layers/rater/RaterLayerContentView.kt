@@ -112,7 +112,7 @@ class RaterLayerContentView(
             addLinearSeparator()
 
             addCountView(
-                title = StringGetter(R.string.battle_view_yokodzuns),
+                title = StringGetter(R.string.battle_view_teams),
                 color = ColorManager.ORANGE_TRIPLE,
                 count = battle.yokodzunsIds.size
             ) {

@@ -8,7 +8,6 @@ import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.ui.view.cell.YokodzunView
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.view.list.base.async.AsyncViewsWithContentListContainer
-import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle
 import com.sibedge.yokodzun.common.data.Yokodzun
 import com.sibedge.yokodzun.common.data.battle.Battle
 import ru.hnau.androidutils.context_getters.StringGetter
@@ -27,14 +26,14 @@ abstract class BattleYokodzunsLayer(
     protected abstract val battle: Battle
 
     override val title
-        get() = StringGetter(R.string.battle_yokodzuns_layer_title, battle.description.title)
+        get() = StringGetter(R.string.battle_teams_layer_title, battle.description.title)
 
     protected abstract val yokodzunsProducer: Producer<GetterAsync<Unit, List<Yokodzun>>>
 
     protected open val onEmptyListInfoView by lazy {
         EmptyInfoView(
             context = context,
-            text = StringGetter(R.string.battle_yokodzuns_layer_no_yokodzuns_title)
+            text = StringGetter(R.string.battle_teams_layer_no_teams_title)
         )
     }
 

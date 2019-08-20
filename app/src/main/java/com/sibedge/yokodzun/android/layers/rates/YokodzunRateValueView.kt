@@ -10,15 +10,12 @@ import com.sibedge.yokodzun.android.ui.ViewWithData
 import com.sibedge.yokodzun.android.utils.RateUtils
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import ru.hnau.androidutils.context_getters.dp_px.dp1
-import ru.hnau.androidutils.context_getters.dp_px.dp2
 import ru.hnau.androidutils.context_getters.dp_px.dp24
-import ru.hnau.androidutils.context_getters.dp_px.dp32
 import ru.hnau.androidutils.ui.utils.types_utils.initAsRoundSideRect
 import ru.hnau.androidutils.ui.view.utils.getDefaultMeasurement
 import ru.hnau.androidutils.ui.view.utils.getMaxMeasurement
 import ru.hnau.androidutils.ui.view.utils.verticalPaddingSum
 import ru.hnau.jutils.getFloatInterFloats
-import ru.hnau.jutils.ifNull
 
 
 class YokodzunRateValueView(

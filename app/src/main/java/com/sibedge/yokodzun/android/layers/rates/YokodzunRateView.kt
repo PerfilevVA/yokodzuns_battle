@@ -1,14 +1,12 @@
 package com.sibedge.yokodzun.android.layers.rates
 
 import android.content.Context
-import android.view.View
 import android.widget.LinearLayout
 import com.sibedge.yokodzun.android.utils.RateCalculator
 import com.sibedge.yokodzun.android.utils.RateUtils
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
-import com.sibedge.yokodzun.common.data.battle.Battle
 import ru.hnau.androidutils.context_getters.dp_px.dp48
 import ru.hnau.androidutils.context_getters.dp_px.dp64
 import ru.hnau.androidutils.context_getters.toGetter

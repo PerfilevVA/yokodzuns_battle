@@ -27,7 +27,8 @@ object RateStarBitmapsCache {
 
     private data class Key(
         val mark: Int,
-        val selected: Boolean
+        val selected: Boolean,
+        val touchable: Boolean
     )
 
     private val cache = AutoCache<Key, Bitmap>(
@@ -35,16 +36,15 @@ object RateStarBitmapsCache {
         getter = this::generateBitmap
     )
 
-    fun get(mark: Int, selected: Boolean) =
-        cache.get(
-            Key(
-                mark,
-                selected
-            )
-        )
+    fun get(mark: Int, selected: Boolean, touchable: Boolean) =
+        cache[Key(
+            mark,
+            selected,
+            touchable
+        )]
 
     private fun generateBitmap(key: Key): Bitmap {
-        val (mark, selected) = key
+        val (mark, selected, touchable) = key
         val context = ContextConnector.context
         val value = RateUtils.markToValue(mark.toFloat())
         val minSize = MIN_SIZE.getPx(context)
@@ -52,7 +52,12 @@ object RateStarBitmapsCache {
         val size = getFloatInterFloats(minSize, maxSize, value).toInt()
         val drawable = DRAWABLES.getValue(selected).get(context)
         val color = selected.handle(
-            onTrue = { RateUtils.getValueColor(value) },
+            onTrue = {
+                touchable.handle(
+                    onTrue = { RateUtils.getValueColor(value) },
+                    onFalse = { RateUtils.getUntouchableValueColor(value) }
+                )
+            },
             onFalse = { ColorManager.FG_T50 }
         )
         DrawableCompat.setTint(drawable, color.get(context))

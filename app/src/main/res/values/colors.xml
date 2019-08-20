@@ -24,5 +24,9 @@
     <color name="purple_light">#7e57c2</color>
     <color name="purple_dark">#d81b60</color>
 
+    <color name="grey">#bdbdbd</color>
+    <color name="grey_light">#efefef</color>
+    <color name="grey_dark">#8d8d8d</color>
+
 
 </resources>

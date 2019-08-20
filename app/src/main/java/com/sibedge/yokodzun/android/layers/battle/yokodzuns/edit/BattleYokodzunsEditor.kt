@@ -52,8 +52,8 @@ class BattleYokodzunsEditor(
         color = ColorManager.RED_TRIPLE
     ) {
         AppActivityConnector.showConfirmDialog(
-            title = StringGetter(R.string.battle_yokodzuns_layer_remove_confirm_dialog_title),
-            text = StringGetter(R.string.battle_yokodzuns_layer_remove_confirm_dialog_text),
+            title = StringGetter(R.string.battle_teams_layer_remove_confirm_dialog_title),
+            text = StringGetter(R.string.battle_teams_layer_remove_confirm_dialog_text),
             confirmText = StringGetter(R.string.dialog_remove)
         ) {
             selectedYokodzunsIdsProducer.updateState(selectedYokodzunsIdsProducer.currentState - yokodzun.id)

@@ -2,23 +2,28 @@ package com.sibedge.yokodzun.android.layers.rate
 
 import android.content.Context
 import com.sibedge.parameter.android.data.ParametersDataManager
+import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.data.RaterRatesDataManager
 import com.sibedge.yokodzun.android.data.YokodzunsDataManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.layers.rate.list.RatesList
-import com.sibedge.yokodzun.android.layers.rate.list.item.RatesListItem
 import com.sibedge.yokodzun.android.layers.rater.RaterLayer
 import com.sibedge.yokodzun.android.ui.view.addSuspendPresenter
+import com.sibedge.yokodzun.android.ui.view.button.primary.addPrimaryActionButton
 import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle
+import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
+import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.android.utils.managers.fcm.FCMMessagesReceiver
 import com.sibedge.yokodzun.common.data.Parameter
-import com.sibedge.yokodzun.common.data.Rate
 import com.sibedge.yokodzun.common.data.Yokodzun
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.Section
 import com.sibedge.yokodzun.common.data.notification.type.YNotificationBattleStopped
-import ru.hnau.androidutils.ui.utils.logD
+import ru.hnau.androidutils.context_getters.DrawableGetter
+import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
+import ru.hnau.androidutils.ui.view.utils.apply.addFrameLayout
+import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyFrameParams
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 import ru.hnau.androidutils.utils.runUi
 import ru.hnau.jutils.getter.SuspendGetter
@@ -28,6 +33,7 @@ import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.StateProducerSimple
 import ru.hnau.jutils.producer.extensions.combine
 import ru.hnau.jutils.producer.extensions.observeWhen
+import ru.hnau.jutils.producer.extensions.toProducer
 
 
 class RateSectionLayer(
@@ -70,7 +76,7 @@ class RateSectionLayer(
         }
     }
 
-    private val rateInfo = StateProducerSimple<Triple<List<Yokodzun>, List<Parameter>, List<Rate>>>()
+    private val rateInfo = StateProducerSimple<Triple<List<Yokodzun>, List<Parameter>, Map<RaterRatesDataManager.Key, Float>>>()
 
     init {
         FCMMessagesReceiver.observeWhen(isVisibleToUserProducer) { message ->
@@ -88,56 +94,57 @@ class RateSectionLayer(
                 context = context,
                 battle = battle,
                 sectionId = section.id,
-                info = rateInfo,
-                executor = uiJob
+                info = rateInfo
             )
         }
 
         content {
 
-            addSuspendPresenter(
-                producer = rateInfoLoader as Producer<GetterAsync<Unit, Triple<List<Yokodzun>, List<Parameter>, List<Rate>>>>,
-                invalidator = {
-                    YokodzunsDataManager.invalidate()
-                    ParametersDataManager.invalidate()
-                    RaterRatesDataManager.invalidate()
-                },
-                contentViewGenerator = {
-                    rateInfo.updateState(it)
-                    val listItems = rateInfo.map { (yokodzuns, parameters, rates) ->
-                        val sectionRates = rates.filter { rate ->
-                            (rate.battleId == battle.id).and(rate.sectionId == section.id)
-                        }
-                        val battleParameters = parameters.filter { parameter ->
-                            battle.parameters.any { battleParameter ->
-                                battleParameter.id == parameter.id
-                            }
-                        }
-                        val battleYokodzuns = yokodzuns.filter { yokodzuns ->
-                            yokodzuns.id in battle.yokodzunsIds
-                        }
-                        battleYokodzuns.map { yokodzun ->
-                            listOf(RatesListItem.createYokodzunTitle(yokodzun)) +
-                                    battleParameters.map { parameter ->
-                                        listOf(
-                                            RatesListItem.createParameterTitle(parameter),
-                                            RatesListItem.createRateItem(sectionRates.find { rate ->
-                                                (rate.yokodzunId == yokodzun.id).and(rate.parameterId == parameter.id)
-                                            })
-                                        )
-                                    }.flatten()
-                        }.flatten()
-                    }
-                    listItems.map { listItemsList -> logD(listItemsList.toString()) }
-                    list
-                }
-            ) {
+            addFrameLayout {
+
                 applyLinearParams {
                     setStretchedHeight()
                     setMatchParentWidth()
                 }
-            }
 
+                addSuspendPresenter(
+                    producer = rateInfoLoader as Producer<GetterAsync<Unit, Triple<List<Yokodzun>, List<Parameter>, Map<RaterRatesDataManager.Key, Float>>>>,
+                    invalidator = {
+                        YokodzunsDataManager.invalidate()
+                        ParametersDataManager.invalidate()
+                        RaterRatesDataManager.invalidate()
+                    },
+                    contentViewGenerator = {
+                        rateInfo.updateState(it)
+                        list
+                    }
+                )
+
+                addPrimaryActionButton(
+                    icon = DrawableGetter(R.drawable.ic_done_fg),
+                    title = StringGetter(),
+                    onClick = this@RateSectionLayer::onDoneButtonClick,
+                    needShowTitle = false.toProducer()
+                ) {
+                    applyFrameParams {
+                        setMargins(SizeManager.DEFAULT_SEPARATION)
+                        setEndBottomGravity()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun onDoneButtonClick() {
+        AppActivityConnector.showConfirmDialog(
+            title = StringGetter(R.string.rates_section_layer_done_dialog_title),
+            text = StringGetter(R.string.rates_section_layer_done_dialog_text),
+            confirmText = StringGetter(R.string.rates_section_layer_done_dialog_confirm)
+        ) {
+            uiJobLocked {
+                RaterRatesDataManager.sync()
+                AppActivityConnector.goBack()
+            }
         }
     }
 }

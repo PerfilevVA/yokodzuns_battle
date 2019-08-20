@@ -36,8 +36,8 @@ class AdminYokodzunsPageView(
                 onEmptyListInfoViewGenerator = {
                     EmptyInfoView(
                         context = context,
-                        text = StringGetter(R.string.admin_layer_yokodzuns_page_no_yokodzuns_title),
-                        button = StringGetter(R.string.admin_layer_yokodzuns_page_add_yokodzun) to this::onAddYokodzunClick
+                        text = StringGetter(R.string.admin_layer_teams_page_no_teams_title),
+                        button = StringGetter(R.string.admin_layer_teams_page_add_team) to this::onAddYokodzunClick
                     )
                 },
                 producer = YokodzunsDataManager as Producer<GetterAsync<Unit, List<Yokodzun>>>,
@@ -53,7 +53,7 @@ class AdminYokodzunsPageView(
 
         addPrimaryActionButton(
             icon = DrawableGetter(R.drawable.ic_add_fg),
-            title = StringGetter(R.string.admin_layer_yokodzuns_page_add_yokodzun),
+            title = StringGetter(R.string.admin_layer_teams_page_add_team),
             needShowTitle = list.onListScrolledToTopProducer.not(),
             onClick = this::onAddYokodzunClick
         ) {

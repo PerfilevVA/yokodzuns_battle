@@ -34,4 +34,19 @@ object RaterRatesDataManager : YDataManager<Map<RaterRatesDataManager.Key, Float
         updateOrInvalidate { it.toMutableMap().apply { set(key, value) } }
     }
 
+    suspend fun sync() {
+        UnsyncRatesContainer.items.forEach { rate ->
+            rate(rate.key, rate.value)
+        }
+        UnsyncRatesContainer.clear()
+    }
+
+    object UnsyncRatesContainer {
+
+        val items = HashMap<Key, Float>()
+
+        fun put(key: Key, value: Float) = items.put(key, value)
+
+        fun clear() = items.clear()
+    }
 }

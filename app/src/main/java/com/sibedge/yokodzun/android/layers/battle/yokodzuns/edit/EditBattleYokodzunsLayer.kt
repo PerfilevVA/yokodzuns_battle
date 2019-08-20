@@ -50,8 +50,8 @@ class EditBattleYokodzunsLayer(
     override val onEmptyListInfoView by lazy {
         EmptyInfoView(
             context = context,
-            text = StringGetter(R.string.battle_yokodzuns_layer_no_yokodzuns_title),
-            button = StringGetter(R.string.battle_yokodzuns_layer_no_yokodzuns_add_yokodzun) to editor::selectNewYokodzun
+            text = StringGetter(R.string.battle_teams_layer_no_teams_title),
+            button = StringGetter(R.string.battle_teams_layer_no_teams_add_team) to editor::selectNewYokodzun
         )
     }
 
@@ -62,7 +62,7 @@ class EditBattleYokodzunsLayer(
     override fun ViewGroup.configureView(listView: AsyncViewsWithContentListContainer<Yokodzun>) {
         addPrimaryActionButton(
             icon = DrawableGetter(R.drawable.ic_add_fg),
-            title = StringGetter(R.string.battle_yokodzuns_layer_no_yokodzuns_add_yokodzun),
+            title = StringGetter(R.string.battle_teams_layer_no_teams_add_team),
             needShowTitle = listView.onListScrolledToTopProducer.not(),
             onClick = editor::selectNewYokodzun
         ) {

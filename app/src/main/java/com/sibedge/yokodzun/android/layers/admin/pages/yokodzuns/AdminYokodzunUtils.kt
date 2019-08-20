@@ -17,15 +17,15 @@ object AdminYokodzunUtils {
         coroutinesExecutor: (suspend CoroutineScope.() -> Unit) -> Unit
     ) = AppActivityConnector.showBottomSheet {
         title(yokodzun.entityNameWithTitle)
-        closeItem(StringGetter(R.string.yokodzun_action_edit_description)) {
+        closeItem(StringGetter(R.string.team_action_edit_description)) {
             AppActivityConnector.showLayer({
                 EditYokodzunDescriptionLayer.newInstance(context, yokodzun)
             })
         }
-        closeItem(StringGetter(R.string.yokodzun_action_remove)) {
+        closeItem(StringGetter(R.string.team_action_remove)) {
             AppActivityConnector.showConfirmDialog(
-                title = StringGetter(R.string.yokodzun_action_remove_confirm_dialog_title),
-                text = StringGetter(R.string.yokodzun_action_remove_confirm_dialog_text),
+                title = StringGetter(R.string.team_action_remove_confirm_dialog_title),
+                text = StringGetter(R.string.team_action_remove_confirm_dialog_text),
                 confirmText = StringGetter(R.string.dialog_remove)
             ) {
                 coroutinesExecutor { YokodzunsDataManager.remove(yokodzunId = yokodzun.id) }

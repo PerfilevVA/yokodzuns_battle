@@ -31,11 +31,17 @@
     <string name="error_ddos_seconds_to_unlock">До разблокировки %s</string>
 
     <string name="entity_battle">Битва</string>
-    <string name="entity_yokodzun">Ёкодзуна</string>
+    <string name="entity_team">Команда</string>
     <string name="entity_parameter">Параметр</string>
     <string name="entity_section">Раздел</string>
     <string name="entity_section_property_weight">Вес оценки</string>
     <string name="entity_parameter_property_weight">Вес параметра</string>
+
+    <string name="rates_section_layer_done_dialog_title">Подтверждение</string>
+    <string name="rates_section_layer_done_dialog_text">Вы действительно хотите подтвердить выставленные оценки? После подтверждения их будет невозможно изменить</string>
+    <string name="rates_section_layer_done_dialog_confirm">Подтвердить</string>
+
+    <string name="rates_section_layer_cant_change_mark_toast">Извините, вы не можете изменить эту оценку</string>
 
     <string name="global_menu_item_title_settings">Настройки</string>
     <string name="global_menu_item_title_admin_change_password">Сменить пароль</string>
@@ -69,18 +75,18 @@
 
     <string name="admin_layer_title">Администратор</string>
     <string name="admin_layer_page_title_battles">Битвы</string>
-    <string name="admin_layer_page_title_yokodzuns">Ёкодзуны</string>
+    <string name="admin_layer_page_title_teams">Команды</string>
     <string name="admin_layer_page_title_parameters">Параметры</string>
 
     <string name="admin_layer_battles_page_no_battles_title">Битвы отсутствуют</string>
     <string name="admin_layer_battles_page_add_battle">Добавить битву</string>
 
-    <string name="admin_layer_yokodzuns_page_no_yokodzuns_title">Ёкодзуны отсутствуют</string>
-    <string name="admin_layer_yokodzuns_page_add_yokodzun">Добавить ёкодзуну</string>
-    <string name="yokodzun_action_edit_description">Изменить описание</string>
-    <string name="yokodzun_action_remove">Удалить</string>
-    <string name="yokodzun_action_remove_confirm_dialog_title">Удаление ёкодзуны</string>
-    <string name="yokodzun_action_remove_confirm_dialog_text">Удалить ёкодзуну?</string>
+    <string name="admin_layer_teams_page_no_teams_title">Команды отсутствуют</string>
+    <string name="admin_layer_teams_page_add_team">Добавить команду</string>
+    <string name="team_action_edit_description">Изменить описание</string>
+    <string name="team_action_remove">Удалить</string>
+    <string name="team_action_remove_confirm_dialog_title">Удаление команды</string>
+    <string name="team_action_remove_confirm_dialog_text">Удалить команду?</string>
 
     <string name="admin_layer_parameters_page_no_parameters_title">Параметры отсутствуют</string>
     <string name="admin_layer_parameters_page_add_parameter">Добавить параметр</string>
@@ -92,7 +98,7 @@
     <string name="description_view_no_title_placeholder">&#60;Заголовок отсутствует&#62;</string>
     <string name="description_view_no_description_placeholder">&#60;Описание отсутствует&#62;</string>
 
-    <string name="battle_view_yokodzuns">Ёкодзуны</string>
+    <string name="battle_view_teams">Команды</string>
     <string name="battle_view_parameters">Параметры</string>
     <string name="battle_view_sections">Разделы</string>
     <string name="battle_view_title_status">Статус</string>
@@ -107,10 +113,10 @@
     <string name="battle_action_edit_description">Изменить описание</string>
     <string name="battle_action_edit_raters">Управление зрителями</string>
     <string name="battle_action_edit_sections">Управление разделами</string>
-    <string name="battle_action_edit_yokodzuns">Управление ёкодзунами</string>
+    <string name="battle_action_edit_teams">Управление командами</string>
     <string name="battle_action_edit_parameters">Управление параметрами</string>
     <string name="battle_action_view_sections">Просмотр разделов</string>
-    <string name="battle_action_view_yokodzuns">Просмотр ёкодзун</string>
+    <string name="battle_action_view_teams">Просмотр команд</string>
     <string name="battle_action_view_parameters">Просмотр параметров</string>
     <string name="battle_action_view_rates">Результаты</string>
 
@@ -127,7 +133,7 @@
     <string name="battle_action_send_message_to_raters_hint">Текст сообщения</string>
     <string name="battle_action_send_message_to_raters_send">Отправить</string>
     <string name="battle_action_send_message_to_raters_empty_error">Введите текст сообщения</string>
-    
+
     <string name="edit_battle_description_layer_title">Описание битвы</string>
     <string name="edit_battle_description_layer_title_hint">Название битвы</string>
     <string name="edit_battle_description_layer_logo_url_hint">URL изображения битвы</string>
@@ -138,10 +144,10 @@
     <string name="edit_section_description_layer_logo_url_hint">URL изображения раздела</string>
     <string name="edit_section_description_layer_description_hint">Описание раздела</string>
 
-    <string name="edit_yokodzun_description_layer_title">Описание ёкодзуны</string>
-    <string name="edit_yokodzun_description_layer_title_hint">ФИО ёкодзуны</string>
-    <string name="edit_yokodzun_description_layer_logo_url_hint">URL изображения ёкодзуны</string>
-    <string name="edit_yokodzun_description_layer_description_hint">Описание ёкодзуны</string>
+    <string name="edit_team_description_layer_title">Описание команды</string>
+    <string name="edit_team_description_layer_title_hint">Название команды</string>
+    <string name="edit_team_description_layer_logo_url_hint">URL изображения команды</string>
+    <string name="edit_team_description_layer_description_hint">Описание команды</string>
 
     <string name="edit_parameter_description_layer_title">Описание параметра</string>
     <string name="edit_parameter_description_layer_title_hint">Название параметра</string>
@@ -161,11 +167,11 @@
     <string name="section_action_change_weight">Изменить вес</string>
     <string name="section_action_remove">Удалить</string>
 
-    <string name="battle_yokodzuns_layer_title">Ёкодзуны битвы %s</string>
-    <string name="battle_yokodzuns_layer_no_yokodzuns_title">В битве отсутствуют ёкодзуны</string>
-    <string name="battle_yokodzuns_layer_no_yokodzuns_add_yokodzun">Добавить ёкодзуну</string>
-    <string name="battle_yokodzuns_layer_remove_confirm_dialog_title">Удаление ёкодзуны</string>
-    <string name="battle_yokodzuns_layer_remove_confirm_dialog_text">Удалить ёкодзуну из списка учавствующих в битве?</string>
+    <string name="battle_teams_layer_title">Команды битвы %s</string>
+    <string name="battle_teams_layer_no_teams_title">В битве отсутствуют команды</string>
+    <string name="battle_teams_layer_no_teams_add_team">Добавить команду</string>
+    <string name="battle_teams_layer_remove_confirm_dialog_title">Удаление команды</string>
+    <string name="battle_teams_layer_remove_confirm_dialog_text">Удалить команду из списка учавствующих в битве?</string>
 
     <string name="battle_parameters_layer_title">Параметры битвы %s</string>
     <string name="battle_parameters_layer_no_parameters_title">В битве отсутствуют параметры</string>
@@ -177,8 +183,8 @@
     <string name="battle_parameters_layer_change_weight_title">Изменить вес параметра</string>
     <string name="battle_parameters_layer_change_weight_text">Данный коэффициент определяет значимость параметра при подсчете результатов</string>
 
-    <string name="select_yokodzun_for_battle_layer_title">Выбор ёкодзуны</string>
-    <string name="select_yokodzun_for_battle_layer_no_yokodzuns">Доступные для выбора ёкодзуны отсутствуют</string>
+    <string name="select_team_for_battle_layer_title">Выбор команды</string>
+    <string name="select_team_for_battle_layer_no_teams">Доступные для выбора команды отсутствуют</string>
 
     <string name="select_parameter_for_battle_layer_title">Выбор параметра</string>
     <string name="select_parameter_for_battle_layer_no_parameters">Доступные для выбора параметры отсутствуют</string>
@@ -186,10 +192,15 @@
     <string name="raters_layer_title">Зрители битвы %s</string>
     <string name="raters_layer_no_raters_title">В битве отсутствуют зрители</string>
     <string name="raters_layer_no_raters_add_parameter">Добавить зрителей</string>
+    <string name="raters_layer_no_raters_cant_send_toast">Чтобы отправить ключи авторизации необходимо добавить зрителей</string>
     <string name="raters_layer_add_count_title">Зарегистрировать зрителей</string>
-    <string name="raters_layer_add_count_text">Введите кол-во зрителей, для которых необходимо сгенерировать коды авторизации</string>
+    <string name="raters_layer_add_count_text">Введите кол-во зрителей, для которых необходимо сгенерировать ключи авторизации</string>
     <string name="raters_layer_remove_confirm_dialog_title">Удаление зрителя</string>
     <string name="raters_layer_remove_confirm_dialog_text">Удалить зрителя?</string>
+
+    <string name="send_raters_codes_intent_file_name">Ключи авторизации</string>
+    <string name="send_raters_codes_intent_subject">Битва ёкодзун: Ключи авторизации пользователей</string>
+    <string name="send_raters_codes_intent_chooser">Отправить Ключи авторизации…</string>
 
     <string name="edit_description_layer_warning_not_saved_title">Описание не сохранено</string>
     <string name="edit_description_layer_warning_not_saved_text">Сохранить описание?</string>

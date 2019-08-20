@@ -1,8 +1,12 @@
 package com.sibedge.yokodzun.android.utils.managers
 
 import android.content.Context
+import com.sibedge.yokodzun.android.R
+import com.sibedge.yokodzun.android.utils.ColorTriple
 import ru.hnau.androidutils.context_getters.ColorGetter
-import ru.hnau.androidutils.context_getters.dp_px.*
+import ru.hnau.androidutils.context_getters.dp_px.dp2
+import ru.hnau.androidutils.context_getters.dp_px.dp4
+import ru.hnau.androidutils.context_getters.dp_px.dp8
 import ru.hnau.androidutils.ui.drawer.ripple.info.RippleDrawInfo
 import ru.hnau.androidutils.ui.drawer.ripple.info.RippleInfo
 import ru.hnau.androidutils.ui.drawer.shadow.info.ButtonShadowInfo
@@ -16,8 +20,6 @@ import ru.hnau.androidutils.ui.view.waiter.material.drawer.params.MaterialWaiter
 import ru.hnau.androidutils.ui.view.waiter.material.drawer.params.MaterialWaiterSize
 import ru.hnau.jutils.TimeValue
 import ru.hnau.jutils.producer.locked_producer.LockedProducer
-import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.utils.ColorTriple
 
 
 object ColorManager {
@@ -58,6 +60,12 @@ object ColorManager {
         main = ColorGetter.byResId(R.color.purple),
         dark = ColorGetter.byResId(R.color.purple_dark),
         light = ColorGetter.byResId(R.color.purple_light)
+    )
+
+    val GREY_TRIPLE = ColorTriple(
+        main = ColorGetter.byResId(R.color.grey),
+        dark = ColorGetter.byResId(R.color.grey_dark),
+        light = ColorGetter.byResId(R.color.grey_light)
     )
 
     val FG_T50 = FG.mapWithAlpha(0.5f)

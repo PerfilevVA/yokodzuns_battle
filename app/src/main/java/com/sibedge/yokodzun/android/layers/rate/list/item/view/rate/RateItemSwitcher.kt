@@ -1,13 +1,11 @@
 package com.sibedge.yokodzun.android.layers.rate.list.item.view.rate
 
 import android.content.Context
-import android.view.View
 import android.widget.FrameLayout
-import ru.hnau.androidutils.ui.utils.Side
 import ru.hnau.androidutils.ui.view.utils.createIsVisibleToUserProducer
-import ru.hnau.androidutils.ui.view.view_presenter.*
 import ru.hnau.jutils.handle
 import ru.hnau.jutils.producer.Producer
+import ru.hnau.jutils.producer.extensions.combine
 import ru.hnau.jutils.producer.extensions.observeWhen
 
 
@@ -15,25 +13,48 @@ class RateItemSwitcher(
     context: Context,
     mark: Int,
     itemIsSelectedProducer: Producer<Boolean>,
+    itemIsTouchableProducer: Producer<Boolean>,
     onMarkClick: (Int) -> Unit
 ) : FrameLayout(
     context
 ) {
+    private val selectedView by lazy {
+        RateItemView(
+            context,
+            mark,
+            onMarkClick,
+            selected = true,
+            touchable = true
+        )
+    }
 
     private val notSelectedView by lazy {
         RateItemView(
             context,
             mark,
-            false,
-            onMarkClick
+            onMarkClick,
+            selected = false,
+            touchable = true
         )
     }
-    private val selectedView by lazy {
+
+    private val selectedUntouchableView by lazy {
         RateItemView(
             context,
             mark,
-            true,
-            onMarkClick
+            onMarkClick = { },
+            selected = true,
+            touchable = false
+        )
+    }
+
+    private val notSelectedUntouchableView by lazy {
+        RateItemView(
+            context,
+            mark,
+            onMarkClick = { },
+            selected = false,
+            touchable = false
         )
     }
 
@@ -41,15 +62,34 @@ class RateItemSwitcher(
         createIsVisibleToUserProducer()
 
     init {
-        itemIsSelectedProducer.observeWhen(isVisibleToUserProducer) { selected ->
+        Producer.combine(
+            producer1 = itemIsSelectedProducer,
+            producer2 = itemIsTouchableProducer
+        ) { selected, touchable ->
+            Pair(
+                selected,
+                touchable
+            )
+        }.observeWhen(isVisibleToUserProducer) { viewTypePair ->
+            val selected = viewTypePair.first
+            val touchable = viewTypePair.second
             removeAllViews()
             addView(
                 selected.handle(
-                    onTrue = { selectedView },
-                    onFalse = { notSelectedView }
+                    onTrue = {
+                        touchable.handle(
+                            onTrue = { selectedView },
+                            onFalse = { selectedUntouchableView }
+                        )
+                    },
+                    onFalse = {
+                        touchable.handle(
+                            onTrue = { notSelectedView },
+                            onFalse = { notSelectedUntouchableView }
+                        )
+                    }
                 )
             )
         }
     }
-
 }

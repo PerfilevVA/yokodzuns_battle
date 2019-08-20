@@ -1,6 +1,5 @@
 package com.sibedge.yokodzun.android.utils.battle
 
-import com.sibedge.yokodzun.android.AppActivityView
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.layers.battle.yokodzuns.ImmutableBattleYokodzunsLayer
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
@@ -10,7 +9,7 @@ import ru.hnau.androidutils.context_getters.StringGetter
 
 
 object BattleActionViewYokodzuns : BattleAction(
-    title = StringGetter(R.string.battle_action_view_yokodzuns)
+    title = StringGetter(R.string.battle_action_view_teams)
 ) {
 
     override fun execute(

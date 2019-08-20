@@ -14,9 +14,9 @@ class EditYokodzunDescriptionLayer(
     context: Context
 ) : EditDescriptionLayer(
     context = context,
-    titleHint = StringGetter(R.string.edit_yokodzun_description_layer_title_hint),
-    logoUrlHint = StringGetter(R.string.edit_yokodzun_description_layer_logo_url_hint),
-    descriptionHint = StringGetter(R.string.edit_yokodzun_description_layer_description_hint)
+    titleHint = StringGetter(R.string.edit_team_description_layer_title_hint),
+    logoUrlHint = StringGetter(R.string.edit_team_description_layer_logo_url_hint),
+    descriptionHint = StringGetter(R.string.edit_team_description_layer_description_hint)
 ) {
 
     companion object {
@@ -33,7 +33,7 @@ class EditYokodzunDescriptionLayer(
     @LayerState
     private lateinit var yokodzun: Yokodzun
 
-    override val title = StringGetter(R.string.edit_yokodzun_description_layer_title)
+    override val title = StringGetter(R.string.edit_team_description_layer_title)
 
     override val initialDescription get() = yokodzun.description
 

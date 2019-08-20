@@ -13,17 +13,20 @@ import ru.hnau.androidutils.ui.drawer.ripple.RippleDrawer
 import ru.hnau.androidutils.ui.drawer.ripple.info.RippleDrawInfo
 import ru.hnau.androidutils.ui.view.utils.createIsVisibleToUserProducer
 import ru.hnau.androidutils.ui.view.utils.touch.TouchHandler
+import ru.hnau.jutils.handle
+import ru.hnau.jutils.ifTrue
 
 
 class RateItemView(
     context: Context,
     mark: Int,
-    selected: Boolean,
-    onMarkClick: (Int) -> Unit
+    onMarkClick: (Int) -> Unit,
+    private val selected: Boolean,
+    private val touchable: Boolean
 ) : View(context) {
 
     private val bitmap by lazy {
-        RateStarBitmapsCache.get(mark, selected)
+        RateStarBitmapsCache.get(mark, selected, touchable)
     }
     private val paint = Paint()
 
@@ -42,7 +45,10 @@ class RateItemView(
         rippleDrawInfo = RippleDrawInfo(
             rippleInfo = ColorManager.RIPPLE_INFO,
             backgroundColor = ColorManager.TRANSPARENT,
-            color = RateUtils.getMarkColor(mark.toFloat()),
+            color = touchable.handle(
+                onTrue = { RateUtils.getMarkColor(mark.toFloat()) },
+                onFalse = { RateUtils.getUntouchableMarkColor(mark.toFloat()) }
+            ),
             rippleAlpha = ColorManager.RIPPLE_ALPHA
         )
     )
@@ -56,9 +62,10 @@ class RateItemView(
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        super.onTouchEvent(event)
-        touchHandler.handle(event)
+        touchable.ifTrue {
+            super.onTouchEvent(event)
+            touchHandler.handle(event)
+        }
         return true
     }
-
 }

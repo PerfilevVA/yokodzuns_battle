@@ -50,7 +50,7 @@ object BattleViewUtils {
         onClick: (Battle) -> Unit
     ) = createCountView(
         context = context,
-        title = StringGetter(R.string.battle_view_yokodzuns),
+        title = StringGetter(R.string.battle_view_teams),
         color = ColorManager.ORANGE_TRIPLE,
         toCount = { yokodzunsIds.size },
         onClick = onClick
