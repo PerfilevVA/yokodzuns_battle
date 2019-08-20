@@ -131,7 +131,7 @@ abstract class AppLayer(
     }
 
     private fun showOptionsMenu(): Unit =
-        AppLayerMenu.show(headerOptionsMenuButton, this::uiJobLocked)
+        AppLayerMenu.show(headerOptionsMenuButton)
 
     protected val contentContainer =
         VerticalLinearLayout(context)

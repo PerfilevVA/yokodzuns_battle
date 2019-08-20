@@ -35,7 +35,7 @@ class RateView(
 
     private val markProducer = ActualProducerSimple(0)
 
-    private val syncedMarkProducer = StateProducerSimple(0)
+    private val syncedMarkProducer = ActualProducerSimple(0)
 
     init {
         applyHorizontalOrientation()
