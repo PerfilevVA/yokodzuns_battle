@@ -7,14 +7,14 @@ import ru.hnau.jutils.ifTrue
 object RaterRatesDataManager : YDataManager<Map<RaterRatesDataManager.Key, Float>>() {
 
     override suspend fun getValue() =
-        API.getRaterRates().await().associate { (battleId, sectionId, yokodzunId, parameterId, _, value) ->
-            Key(battleId, sectionId, yokodzunId, parameterId) to value
+        API.getRaterRates().await().associate { (battleId, sectionId, teamId, parameterId, _, value) ->
+            Key(battleId, sectionId, teamId, parameterId) to value
         }
 
     data class Key(
         val battleId: String,
         val sectionId: String,
-        val yokodzunId: String,
+        val teamId: String,
         val parameterId: String
     )
 
@@ -27,7 +27,7 @@ object RaterRatesDataManager : YDataManager<Map<RaterRatesDataManager.Key, Float
         API.rate(
             battleId = key.battleId,
             sectionId = key.sectionId,
-            yokodzunId = key.yokodzunId,
+            teamId = key.teamId,
             parameterId = key.parameterId,
             value = value
         ).await()

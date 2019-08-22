@@ -1,23 +1,22 @@
 package com.sibedge.yokodzun.android.utils
 
 import com.sibedge.yokodzun.common.data.Rate
-import com.sibedge.yokodzun.common.data.Yokodzun
+import com.sibedge.yokodzun.common.data.Team
 import com.sibedge.yokodzun.common.data.battle.Battle
-import ru.hnau.jutils.handle
 import ru.hnau.jutils.takeIfPositive
 
 
 object RateCalculator {
 
     data class Value(
-        val yokodzun: Yokodzun,
+        val team: Team,
         val value: Float? = null,
         val marksCount: Int = 0
     )
 
     fun calcRate(
         battle: Battle,
-        yokodzuns: List<Yokodzun>,
+        teams: List<Team>,
         battleRates: List<Rate>,
         parameterId: String? = null
     ): List<Value> {
@@ -34,18 +33,18 @@ object RateCalculator {
             battleRates.filter { it.parameterId == id }
         } ?: battleRates
 
-        val yokodzunsRates = rates.groupBy { it.yokodzunId }
+        val teamsRates = rates.groupBy { it.teamId }
 
-        return yokodzuns
-            .filter { it.id in battle.yokodzunsIds }
-            .map { yokodzun ->
+        return teams
+            .filter { it.id in battle.teamsIds }
+            .map { team ->
 
-                val yokodzunId = yokodzun.id
+                val teamId = team.id
 
                 var weight = 0
                 var sum = 0f
-                val yokodzunRates = yokodzunsRates[yokodzunId] ?: emptyList()
-                (yokodzunRates).forEach { rate ->
+                val teamRates = teamsRates[teamId] ?: emptyList()
+                (teamRates).forEach { rate ->
 
                     val paramWeight = parametersWeights[rate.parameterId]
                         ?.takeIfPositive() ?: return@forEach
@@ -61,12 +60,12 @@ object RateCalculator {
 
                 weight.takeIfPositive()?.let { positiveWeight ->
                     Value(
-                        yokodzun = yokodzun,
+                        team = team,
                         value = sum / positiveWeight.toFloat(),
-                        marksCount = yokodzunRates.size
+                        marksCount = teamRates.size
                     )
                 } ?: Value(
-                    yokodzun = yokodzun
+                    team = team
                 )
             }
             .sortedByDescending { value ->

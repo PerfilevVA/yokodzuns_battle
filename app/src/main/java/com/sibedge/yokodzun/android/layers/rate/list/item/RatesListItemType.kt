@@ -5,7 +5,7 @@ enum class RatesListItemType(
     val key: Int
 ) {
 
-    YOKODZUN_TITLE(key = 0),
+    TEAM_TITLE(key = 0),
     PARAMETER_TITLE(key = 1),
     RATE_ITEM(key = 2)
 

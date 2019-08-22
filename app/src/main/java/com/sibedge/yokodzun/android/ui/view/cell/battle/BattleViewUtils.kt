@@ -10,7 +10,6 @@ import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.utils.apply.applyPadding
-import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 
 
 object BattleViewUtils {
@@ -45,14 +44,14 @@ object BattleViewUtils {
     }
 
 
-    fun createYokodzunsCountView(
+    fun createTeamsCountView(
         context: Context,
         onClick: (Battle) -> Unit
     ) = createCountView(
         context = context,
         title = StringGetter(R.string.battle_view_teams),
         color = ColorManager.ORANGE_TRIPLE,
-        toCount = { yokodzunsIds.size },
+        toCount = { teamsIds.size },
         onClick = onClick
     )
 

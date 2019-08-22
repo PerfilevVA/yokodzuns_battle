@@ -22,7 +22,7 @@ import ru.hnau.androidutils.ui.view.utils.setVisible
 import ru.hnau.jutils.handle
 
 
-class YokodzunRateView(
+class TeamRateView(
     context: Context
 ) : LinearLayout(
     context
@@ -30,7 +30,7 @@ class YokodzunRateView(
 
     override val view = this
 
-    private val yokodzunNameView = Label(
+    private val teamNameView = Label(
         context = context,
         maxLines = 1,
         minLines = 1,
@@ -51,7 +51,7 @@ class YokodzunRateView(
         setWidth(dp64)
     }
 
-    private val valueView = YokodzunRateValueView(context)
+    private val valueView = TeamRateValueView(context)
         .applyLinearParams {
             setStretchedWidth()
             setHorizontalMargins(SizeManager.DEFAULT_SEPARATION)
@@ -73,7 +73,7 @@ class YokodzunRateView(
         applyVerticalOrientation()
         applyPadding(SizeManager.DEFAULT_SEPARATION)
 
-        addView(yokodzunNameView)
+        addView(teamNameView)
 
         addHorizontalLayout {
 
@@ -90,7 +90,7 @@ class YokodzunRateView(
     }
 
     override fun setContent(content: RateCalculator.Value, position: Int) {
-        yokodzunNameView.text = content.yokodzun.description.title.toGetter()
+        teamNameView.text = content.team.description.title.toGetter()
         content.value.handle(
             ifNotNull = { value ->
                 markView.setVisible()

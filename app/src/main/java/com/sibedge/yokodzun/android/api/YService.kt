@@ -2,16 +2,13 @@ package com.sibedge.yokodzun.android.api
 
 import com.sibedge.yokodzun.common.data.Parameter
 import com.sibedge.yokodzun.common.data.Rate
-import com.sibedge.yokodzun.common.data.Yokodzun
+import com.sibedge.yokodzun.common.data.Team
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.BattleParameter
 import com.sibedge.yokodzun.common.data.battle.Section
 import com.sibedge.yokodzun.common.data.helpers.Description
-import com.sibedge.yokodzun.common.utils.Validators
 import kotlinx.coroutines.Deferred
-import okhttp3.internal.http.HttpHeaders
 import retrofit2.http.*
-import ru.hnau.jutils.possible.Possible
 
 
 interface YService {
@@ -75,27 +72,27 @@ interface YService {
     ): Deferred<Unit>
 
     @PATCH("/battles/{battle-id}/yokodzuns-ids")
-    fun updateBattleYokodzunsIds(
+    fun updateBattleTeamsIds(
         @Path("battle-id") battleId: String,
-        @Body yokodzunsIds: List<String>
+        @Body teamsIds: List<String>
     ): Deferred<Unit>
 
     @GET("/yokodzuns")
-    fun getAllYokodzuns(
-    ): Deferred<List<Yokodzun>>
+    fun getAllTeams(
+    ): Deferred<List<Team>>
 
     @PUT("/yokodzuns")
-    fun createNewYokodzun(
+    fun createNewTeam(
     ): Deferred<String>
 
-    @DELETE("/yokodzuns/{yokodzun-id}/remove")
-    fun removeYokodzun(
-        @Path("yokodzun-id") yokodzunId: String
+    @DELETE("/yokodzuns/{team-id}/remove")
+    fun removeTeam(
+        @Path("team-id") teamId: String
     ): Deferred<Unit>
 
-    @PATCH("/yokodzuns/{yokodzun-id}/description")
-    fun updateYokodzunDescription(
-        @Path("yokodzun-id") yokodzunId: String,
+    @PATCH("/yokodzuns/{team-id}/description")
+    fun updateTeamDescription(
+        @Path("team-id") teamId: String,
         @Body description: Description
     ): Deferred<Unit>
 
@@ -142,12 +139,12 @@ interface YService {
     fun getRaterRates(
     ): Deferred<List<Rate>>
 
-    @PUT("/battle/{battle-id}/section/{section-id}/parameter/{parameter-id}/yokodzun/{yokodzun-id}/rate")
+    @PUT("/battle/{battle-id}/section/{section-id}/parameter/{parameter-id}/team/{team-id}/rate")
     fun rate(
         @Path("battle-id") battleId: String,
         @Path("section-id") sectionId: String,
         @Path("parameter-id") parameterId: String,
-        @Path("yokodzun-id") yokodzunId: String,
+        @Path("team-id") teamId: String,
         @Query("value") value: Float
     ): Deferred<Unit>
 

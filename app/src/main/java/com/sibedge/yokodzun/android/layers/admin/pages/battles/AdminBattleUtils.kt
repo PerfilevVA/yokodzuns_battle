@@ -19,7 +19,7 @@ object AdminBattleUtils {
             BattleActionSendMessageToRaters to listOf(BattleStatus.BEFORE, BattleStatus.IN_PROGRESS,BattleStatus.AFTER),
             BattleActionEditDescription to listOf(BattleStatus.BEFORE),
             BattleActionEditParameters to listOf(BattleStatus.BEFORE),
-            BattleActionEditYokodzuns to listOf(BattleStatus.BEFORE),
+            BattleActionEditTeams to listOf(BattleStatus.BEFORE),
             BattleActionEditSections to listOf(BattleStatus.BEFORE),
             BattleActionEditRaters to listOf(BattleStatus.BEFORE, BattleStatus.IN_PROGRESS),
             BattleActionRemove to listOf(BattleStatus.BEFORE, BattleStatus.AFTER)
@@ -53,12 +53,12 @@ object AdminBattleUtils {
         coroutinesExecutor = coroutinesExecutor
     )
 
-    fun onYokodzunsClicked(
+    fun onTeamsClicked(
         battle: Battle,
         coroutinesExecutor: (suspend CoroutineScope.() -> Unit) -> Unit
     ) = (battle.status == BattleStatus.BEFORE).handle(
-        forTrue = BattleActionEditYokodzuns,
-        forFalse = BattleActionViewYokodzuns
+        forTrue = BattleActionEditTeams,
+        forFalse = BattleActionViewTeams
     ).execute(
         battle = battle,
         coroutinesExecutor = coroutinesExecutor

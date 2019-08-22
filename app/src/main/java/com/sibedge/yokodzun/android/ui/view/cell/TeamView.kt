@@ -6,21 +6,22 @@ import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
 import com.sibedge.yokodzun.android.ui.view.description.DescriptionView
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
-import com.sibedge.yokodzun.common.data.Yokodzun
+import com.sibedge.yokodzun.common.data.Team
 import ru.hnau.androidutils.ui.view.clickable.ClickableLinearLayout
-import ru.hnau.androidutils.ui.view.utils.apply.*
+import ru.hnau.androidutils.ui.view.utils.apply.applyHorizontalOrientation
+import ru.hnau.androidutils.ui.view.utils.apply.applyPadding
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLayoutParams
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 
 
-class YokodzunView(
+class TeamView(
     context: Context,
-    additionalButtonInfo: (Yokodzun) -> AdditionalButton.Info? = { null },
-    private val onClick: (Yokodzun) -> Unit
+    additionalButtonInfo: (Team) -> AdditionalButton.Info? = { null },
+    private val onClick: (Team) -> Unit
 ) : ClickableLinearLayout(
     context = context,
     rippleDrawInfo = ColorManager.PRIMARY_ON_TRANSPARENT_RIPPLE_INFO
-), ViewWithData<Yokodzun> {
+), ViewWithData<Team> {
 
     override val view = this
 
@@ -28,12 +29,12 @@ class YokodzunView(
         .applyLinearParams { setStretchedWidth() }
         .applyPadding(SizeManager.DEFAULT_SEPARATION)
 
-    private val additionalButton = AdditionalButton<Yokodzun>(
+    private val additionalButton = AdditionalButton<Team>(
         context = context,
         additionalButtonInfo = additionalButtonInfo
     ).applyLayoutParams { setMatchParentHeight() }
 
-    override var data: Yokodzun? = null
+    override var data: Team? = null
         set(value) {
             field = value
             descriptionView.data = data?.description?.let { DescriptionView.Item(it) }

@@ -18,7 +18,7 @@ import ru.hnau.androidutils.ui.view.utils.verticalPaddingSum
 import ru.hnau.jutils.getFloatInterFloats
 
 
-class YokodzunRateValueView(
+class TeamRateValueView(
     context: Context
 ) : View(
     context

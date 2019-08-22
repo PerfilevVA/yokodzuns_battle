@@ -2,24 +2,20 @@ package com.sibedge.yokodzun.android.layers.select
 
 import android.content.Context
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.YokodzunsDataManager
-import com.sibedge.yokodzun.android.layers.admin.pages.yokodzuns.AdminYokodzunUtils
+import com.sibedge.yokodzun.android.data.TeamsDataManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
-import com.sibedge.yokodzun.android.layers.battle.yokodzuns.edit.EditBattleYokodzunsCallback
-import com.sibedge.yokodzun.android.ui.view.cell.YokodzunView
+import com.sibedge.yokodzun.android.layers.battle.teams.edit.EditBattleTeamsCallback
+import com.sibedge.yokodzun.android.ui.view.cell.TeamView
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.view.list.base.async.AsyncViewsWithContentListContainer
-import com.sibedge.yokodzun.common.data.Yokodzun
+import com.sibedge.yokodzun.common.data.Team
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.layer.layer.LayerState
-import ru.hnau.androidutils.ui.view.utils.apply.addFrameLayout
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
-import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.getter.base.map
-import ru.hnau.jutils.producer.Producer
 
 
-class SelectYokodzunForBattleLayer(
+class SelectTeamForBattleLayer(
     context: Context
 ) : AppLayer(
     context = context
@@ -29,20 +25,20 @@ class SelectYokodzunForBattleLayer(
 
         fun newInstance(
             context: Context,
-            alreadySelectedYokodzunsIds: List<String>,
-            callback: EditBattleYokodzunsCallback
-        ) = SelectYokodzunForBattleLayer(context).apply {
+            alreadySelectedTeamsIds: List<String>,
+            callback: EditBattleTeamsCallback
+        ) = SelectTeamForBattleLayer(context).apply {
             this.callback = callback
-            this.alreadySelectedYokodzunsIds = alreadySelectedYokodzunsIds
+            this.alreadySelectedTeamsIds = alreadySelectedTeamsIds
         }
 
     }
 
     @LayerState
-    private lateinit var callback: EditBattleYokodzunsCallback
+    private lateinit var callback: EditBattleTeamsCallback
 
     @LayerState
-    private lateinit var alreadySelectedYokodzunsIds: List<String>
+    private lateinit var alreadySelectedTeamsIds: List<String>
 
     override val title = StringGetter(R.string.select_team_for_battle_layer_title)
 
@@ -52,28 +48,28 @@ class SelectYokodzunForBattleLayer(
         content {
 
             addView(
-                AsyncViewsWithContentListContainer<Yokodzun>(
+                AsyncViewsWithContentListContainer<Team>(
                     context = context,
-                    idGetter = Yokodzun::id,
-                    invalidator = YokodzunsDataManager::invalidate,
+                    idGetter = Team::id,
+                    invalidator = TeamsDataManager::invalidate,
                     onEmptyListInfoViewGenerator = {
                         EmptyInfoView(
                             context = context,
                             text = StringGetter(R.string.select_team_for_battle_layer_no_teams)
                         )
                     },
-                    producer = YokodzunsDataManager.map { yokodzunsGetter ->
-                        yokodzunsGetter.map { yokodzuns ->
-                            yokodzuns.filter { yokodzun ->
-                                yokodzun.id !in alreadySelectedYokodzunsIds
+                    producer = TeamsDataManager.map { teamsGetter ->
+                        teamsGetter.map { teams ->
+                            teams.filter { team ->
+                                team.id !in alreadySelectedTeamsIds
                             }
                         }
                     },
                     viewWithDataGenerator = {
-                        YokodzunView(
+                        TeamView(
                             context = context,
                             onClick = {
-                                callback.addYokodzun(it.id)
+                                callback.addTeam(it.id)
                                 managerConnector.goBack()
                             }
                         )

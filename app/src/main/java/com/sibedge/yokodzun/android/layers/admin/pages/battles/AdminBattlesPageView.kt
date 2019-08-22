@@ -54,7 +54,7 @@ class AdminBattlesPageView(
                             AdminBattleUtils.onSectionsClicked(battle, coroutinesExecutor)
                         },
                         onYoconzunsCountClicked = { battle ->
-                            AdminBattleUtils.onYokodzunsClicked(battle, coroutinesExecutor)
+                            AdminBattleUtils.onTeamsClicked(battle, coroutinesExecutor)
                         }
                     )
                 }

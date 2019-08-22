@@ -1,22 +1,16 @@
 package com.sibedge.yokodzun.android.layers.rater
 
 import android.content.Context
-import android.graphics.fonts.Font
-import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.sibedge.parameter.android.layers.battle.parameters.ImmutableBattleParametersLayer
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.layers.battle.yokodzuns.ImmutableBattleYokodzunsLayer
+import com.sibedge.yokodzun.android.layers.battle.teams.ImmutableBattleTeamsLayer
 import com.sibedge.yokodzun.android.layers.sections.RateSectionsLayer
 import com.sibedge.yokodzun.android.layers.sections.ViewSectionsLayer
-import com.sibedge.yokodzun.android.ui.hierarchy_utils.addBottomButtonView
 import com.sibedge.yokodzun.android.ui.hierarchy_utils.addButtonView
-import com.sibedge.yokodzun.android.ui.view.AsyncImageView
 import com.sibedge.yokodzun.android.ui.view.ClickableCountView
 import com.sibedge.yokodzun.android.ui.view.button.YButtonInfo
-import com.sibedge.yokodzun.android.ui.view.cell.battle.BattleViewUtils
 import com.sibedge.yokodzun.android.ui.view.description.DescriptionLogoView
 import com.sibedge.yokodzun.android.utils.ColorTriple
 import com.sibedge.yokodzun.android.utils.extensions.color
@@ -24,20 +18,17 @@ import com.sibedge.yokodzun.android.utils.extensions.title
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
 import com.sibedge.yokodzun.android.utils.managers.FontManager
-import com.sibedge.yokodzun.android.utils.managers.SettingsManager.host
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.BattleStatus
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.context_getters.dp_px.dp128
 import ru.hnau.androidutils.context_getters.toGetter
-import ru.hnau.androidutils.ui.utils.ScreenManager
 import ru.hnau.androidutils.ui.utils.h_gravity.HGravity
 import ru.hnau.androidutils.ui.view.addLinearSeparator
 import ru.hnau.androidutils.ui.view.label.addLabel
 import ru.hnau.androidutils.ui.view.utils.apply.*
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
-import ru.hnau.androidutils.ui.view.waiter.material.drawer.params.MaterialWaiterSize
 import ru.hnau.jutils.handle
 import ru.hnau.jutils.takeIfNotEmpty
 
@@ -114,10 +105,10 @@ class RaterLayerContentView(
             addCountView(
                 title = StringGetter(R.string.battle_view_teams),
                 color = ColorManager.ORANGE_TRIPLE,
-                count = battle.yokodzunsIds.size
+                count = battle.teamsIds.size
             ) {
                 AppActivityConnector.showLayer({
-                    ImmutableBattleYokodzunsLayer.newInstance(it, battle)
+                    ImmutableBattleTeamsLayer.newInstance(it, battle)
                 })
             }
 

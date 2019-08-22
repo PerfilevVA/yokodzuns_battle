@@ -72,15 +72,15 @@ object AdminBattlesDataManager : YListDataManager<String, String, Battle>() {
         updateOrInvalidateItem(battleId) { copy(parameters = sortedParameters) }
     }
 
-    suspend fun updateYokodzunsIds(
+    suspend fun updateTeamsIds(
         battleId: String,
-        yokodzunsIds: List<String>
+        teamsIds: List<String>
     ) {
-        val sortedYokodzunsIds = yokodzunsIds.sorted()
-        val currentYokodzunsIds = existenceValue?.find { it.id == battleId }?.yokodzunsIds
-        (currentYokodzunsIds == sortedYokodzunsIds).ifTrue { return }
-        API.updateBattleYokodzunsIds(battleId, sortedYokodzunsIds).await()
-        updateOrInvalidateItem(battleId) { copy(yokodzunsIds = sortedYokodzunsIds) }
+        val sortedTeamsIds = teamsIds.sorted()
+        val currentTeamsIds = existenceValue?.find { it.id == battleId }?.teamsIds
+        (currentTeamsIds == sortedTeamsIds).ifTrue { return }
+        API.updateBattleTeamsIds(battleId, sortedTeamsIds).await()
+        updateOrInvalidateItem(battleId) { copy(teamsIds = sortedTeamsIds) }
     }
 
 }

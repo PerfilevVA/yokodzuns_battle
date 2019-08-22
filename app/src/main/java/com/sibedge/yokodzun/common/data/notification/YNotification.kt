@@ -12,7 +12,7 @@ abstract class YNotification {
 
     companion object {
 
-        private const val NOTIFICATION_CLASS_NAME_PREFIX = "com.sibedge.yokodzun.common.data.notification.type"
+        private const val NOTIFICATION_CLASS_NAME_PREFIX = "com.sibedge.team.common.data.notification.type"
 
         fun deserialize(
                 className: String,

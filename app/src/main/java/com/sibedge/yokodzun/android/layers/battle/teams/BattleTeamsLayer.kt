@@ -1,14 +1,14 @@
-package com.sibedge.yokodzun.android.layers.battle.yokodzuns
+package com.sibedge.yokodzun.android.layers.battle.teams
 
 import android.content.Context
 import android.view.ViewGroup
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.view.button.AdditionalButton
-import com.sibedge.yokodzun.android.ui.view.cell.YokodzunView
+import com.sibedge.yokodzun.android.ui.view.cell.TeamView
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
 import com.sibedge.yokodzun.android.ui.view.list.base.async.AsyncViewsWithContentListContainer
-import com.sibedge.yokodzun.common.data.Yokodzun
+import com.sibedge.yokodzun.common.data.Team
 import com.sibedge.yokodzun.common.data.battle.Battle
 import ru.hnau.androidutils.context_getters.StringGetter
 import ru.hnau.androidutils.ui.view.utils.apply.addFrameLayout
@@ -17,7 +17,7 @@ import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.producer.Producer
 
 
-abstract class BattleYokodzunsLayer(
+abstract class BattleTeamsLayer(
     context: Context
 ) : AppLayer(
     context = context
@@ -28,7 +28,7 @@ abstract class BattleYokodzunsLayer(
     override val title
         get() = StringGetter(R.string.battle_teams_layer_title, battle.description.title)
 
-    protected abstract val yokodzunsProducer: Producer<GetterAsync<Unit, List<Yokodzun>>>
+    protected abstract val teamsProducer: Producer<GetterAsync<Unit, List<Team>>>
 
     protected open val onEmptyListInfoView by lazy {
         EmptyInfoView(
@@ -37,23 +37,23 @@ abstract class BattleYokodzunsLayer(
         )
     }
 
-    protected abstract fun invalidateYokodzuns()
+    protected abstract fun invalidateTeams()
 
-    protected open val additionalButtonInfo: (Yokodzun) -> AdditionalButton.Info? = { null }
+    protected open val additionalButtonInfo: (Team) -> AdditionalButton.Info? = { null }
 
-    protected open fun ViewGroup.configureView(listView: AsyncViewsWithContentListContainer<Yokodzun>) {}
+    protected open fun ViewGroup.configureView(listView: AsyncViewsWithContentListContainer<Team>) {}
 
     override fun afterCreate() {
         super.afterCreate()
 
         val listView = AsyncViewsWithContentListContainer(
             context = context,
-            producer = yokodzunsProducer,
+            producer = teamsProducer,
             onEmptyListInfoViewGenerator = { onEmptyListInfoView },
-            invalidator = this::invalidateYokodzuns,
-            idGetter = Yokodzun::id,
+            invalidator = this::invalidateTeams,
+            idGetter = Team::id,
             viewWithDataGenerator = {
-                YokodzunView(
+                TeamView(
                     context = context,
                     onClick = {},
                     additionalButtonInfo = additionalButtonInfo

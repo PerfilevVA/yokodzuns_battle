@@ -2,8 +2,8 @@ package com.sibedge.yokodzun.android.ui.view.cell.battle
 
 import android.content.Context
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.ui.view.description.DescriptionView
 import com.sibedge.yokodzun.android.ui.ViewWithData
+import com.sibedge.yokodzun.android.ui.view.description.DescriptionView
 import com.sibedge.yokodzun.android.utils.extensions.color
 import com.sibedge.yokodzun.android.utils.extensions.title
 import com.sibedge.yokodzun.android.utils.managers.ColorManager
@@ -58,7 +58,7 @@ class BattleView(
     )
 
     private val countViews = listOf(
-        BattleViewUtils.createYokodzunsCountView(context, onYoconzunsCountClicked),
+        BattleViewUtils.createTeamsCountView(context, onYoconzunsCountClicked),
         BattleViewUtils.createParametersCountView(context, onParametersCountClicked),
         BattleViewUtils.createSectionsCountView(context, onSectionsCountClicked)
     )

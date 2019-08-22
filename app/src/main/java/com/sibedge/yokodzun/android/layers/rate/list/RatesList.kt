@@ -5,10 +5,10 @@ import com.sibedge.yokodzun.android.data.RaterRatesDataManager
 import com.sibedge.yokodzun.android.layers.rate.list.item.RatesListItem
 import com.sibedge.yokodzun.android.layers.rate.list.item.RatesListItemType
 import com.sibedge.yokodzun.android.layers.rate.list.item.view.ParameterTitle
-import com.sibedge.yokodzun.android.layers.rate.list.item.view.YokodzunTitle
+import com.sibedge.yokodzun.android.layers.rate.list.item.view.TeamTitle
 import com.sibedge.yokodzun.android.layers.rate.list.item.view.rate.RateView
 import com.sibedge.yokodzun.common.data.Parameter
-import com.sibedge.yokodzun.common.data.Yokodzun
+import com.sibedge.yokodzun.common.data.Team
 import com.sibedge.yokodzun.common.data.battle.Battle
 import ru.hnau.androidutils.ui.view.list.base.BaseList
 import ru.hnau.androidutils.ui.view.list.base.BaseListOrientation
@@ -19,25 +19,25 @@ class RatesList(
     context: Context,
     battle: Battle,
     sectionId: String,
-    info: Producer<Triple<List<Yokodzun>, List<Parameter>, Map<RaterRatesDataManager.Key, Float>>>
+    info: Producer<Triple<List<Team>, List<Parameter>, Map<RaterRatesDataManager.Key, Float>>>
 ) : BaseList<RatesListItem>(
     context = context,
-    itemsProducer = info.map { (yokodzuns, parameters, rates) ->
+    itemsProducer = info.map { (teams, parameters, rates) ->
         val battleParameters = parameters.filter { parameter ->
             battle.parameters.any { battleParameter ->
                 battleParameter.id == parameter.id
             }
         }
-        val battleYokodzuns = yokodzuns.filter { yokodzuns ->
-            yokodzuns.id in battle.yokodzunsIds
+        val battleTeams = teams.filter { team ->
+            team.id in battle.teamsIds
         }
-        battleYokodzuns.map { yokodzun ->
-            listOf(RatesListItem.createYokodzunTitle(yokodzun)) +
+        battleTeams.map { team ->
+            listOf(RatesListItem.createTeamTitle(team)) +
                     battleParameters.map { parameter ->
                         val rateKey = RaterRatesDataManager.Key(
                             battleId = battle.id,
                             sectionId = sectionId,
-                            yokodzunId = yokodzun.id,
+                            teamId = team.id,
                             parameterId = parameter.id
                         )
                         val rateValue = rates[rateKey]
@@ -51,10 +51,10 @@ class RatesList(
     fixedSize = false,
     orientation = BaseListOrientation.VERTICAL,
     itemTypeResolver = RatesListItem::itemTypeKey,
-    viewWrappersCreator = { itewmTypeKey ->
-        when (itewmTypeKey) {
+    viewWrappersCreator = { itemTypeKey ->
+        when (itemTypeKey) {
             RatesListItemType.RATE_ITEM.key -> RateView(context)
-            RatesListItemType.YOKODZUN_TITLE.key -> YokodzunTitle(context)
+            RatesListItemType.TEAM_TITLE.key -> TeamTitle(context)
             else -> ParameterTitle(context)
         }
     }

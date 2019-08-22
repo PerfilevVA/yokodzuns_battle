@@ -4,7 +4,7 @@ import com.sibedge.yokodzun.common.data.helpers.Description
 import com.sibedge.yokodzun.common.data.helpers.ListItem
 
 
-data class Yokodzun(
+data class Team(
         override val id: String = "",
         val description: Description = Description()
 ) : ListItem<String, String> {

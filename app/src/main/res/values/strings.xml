@@ -198,7 +198,7 @@
     <string name="raters_layer_remove_confirm_dialog_title">Удаление зрителя</string>
     <string name="raters_layer_remove_confirm_dialog_text">Удалить зрителя?</string>
 
-    <string name="send_raters_codes_intent_file_name">Ключи авторизации</string>
+    <string name="send_raters_codes_intent_file_name">Ключи авторизации.csv</string>
     <string name="send_raters_codes_intent_subject">Битва ёкодзун: Ключи авторизации пользователей</string>
     <string name="send_raters_codes_intent_chooser">Отправить Ключи авторизации…</string>
 

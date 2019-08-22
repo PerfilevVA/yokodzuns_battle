@@ -1,25 +1,25 @@
-package com.sibedge.yokodzun.android.layers.admin.pages.yokodzuns
+package com.sibedge.yokodzun.android.layers.admin.pages.teams
 
 import com.sibedge.yokodzun.android.R
-import com.sibedge.yokodzun.android.data.YokodzunsDataManager
-import com.sibedge.yokodzun.android.layers.description.EditYokodzunDescriptionLayer
+import com.sibedge.yokodzun.android.data.TeamsDataManager
+import com.sibedge.yokodzun.android.layers.description.EditTeamDescriptionLayer
 import com.sibedge.yokodzun.android.utils.extensions.entityNameWithTitle
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
-import com.sibedge.yokodzun.common.data.Yokodzun
+import com.sibedge.yokodzun.common.data.Team
 import kotlinx.coroutines.CoroutineScope
 import ru.hnau.androidutils.context_getters.StringGetter
 
 
-object AdminYokodzunUtils {
+object AdminTeamUtils {
 
-    fun showYokodzunActions(
-        yokodzun: Yokodzun,
+    fun showTeamActions(
+        team: Team,
         coroutinesExecutor: (suspend CoroutineScope.() -> Unit) -> Unit
     ) = AppActivityConnector.showBottomSheet {
-        title(yokodzun.entityNameWithTitle)
+        title(team.entityNameWithTitle)
         closeItem(StringGetter(R.string.team_action_edit_description)) {
             AppActivityConnector.showLayer({
-                EditYokodzunDescriptionLayer.newInstance(context, yokodzun)
+                EditTeamDescriptionLayer.newInstance(context, team)
             })
         }
         closeItem(StringGetter(R.string.team_action_remove)) {
@@ -28,7 +28,7 @@ object AdminYokodzunUtils {
                 text = StringGetter(R.string.team_action_remove_confirm_dialog_text),
                 confirmText = StringGetter(R.string.dialog_remove)
             ) {
-                coroutinesExecutor { YokodzunsDataManager.remove(yokodzunId = yokodzun.id) }
+                coroutinesExecutor { TeamsDataManager.remove(teamId = team.id) }
             }
         }
     }

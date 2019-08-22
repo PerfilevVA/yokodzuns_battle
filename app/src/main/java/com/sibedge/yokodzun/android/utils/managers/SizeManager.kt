@@ -7,6 +7,7 @@ import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter.Companion.dp
 object SizeManager {
 
     val DEFAULT_SEPARATION = dp16
+    val SMALL_SPACE = dp2
     val EXTRA_SMALL_SEPARATION = dp4
     val SMALL_SEPARATION = dp8
     val LARGE_SEPARATION = dp24

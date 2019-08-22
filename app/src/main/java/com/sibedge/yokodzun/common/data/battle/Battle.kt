@@ -1,17 +1,17 @@
 package com.sibedge.yokodzun.common.data.battle
 
-import com.sibedge.yokodzun.common.data.helpers.ListItem
 import com.sibedge.yokodzun.common.data.helpers.Description
+import com.sibedge.yokodzun.common.data.helpers.ListItem
 
 
 data class Battle(
-        override val id: String = "",
-        val created: Long = 0,
-        val description: Description = Description(),
-        val sections: List<Section> = emptyList(),
-        val parameters: List<BattleParameter> = emptyList(),
-        val yokodzunsIds: List<String> = emptyList(),
-        val status: BattleStatus = BattleStatus.BEFORE
+    override val id: String = "",
+    val created: Long = 0,
+    val description: Description = Description(),
+    val sections: List<Section> = emptyList(),
+    val parameters: List<BattleParameter> = emptyList(),
+    val teamsIds: List<String> = emptyList(),
+    val status: BattleStatus = BattleStatus.BEFORE
 ) : ListItem<String, String> {
 
     override val sortKey: String

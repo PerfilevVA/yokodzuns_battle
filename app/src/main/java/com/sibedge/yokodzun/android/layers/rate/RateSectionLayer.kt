@@ -4,7 +4,7 @@ import android.content.Context
 import com.sibedge.parameter.android.data.ParametersDataManager
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.data.RaterRatesDataManager
-import com.sibedge.yokodzun.android.data.YokodzunsDataManager
+import com.sibedge.yokodzun.android.data.TeamsDataManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.layers.rate.list.RatesList
 import com.sibedge.yokodzun.android.layers.rater.RaterLayer
@@ -15,7 +15,7 @@ import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.android.utils.managers.fcm.FCMMessagesReceiver
 import com.sibedge.yokodzun.common.data.Parameter
-import com.sibedge.yokodzun.common.data.Yokodzun
+import com.sibedge.yokodzun.common.data.Team
 import com.sibedge.yokodzun.common.data.battle.Battle
 import com.sibedge.yokodzun.common.data.battle.Section
 import com.sibedge.yokodzun.common.data.notification.type.YNotificationBattleStopped
@@ -63,20 +63,20 @@ class RateSectionLayer(
     override val title get() = section.entityNameWithTitle
 
     private val rateInfoLoader = Producer.combine(
-        producer1 = YokodzunsDataManager,
+        producer1 = TeamsDataManager,
         producer2 = ParametersDataManager,
         producer3 = RaterRatesDataManager
-    ) { yokodzuns, parameters, rates ->
+    ) { teams, parameters, rates ->
         SuspendGetter.simple {
             Triple(
-                yokodzuns.get(),
+                teams.get(),
                 parameters.get(),
                 rates.get()
             )
         }
     }
 
-    private val rateInfo = StateProducerSimple<Triple<List<Yokodzun>, List<Parameter>, Map<RaterRatesDataManager.Key, Float>>>()
+    private val rateInfo = StateProducerSimple<Triple<List<Team>, List<Parameter>, Map<RaterRatesDataManager.Key, Float>>>()
 
     init {
         FCMMessagesReceiver.observeWhen(isVisibleToUserProducer) { message ->
@@ -108,9 +108,9 @@ class RateSectionLayer(
                 }
 
                 addSuspendPresenter(
-                    producer = rateInfoLoader as Producer<GetterAsync<Unit, Triple<List<Yokodzun>, List<Parameter>, Map<RaterRatesDataManager.Key, Float>>>>,
+                    producer = rateInfoLoader as Producer<GetterAsync<Unit, Triple<List<Team>, List<Parameter>, Map<RaterRatesDataManager.Key, Float>>>>,
                     invalidator = {
-                        YokodzunsDataManager.invalidate()
+                        TeamsDataManager.invalidate()
                         ParametersDataManager.invalidate()
                         RaterRatesDataManager.invalidate()
                     },

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.sibedge.parameter.android.data.ParametersDataManager
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.data.BattleRatesDataManager
-import com.sibedge.yokodzun.android.data.YokodzunsDataManager
+import com.sibedge.yokodzun.android.data.TeamsDataManager
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.view.addSuspendPresenter
 import com.sibedge.yokodzun.android.ui.view.empty_info.EmptyInfoView
@@ -20,7 +20,6 @@ import com.sibedge.yokodzun.android.utils.managers.SizeManager
 import com.sibedge.yokodzun.common.data.battle.Battle
 import ru.hnau.androidutils.context_getters.DrawableGetter
 import ru.hnau.androidutils.context_getters.StringGetter
-import ru.hnau.androidutils.context_getters.dp_px.DpPxGetter.Companion.dp
 import ru.hnau.androidutils.ui.drawables.layout_drawable.view.LayoutDrawableView
 import ru.hnau.androidutils.ui.utils.h_gravity.HGravity
 import ru.hnau.androidutils.ui.view.clickable.ClickableLinearLayout
@@ -35,7 +34,6 @@ import ru.hnau.jutils.getter.SuspendGetter
 import ru.hnau.jutils.getter.base.GetterAsync
 import ru.hnau.jutils.getter.base.get
 import ru.hnau.jutils.getter.base.map
-import ru.hnau.jutils.getter.toGetter
 import ru.hnau.jutils.producer.ActualProducerSimple
 import ru.hnau.jutils.producer.Producer
 import ru.hnau.jutils.producer.extensions.combine
@@ -70,20 +68,20 @@ class BattleRatesLayer(
     private val battleRatesDataManager
             by lazy { BattleRatesDataManager[battle.id] }
 
-    private val yokodzunsRateResults by lazy {
+    private val teamsRateResults by lazy {
         Producer.combine(
-            producer1 = YokodzunsDataManager,
+            producer1 = TeamsDataManager,
             producer2 = battleRatesDataManager,
             producer3 = selectedParameterProducer
-        ) { yokodzunsGetter, ratesGetter, selectedParameter ->
+        ) { teamsGetter, ratesGetter, selectedParameter ->
             SuspendGetter.simple {
-                val yokodzuns = yokodzunsGetter.get()
+                val teams = teamsGetter.get()
                 val rates = ratesGetter.get()
                 RateCalculator.calcRate(
                     battle = battle,
                     parameterId = selectedParameter,
                     battleRates = rates,
-                    yokodzuns = yokodzuns
+                    teams = teams
                 )
             }
         }
@@ -161,11 +159,11 @@ class BattleRatesLayer(
                     context = context,
                     invalidator = {
                         battleRatesDataManager.invalidate()
-                        YokodzunsDataManager.invalidate()
+                        TeamsDataManager.invalidate()
                     },
-                    producer = yokodzunsRateResults as Producer<GetterAsync<Unit, List<RateCalculator.Value>>>,
-                    idGetter = { it.yokodzun.id },
-                    viewWrappersCreator = { YokodzunRateView(context) },
+                    producer = teamsRateResults as Producer<GetterAsync<Unit, List<RateCalculator.Value>>>,
+                    idGetter = { it.team.id },
+                    viewWrappersCreator = { TeamRateView(context) },
                     onEmptyListInfoViewGenerator = {
                         EmptyInfoView(
                             context = context,
