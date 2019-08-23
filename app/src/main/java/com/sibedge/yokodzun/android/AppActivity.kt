@@ -1,7 +1,6 @@
 package com.sibedge.yokodzun.android
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import com.sibedge.yokodzun.android.utils.managers.AppActivityConnector
 import ru.hnau.androidutils.ui.TransparentStatusBarActivity
@@ -22,8 +21,8 @@ class AppActivity : TransparentStatusBarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(contentView)
         AppActivityConnector.onAppActivityCreated(this)
+        setContentView(contentView)
     }
 
     override fun onDestroy() {

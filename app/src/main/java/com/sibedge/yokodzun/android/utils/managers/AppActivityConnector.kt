@@ -1,22 +1,26 @@
 package com.sibedge.yokodzun.android.utils.managers
 
 import android.content.Context
-import ru.hnau.androidutils.context_getters.StringGetter
-import ru.hnau.androidutils.ui.view.layer.manager.LayerManagerConnector
-import ru.hnau.androidutils.ui.view.layer.preset.dialog.view.bottom_sheet.BottomSheetView
-import ru.hnau.androidutils.ui.view.layer.preset.dialog.view.material.MaterialDialogView
+import android.net.Uri
 import com.sibedge.yokodzun.android.AppActivity
 import com.sibedge.yokodzun.android.R
 import com.sibedge.yokodzun.android.layers.base.AppLayer
 import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputView
 import com.sibedge.yokodzun.android.ui.view.input.simple.SimpleInputViewInfo
 import com.sibedge.yokodzun.android.ui.view.plus_minus.PlusMinusColumnInfo
+import ru.hnau.androidutils.context_getters.StringGetter
+import ru.hnau.androidutils.ui.view.layer.manager.LayerManagerConnector
+import ru.hnau.androidutils.ui.view.layer.preset.dialog.view.bottom_sheet.BottomSheetView
+import ru.hnau.androidutils.ui.view.layer.preset.dialog.view.material.MaterialDialogView
 
 
 object AppActivityConnector {
 
     var appActivity: AppActivity? = null
         private set
+
+    val data: Uri?
+        get() = appActivity?.intent?.data
 
     val layerManager: LayerManagerConnector?
         get() = appActivity?.layerManagerConnector
