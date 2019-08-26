@@ -18,7 +18,6 @@
 
         <activity
                 android:name=".AppActivity"
-                android:launchMode="singleTask"
                 android:screenOrientation="sensorPortrait"
                 android:windowSoftInputMode="adjustResize">
             <intent-filter>

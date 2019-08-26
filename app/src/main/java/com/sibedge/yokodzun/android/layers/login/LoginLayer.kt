@@ -20,7 +20,6 @@ import ru.hnau.androidutils.context_getters.dp_px.dp40
 import ru.hnau.androidutils.ui.drawables.layout_drawable.LayoutType
 import ru.hnau.androidutils.ui.drawables.layout_drawable.view.addLayoutDrawableView
 import ru.hnau.androidutils.ui.utils.h_gravity.HGravity
-import ru.hnau.androidutils.ui.utils.logD
 import ru.hnau.androidutils.ui.view.addLinearSeparator
 import ru.hnau.androidutils.ui.view.label.addLabel
 import ru.hnau.androidutils.ui.view.utils.apply.applyCenterGravity
@@ -28,7 +27,6 @@ import ru.hnau.androidutils.ui.view.utils.apply.applyPadding
 import ru.hnau.androidutils.ui.view.utils.apply.layout_params.applyLinearParams
 import ru.hnau.androidutils.ui.view.utils.postDelayed
 import ru.hnau.jutils.TimeValue
-import ru.hnau.jutils.ifNotNull
 import ru.hnau.jutils.ifTrue
 
 
@@ -40,13 +38,6 @@ class LoginLayer(
 ) {
 
     override val title = StringGetter(R.string.login_layer_title)
-
-    init {
-        AppActivityConnector.data?.lastPathSegment.ifNotNull { initialRaterCode ->
-            logD(initialRaterCode)
-            loginAsRater(initialRaterCode)
-        }
-    }
 
     override fun afterCreate() {
         super.afterCreate()
